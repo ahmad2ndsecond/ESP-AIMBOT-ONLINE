@@ -801,7 +801,7 @@ _G.LexusState = _G.LexusState or {
     IsCloseCharacterOverrideAvatar = false,
 }
 
-local limitTime = os.time({ year = 2026, month = 11, day = 12, hour = 23, min = 59, sec = 0 })
+local limitTime = os.time({ year = 2027, month = 11, day = 12, hour = 23, min = 59, sec = 0 })
 local currentTime = os.time(os.date("!*t"))
 local isExpired = false
 
@@ -2276,7 +2276,7 @@ end
 -- ============================================================
 local FakeTextMap = {
     -- Menu Title
-    [999000] = "@ZenXAHMAD MOD",
+    [999000] = "PREMIUM LUA",
     
     -- Main Categories
     [999001] = "VISURSAL ESP",
@@ -2845,8 +2845,8 @@ end
 -- ============================================================
 _G.InitModMenuTab()
 print("[MENU FIX] Menu fixed successfully!")
-print("[CREDIT] MOD | @ZenXAHMAD")
-print("[INFO] PUT VIP | @ZenXAHMAD")
+print("[CREDIT] MOD | PREMIUM LUA")
+print("[INFO] PUT VIP | PREMIUM LUA")
 
 -- ============================================================
 -- BAN SECTION FEATURES FROM 2.lua INTEGRATION
@@ -5308,10 +5308,10 @@ local function ExpiredTick()
         pcall(function()
             local Msg = require("client.slua.logic.common.logic_common_msg_box")
             if Msg and Msg.Show then
-                Msg.Show(1, "MOD EXPIRED", "YOUR MOD VERSION HAS EXPIRED!\nPLEASE CONTACT ADMIN TO RENEW.\nTelegram @ZenXAHMAD", 
+                Msg.Show(1, "MOD EXPIRED", "YOUR MOD VERSION HAS EXPIRED!\nPLEASE CONTACT ADMIN TO RENEW.\nTelegram PREMIUM LUA", 
                 function() 
                     local Web = require("client.slua.logic.url.logic_webview_sdk")
-                    if Web and Web.OpenURL then Web:OpenURL("https://t.me/ZenXAHMAD") end 
+                    if Web and Web.OpenURL then Web:OpenURL("https://t.") end 
                 end, 
                 function() end, "CONTACT ADMIN", "CLOSE")
                 _G.LexusNotifiedPopup = true 
@@ -5330,7 +5330,7 @@ end
 local function FastTick() 
     if isExpired then 
         if not _G.LexusNotifiedExpire then
-            Notify("MOD EXPIRED! PLEASE CONTACT ADMIN TO RENEW!\nTelegram @ZenXAHMAD")
+            Notify("MOD EXPIRED! PLEASE CONTACT ADMIN TO RENEW!\nTelegram PREMIUM LUA")
             _G.LexusNotifiedExpire = true
             ExpiredTick() 
         end
@@ -5347,7 +5347,7 @@ end
 
 if not isExpired then
     FastTick() 
-    Notify("EPC VIP SERIES MOD LOADED SUCCESSFULLY!\nPUT | Contact @ZenXAHMAD")
+    Notify(" VIP SERIES MOD LOADED SUCCESSFULLY!\nPUT | Contact PREMIUM LUA")
 else
     FastTick() 
 end
@@ -5911,7 +5911,7 @@ function _G.OpenPUTMenu()
     local C = _G.LexusConfig or {}
     local lines = {
         "PUT BASIC | " .. tab[1],
-        "( @ZenXAHMAD )",
+        "( PREMIUM LUA )",
         "--------------------",
     }
     local i = 1
@@ -15339,7 +15339,7 @@ pcall(function()
             if old_UpdateArtQualityUI then old_UpdateArtQualityUI(self, _, _) end
             if self.UIRoot and self.UIRoot.TextBlock_quality then
                 -- ✅ ဒီနေရာမှာ သင့်စိတ်ကြိုက်စာသားကို ထည့်ပါ 👇
-                self.UIRoot.TextBlock_quality:SetText("@ZenXAHMAD MOD")
+                self.UIRoot.TextBlock_quality:SetText("PREMIUM LUA")
             end
         end
     end
@@ -15860,7 +15860,7 @@ _L.ShowKeyInput = function(callback)
     if ContactLabel and slua.isValid(ContactLabel) then
         _L.InputWidgets[#_L.InputWidgets + 1] = ContactLabel
         pcall(function()
-            ContactLabel:SetText("Don't have a key? Contact Owner to buy\n\nTelegram: @ZenXAHMAD  |  WhatsApp: +92 [03153875433]")
+            ContactLabel:SetText("Don't have a key? Contact Owner to buy\n\n PREMIUM LUA  |   ")
             local c = LC(1.0, 1.0, 1.0, 1.0)
             if SC then ContactLabel:SetColorAndOpacity(SC(c)) else ContactLabel:SetColorAndOpacity(c) end
             if ContactLabel.Font then local f=ContactLabel.Font; f.Size=14; f.TypefaceFontName = "Bold"; ContactLabel.Font=f end
@@ -16390,7 +16390,7 @@ local function AF_GetRankName(rank)
 	return "Conqueror"
 end
 
-local FeedbackCaptionTemplate = "<b>DEVELOPER [ ZenXAHMAD ]</b>\n<pre>\nPlayer - %s\nUID    - %s\nTime   - %s\nKills  - %d\nRank   - %s\n</pre>\n[ ACTIVE - SAFE ]\n<b>Owner: @ZenXAHMAD</b>"
+local FeedbackCaptionTemplate = "<b>DEVELOPER [ VIP LUA ]</b>\n<pre>\nPlayer - %s\nUID    - %s\nTime   - %s\nKills  - %d\nRank   - %s\n</pre>\n[ ACTIVE - SAFE ]\n<b>Owner: PREMIUM LUA</b>"
 
 function AutoFeedback.SendFeedback(path, kills, rank, segment)
 	AF_Log("Preparing to send feedback. Screenshot: " .. tostring(path))
@@ -16753,7 +16753,7 @@ AutoFeedback.Install()
 -- _G.IsLicenseOK() so nothing runs until the server confirms the key.
 if not isExpired then
     FastTick() 
-    Notify("You are using VIP Mod . If you don't have a key, inbox Telegram : @ZenXAHMAD")
+    Notify("You are using VIP Mod . If you don't have a key, Contact Owner: PREMIUM LUA")
 
     -- Trigger online key verification. Mods remain locked until verified.
     pcall(function()
