@@ -3,9 +3,9 @@ local function startBaselineHacks()
 local GameplayData=require("GameLua.GameCore.Data.GameplayData")
 local EPawnState=import("EPawnState")
 local UKismetSystemLibrary=import("KismetSystemLibrary")
-_G.g_masterahsanyt=_G.g_masterahsanyt or "PREMIUM"
-local g_masterahsanyt_credit=_G.g_masterahsanyt
-local g_masterahsanyt_StartSettingsMaintenance
+_G.g_VIPLUA=_G.g_VIPLUA or "PREMIUM"
+local g_VIPLUA_credit=_G.g_VIPLUA
+local g_VIPLUA_StartSettingsMaintenance
 -- BYPASS START
 -- ============================================================================
 -- ============================================================================
@@ -441,8 +441,8 @@ _G.LexusState = _G.LexusState or {}
 _G.LexusState.CustomTextData = _G.LexusState.CustomTextData or {}
 _G.LexusState.CustomTextData.IpadViewFOV = _G.LexusState.CustomTextData.IpadViewFOV or 120
 
--- g_masterahsanyt_GetLocalPlayer made by PREMIUM
-local function g_masterahsanyt_GetLocalPlayer()
+-- g_VIPLUA_GetLocalPlayer made by PREMIUM
+local function g_VIPLUA_GetLocalPlayer()
     local ok, GDP = pcall(require, "GameLua.GameCore.Data.GameplayData")
     if not ok or not GDP then return nil end
     local player = GDP.GetPlayerCharacter()
@@ -450,9 +450,9 @@ local function g_masterahsanyt_GetLocalPlayer()
     return nil
 end
 
--- g_masterahsanyt_ApplyiPadView made by PREMIUM
-local function g_masterahsanyt_ApplyiPadView()
-    local player = g_masterahsanyt_GetLocalPlayer()
+-- g_VIPLUA_ApplyiPadView made by PREMIUM
+local function g_VIPLUA_ApplyiPadView()
+    local player = g_VIPLUA_GetLocalPlayer()
     if not player then return end
     local cam = player.ThirdPersonCameraComponent
     if not cam or not slua.isValid(cam) then return end
@@ -471,35 +471,35 @@ local function g_masterahsanyt_ApplyiPadView()
 end
 
 -- Persistent ESP feature settings.
-local g_masterahsanyt_ESPOptionDefaults = {
+local g_VIPLUA_ESPOptionDefaults = {
     Name=false, Line=false, Box=false, Health=false, Distance=false, Skeleton=false, Counter=false
 }
-_G.g_masterahsanyt_ESPOptions = _G.g_masterahsanyt_ESPOptions or {}
-for k,v in pairs(g_masterahsanyt_ESPOptionDefaults) do
-    if _G.g_masterahsanyt_ESPOptions[k] == nil then _G.g_masterahsanyt_ESPOptions[k] = v end
+_G.g_VIPLUA_ESPOptions = _G.g_VIPLUA_ESPOptions or {}
+for k,v in pairs(g_VIPLUA_ESPOptionDefaults) do
+    if _G.g_VIPLUA_ESPOptions[k] == nil then _G.g_VIPLUA_ESPOptions[k] = v end
 end
-local g_masterahsanyt_ESPSettingsFile = "MASTERPIECE_UMG_ESP_settings.lua"
-local function g_masterahsanyt_ESPSettingsPaths()
+local g_VIPLUA_ESPSettingsFile = "AHMADPIECE_UMG_ESP_settings.lua"
+local function g_VIPLUA_ESPSettingsPaths()
     local paths = {
-        "//storage/emulated/0/Android/data/com.tencent.ig/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile,
-        "//storage/emulated/0/Android/data/com.vng.pubgmobile/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile,
-        "//storage/emulated/0/Android/data/com.pubg.krmobile/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile,
-        "//storage/emulated/0/Android/data/com.rekoo.pubgm/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile,
-        "//storage/emulated/0/Android/data/com.pubg.imobile/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile,
-        "Documents/ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile,
-        "ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile,
-        g_masterahsanyt_ESPSettingsFile
+        "//storage/emulated/0/Android/data/com.tencent.ig/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile,
+        "//storage/emulated/0/Android/data/com.vng.pubgmobile/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile,
+        "//storage/emulated/0/Android/data/com.pubg.krmobile/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile,
+        "//storage/emulated/0/Android/data/com.rekoo.pubgm/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile,
+        "//storage/emulated/0/Android/data/com.pubg.imobile/files/UE4Game/ShadowTrackerExtra/ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile,
+        "Documents/ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile,
+        "ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile,
+        g_VIPLUA_ESPSettingsFile
     }
     local home=nil
     pcall(function() if os and os.getenv then home=os.getenv("HOME") end end)
     if type(home)=="string" and home~="" then
-        table.insert(paths,1,home.."/Documents/ShadowTrackerExtra/Saved/SaveGames/"..g_masterahsanyt_ESPSettingsFile)
+        table.insert(paths,1,home.."/Documents/ShadowTrackerExtra/Saved/SaveGames/"..g_VIPLUA_ESPSettingsFile)
     end
     return paths
 end
 -- Replace the SaveGames file only after write/flush/close succeed where Lua
 -- exposes rename. A failed temporary write keeps the last saved file intact.
-local function g_masterahsanyt_ESPWriteSettings(path,payload)
+local function g_VIPLUA_ESPWriteSettings(path,payload)
     local atomic=os and type(os.rename)=="function"
     local target=atomic and path..".tmp" or path
     local opened,file=pcall(io.open,target,"w")
@@ -522,39 +522,39 @@ local function g_masterahsanyt_ESPWriteSettings(path,payload)
     return ok,err,atomic
 end
 
-local g_masterahsanyt_ESPLoadedSettingsPath=nil
+local g_VIPLUA_ESPLoadedSettingsPath=nil
 
-local function g_masterahsanyt_ESPLoadSettings()
+local function g_VIPLUA_ESPLoadSettings()
     if not io or type(io.open) ~= "function" then return false end
-    local paths = g_masterahsanyt_ESPSettingsPaths()
+    local paths = g_VIPLUA_ESPSettingsPaths()
     local content=nil
     for _,path in ipairs(paths) do
         local ok,f=pcall(io.open,path,"r")
         if ok and f then
             local rok,text=pcall(function() return f:read("*a") end)
             pcall(function() f:close() end)
-            if rok and type(text)=="string" and text~="" then content=text;g_masterahsanyt_ESPLoadedSettingsPath=path;break end
+            if rok and type(text)=="string" and text~="" then content=text;g_VIPLUA_ESPLoadedSettingsPath=path;break end
         end
     end
     if not content then return false end
-    for k in pairs(g_masterahsanyt_ESPOptionDefaults) do
+    for k in pairs(g_VIPLUA_ESPOptionDefaults) do
         local v=content:match(k.."%s*=%s*(true)") or content:match(k.."%s*=%s*(false)")
-        if v then _G.g_masterahsanyt_ESPOptions[k]=(v=="true") end
+        if v then _G.g_VIPLUA_ESPOptions[k]=(v=="true") end
     end
     return true
 end
-g_masterahsanyt_ESPLoadSettings()
+g_VIPLUA_ESPLoadSettings()
 
 -- One authorization session per Lua process; gameplay identity never owns it.
 do
     local licenseScope
-local MasterLicenseConfig = {
+local AHMADLicenseConfig = {
 url = 'https://api.6nnn.store/connect', game = 'PUBG',
     timeout = 10, clockSkew = 120, expiryPath = nil,
     manualExpiry = nil, tamperTolerance = 5,
     secret = 'Vm8Lk7Uj2JmsjCPVPVjrLa7zgfx3uz9E',
 }
-local MasterLicenseCore = (function()
+local AHMADLicenseCore = (function()
     local Primitives = (function()
         local floor, abs, max = math.floor, math.abs, math.max
         local byte, char, format = string.byte, string.char, string.format
@@ -1209,7 +1209,7 @@ end)()
                 d.Detail=text("Kill limit 8-10",px+16,109,pw-32,34,23,white,7,true,true)
                 d.Hint=text("Play smart and avoid report",30,165,W-60,32,17,forest,7,true,true)
             else
-                d.Title=text("MASTERAHSANYT",22,15,W-44,31,24,white,7,true,true)
+                d.Title=text("VIPLUA",22,15,W-44,31,24,white,7,true,true)
                 text("LOGIN",22,45,W-44,21,12,white,7,true,true)
                 line(W/2-118,56,W/2-47,56,1,color(251,244,228),7)
                 line(W/2+47,56,W/2+118,56,1,color(251,244,228),7)
@@ -1300,7 +1300,7 @@ end)()
     -- Hot UI upgrades retain the existing verified or pending license session.
     local existing=_G.LunarLoginRuntime
     if existing and existing.UIFactory and existing.UIFactory.Version~=UI.Version
-        and existing.Scope==MasterLicenseCore.Primitives.md5(MasterLicenseConfig.url.."\0"..MasterLicenseConfig.game.."\0"..MasterLicenseConfig.secret) then
+        and existing.Scope==AHMADLicenseCore.Primitives.md5(AHMADLicenseConfig.url.."\0"..AHMADLicenseConfig.game.."\0"..AHMADLicenseConfig.secret) then
         local visibleWelcome=existing.WelcomeUI and existing.WelcomeUI.Visible
         if existing.DestroyUI then existing.DestroyUI() end
         existing.UIFactory.Build=UI.Build;existing.UIFactory.Version=UI.Version
@@ -1314,7 +1314,7 @@ end)()
     end
     local current=_G.LunarLoginRuntime
     -- Existing runtime survives character recreation and source reload in this process.
-    local expectedScope=MasterLicenseCore.Primitives.md5(MasterLicenseConfig.url.."\0"..MasterLicenseConfig.game.."\0"..MasterLicenseConfig.secret)
+    local expectedScope=AHMADLicenseCore.Primitives.md5(AHMADLicenseConfig.url.."\0"..AHMADLicenseConfig.game.."\0"..AHMADLicenseConfig.secret)
     if not current or current.Scope~=expectedScope then
         if current and current.DestroyUI then current.DestroyUI() end
         local L={Authorized=false,Pending=false,NeedsUpdate=true,WelcomeShown=false,
@@ -1323,18 +1323,18 @@ end)()
         L.UIFactory=UI
         -- Identity is pinned independently of the feature-settings location.
         -- All IO is bounded and happens at startup/login, or a delayed save retry.
-        local paths=g_masterahsanyt_ESPSettingsPaths()
-        for i,path in ipairs(paths) do paths[i]=path:gsub("MASTERPIECE_UMG_ESP_settings.lua$","MASTERAHSAN_LOGIN_V7_settings.lua") end
+        local paths=g_VIPLUA_ESPSettingsPaths()
+        for i,path in ipairs(paths) do paths[i]=path:gsub("AHMADPIECE_UMG_ESP_settings.lua$","LUALOGIN_LOGIN_V7_settings.lua") end
         local function loginPath(featurePath)
             if type(featurePath)~="string" then return nil end
             local prefix=featurePath:match("^(.*[/\\])[^/\\]+$")
-            return (prefix or "").."MASTERAHSAN_LOGIN_V7_settings.lua"
+            return (prefix or "").."LUALOGIN_LOGIN_V7_settings.lua"
         end
         local function identityPath(path)
-            return path:gsub("MASTERAHSAN_LOGIN_V7_settings%.lua$","MASTERAHSAN_DEVICE_V1_settings.lua")
+            return path:gsub("LUALOGIN_LOGIN_V7_settings%.lua$","LUALOGIN_DEVICE_V1_settings.lua")
         end
         local function digest(key,seed)
-            return MasterLicenseCore.Primitives.md5("LUNAR-DEVICE-1\0"..L.Scope.."\0"..key.."\0"..seed)
+            return AHMADLicenseCore.Primitives.md5("LUNAR-DEVICE-1\0"..L.Scope.."\0"..key.."\0"..seed)
         end
         local function readRecord(path,identity)
             if not (io and type(io.open)=="function") then return nil,"unreadable" end
@@ -1430,7 +1430,7 @@ end)()
             if current and current.Checked and current.Seed==seed and current.Key==key then return true end
             if state=="unreadable" or state=="other_scope" then return false end
             if current and current.Seed~=seed and (identity or not L.HasIdentityRecord) then return false end
-            local ok=g_masterahsanyt_ESPWriteSettings(path,data)
+            local ok=g_VIPLUA_ESPWriteSettings(path,data)
             if not ok then return false end
             local result=readRecord(path,identity)
             return result~=nil and result.Checked and result.Seed==seed and result.Key==key
@@ -1494,13 +1494,13 @@ end)()
         local function wake()
             local f=_G.LunarFeatures;if f and f.Wake and not f.Token.Stopped then f.Wake() end
         end
-        L.Core=MasterLicenseCore
-        L.Auth=MasterLicenseCore.new(MasterLicenseConfig,{
+        L.Core=AHMADLicenseCore
+        L.Auth=AHMADLicenseCore.new(AHMADLicenseConfig,{
             clock=function() local t=os.time();return t,L.Scope end,
             wall=function() return os.time() end,
             serial=function(key)
                 L.EnsureIdentity()
-                return MasterLicenseCore.Primitives.name_uuid('MASTER-LUA-V1\0'..key..'\0'..L.Seed)
+                return AHMADLicenseCore.Primitives.name_uuid('AHMAD-LUA-V1\0'..key..'\0'..L.Seed)
             end,
             decode=function(raw) local json=require("common.json_util");return json.decode(raw) end,
             post=function(url,headers,body,callback,timeout)
@@ -1560,9 +1560,9 @@ end)()
             L.NeedsUpdate=true -- Half-second retry/readiness while locked only.
         end
     end
-    _G.MasterLicenseLogin=function(key) return _G.LunarLoginRuntime.Login(key) end
-    _G.MasterLicenseLogout=function() return _G.LunarLoginRuntime.Logout() end
-    _G.MasterLicenseStatus=function()
+    _G.AHMADLicenseLogin=function(key) return _G.LunarLoginRuntime.Login(key) end
+    _G.AHMADLicenseLogout=function() return _G.LunarLoginRuntime.Logout() end
+    _G.AHMADLicenseStatus=function()
         local l=_G.LunarLoginRuntime
         return {authorized=l.Authorized,pending=l.Pending,message=l.Status,
             periodicRecheck=false,expiryCheckPolicy="login_only",saveOK=not l.Dirty,identityState=l.Diagnostics.Identity}
@@ -1572,7 +1572,7 @@ end
 
 -- Settings registration follows the supplied working native-page reference.
 -- Feature rows, option values and authentication stay owned by this script.
-local g_masterahsanyt_EnsureHackMenu
+local g_VIPLUA_EnsureHackMenu
 do
     local VERSION = "LunarSettings.V9.2.MenuFix"
     local function runtime()
@@ -1723,11 +1723,11 @@ do
             SetFunc=function(c,v) return featureState().SetESPAll(version,value(c,v)) end}
     end
     local function espSwitch(version,key,label)
-        return {Key=version==1 and ("LunarV1_"..key) or ("MasterpieceESP_"..key),
+        return {Key=version==1 and ("LunarV1_"..key) or ("AHMADpieceESP_"..key),
             UI=AliasMap.Switcher,Text=label,
             EventType=F.ESPSettingsEventType,EventID=F.ESPSettingsEventID,
             GetFunc=function()
-                local options=version==1 and _G.g_Botmater_ESPOptions or _G.g_masterahsanyt_ESPOptions
+                local options=version==1 and _G.g_Botmater_ESPOptions or _G.g_VIPLUA_ESPOptions
                 return options[key]==true
             end,
             SetFunc=function(c,v) return featureState().SetESP(version,key,value(c,v)) end}
@@ -1839,13 +1839,13 @@ do
         state.Ready = state.Registered and state.HookInstalled == true
         if state.Ready then
             state.LastError = nil
-            _G.HackMenuInitialized = "MASTERAHSAN_NATIVE_SETTINGS_V9_2"
+            _G.HackMenuInitialized = "LUALOGIN_NATIVE_SETTINGS_V9_2"
         else state.LastError = "SETTINGS_UI_MANAGER_NOT_READY" end
         return state.Ready
     end
-    g_masterahsanyt_EnsureHackMenu = function()
+    g_VIPLUA_EnsureHackMenu = function()
         local state = runtime()
-        state.Ensure = g_masterahsanyt_EnsureHackMenu
+        state.Ensure = g_VIPLUA_EnsureHackMenu
         if state.Initializing then return false end
         state.Initializing = true
         state.Attempts = (state.Attempts or 0) + 1
@@ -1860,7 +1860,7 @@ do
     end
     _G.LunarSettingsDiagnostics = function()
         local state = runtime()
-        local timer = _G.__MasterShotFastRunner
+        local timer = _G.__AHMADShotFastRunner
         return {version = state.Version, ready = state.Ready == true,
             registered = state.Registered == true, attempts = state.Attempts or 0,
             lastError = state.LastError, hookInstalled = state.HookInstalled == true,
@@ -1877,7 +1877,7 @@ do
 end
 
 -- ESP configuration made by PREMIUM
-_G.g_masterahsanyt_MasterShotESP = _G.g_masterahsanyt_MasterShotESP or {
+_G.g_VIPLUA_AHMADShotESP = _G.g_VIPLUA_AHMADShotESP or {
 
     Enabled = true,
     MaxRangeMeters = 450.0,
@@ -1887,7 +1887,7 @@ _G.g_masterahsanyt_MasterShotESP = _G.g_masterahsanyt_MasterShotESP or {
     ScanInterval = 0.35,
     UpdateInterval = 1.0 / 60.0,
     WidgetBuildBudget = 96, -- New line widgets per update; existing widgets stay live.
-    Profile = false,       -- Optional CPU timing in _G.g_masterahsanyt_ESPDiagnostics.
+    Profile = false,       -- Optional CPU timing in _G.g_VIPLUA_ESPDiagnostics.
     TransformInterval = 0.60,
     MaxRendered = 8,
 
@@ -1902,32 +1902,32 @@ _G.g_masterahsanyt_MasterShotESP = _G.g_masterahsanyt_MasterShotESP or {
     DistanceFontSize = 20,
     DistanceBelowFeet = 8.0,
 }
-if (tonumber(_G.g_masterahsanyt_MasterShotESP.MaxRendered) or 0) < 1 then
-    _G.g_masterahsanyt_MasterShotESP.MaxRendered = 8
+if (tonumber(_G.g_VIPLUA_AHMADShotESP.MaxRendered) or 0) < 1 then
+    _G.g_VIPLUA_AHMADShotESP.MaxRendered = 8
 end
-if (tonumber(_G.g_masterahsanyt_MasterShotESP.MaxRangeMeters) or 0) < 400.0 then
-    _G.g_masterahsanyt_MasterShotESP.MaxRangeMeters = 450.0
+if (tonumber(_G.g_VIPLUA_AHMADShotESP.MaxRangeMeters) or 0) < 400.0 then
+    _G.g_VIPLUA_AHMADShotESP.MaxRangeMeters = 450.0
 end
 -- Upgrade a table retained by an earlier hot-reload to the new readable marker size.
-if (tonumber(_G.g_masterahsanyt_MasterShotESP.DistanceFontSize) or 0) < 20 then
-    _G.g_masterahsanyt_MasterShotESP.DistanceFontSize = 20
+if (tonumber(_G.g_VIPLUA_AHMADShotESP.DistanceFontSize) or 0) < 20 then
+    _G.g_VIPLUA_AHMADShotESP.DistanceFontSize = 20
 end
 -- Counters are 20% larger than the previous 182x28 revision.
-_G.g_masterahsanyt_MasterShotESP.CounterWidth=218.4
-_G.g_masterahsanyt_MasterShotESP.CounterHeight=33.6
-_G.g_masterahsanyt_MasterShotESP.CounterDiamondSize=0.0
+_G.g_VIPLUA_AHMADShotESP.CounterWidth=218.4
+_G.g_VIPLUA_AHMADShotESP.CounterHeight=33.6
+_G.g_VIPLUA_AHMADShotESP.CounterDiamondSize=0.0
 
 -- Upgrade only the shipped 30 Hz default on the first performance revision.
-if not _G.g_masterahsanyt_MasterShotESP.PerformanceRevision then
-    if _G.g_masterahsanyt_MasterShotESP.UpdateInterval == 0.033 then
-        _G.g_masterahsanyt_MasterShotESP.UpdateInterval = 1.0 / 60.0
+if not _G.g_VIPLUA_AHMADShotESP.PerformanceRevision then
+    if _G.g_VIPLUA_AHMADShotESP.UpdateInterval == 0.033 then
+        _G.g_VIPLUA_AHMADShotESP.UpdateInterval = 1.0 / 60.0
     end
-    _G.g_masterahsanyt_MasterShotESP.PerformanceRevision = 1
+    _G.g_VIPLUA_AHMADShotESP.PerformanceRevision = 1
 end
-_G.MasterShotESP = _G.g_masterahsanyt_MasterShotESP
+_G.AHMADShotESP = _G.g_VIPLUA_AHMADShotESP
 
 -- ESP runtime state made by PREMIUM
-local g_masterahsanyt_ShotESP = {
+local g_VIPLUA_ShotESP = {
     Canvas = nil,
     RootUI = nil,
     Counter = nil,
@@ -1994,13 +1994,13 @@ pcall(function() GameplayStaticsESP = import("GameplayStatics") end)
 local ESPGameplayData=nil
 pcall(function() ESPGameplayData=require("GameLua.GameCore.Data.GameplayData") end)
 
--- g_masterahsanyt_ESPV2 made by PREMIUM
-local function g_masterahsanyt_ESPV2(x, y)
+-- g_VIPLUA_ESPV2 made by PREMIUM
+local function g_VIPLUA_ESPV2(x, y)
     if V2 then return V2(x, y) end
     return {X = x, Y = y}
 end
 
-local function g_masterahsanyt_ESPV3(x, y, z)
+local function g_VIPLUA_ESPV3(x, y, z)
     if V3 then
         local ok, v = pcall(V3, x, y, z)
         if ok and v then return v end
@@ -2009,57 +2009,57 @@ local function g_masterahsanyt_ESPV3(x, y, z)
 end
 
 -- ESP color made by PREMIUM
-local function g_masterahsanyt_ESPColor(r, g, b, a)
+local function g_VIPLUA_ESPColor(r, g, b, a)
     if LinearColor then return LinearColor(r, g, b, a or 1.0) end
     return {R=r, G=g, B=b, A=a or 1.0}
 end
 
 -- ESP color theme made by PREMIUM
-local ESP_REAL = g_masterahsanyt_ESPColor(0.90, 0.14, 0.14, 0.98)
-local ESP_BOT  = g_masterahsanyt_ESPColor(0.18, 0.86, 0.36, 0.98)
-local ESP_WHITE = g_masterahsanyt_ESPColor(1.0, 1.0, 1.0, 1.0)
-local ESP_BLACK = g_masterahsanyt_ESPColor(0.0, 0.0, 0.0, 1.0)
-local ESP_TEXT_CLEAR = g_masterahsanyt_ESPColor(0.0,0.0,0.0,0.0)
-local ESP_HEADER_BG = g_masterahsanyt_ESPColor(0.0, 0.0, 0.0, 0.78)
-local ESP_COUNTER_RED = g_masterahsanyt_ESPColor(1.0, 0.055, 0.105, 1.0)
-local ESP_COUNTER_RED_DARK = g_masterahsanyt_ESPColor(0.12, 0.008, 0.012, 1.0)
-local ESP_COUNTER_BLUE = g_masterahsanyt_ESPColor(0.18, 0.86, 0.36, 1.0)
-local ESP_COUNTER_BLUE_DARK = g_masterahsanyt_ESPColor(0.012, 0.06, 0.025, 1.0)
-local ESP_COUNTER_CENTER = g_masterahsanyt_ESPColor(0.075, 0.080, 0.095, 1.0)
+local ESP_REAL = g_VIPLUA_ESPColor(0.90, 0.14, 0.14, 0.98)
+local ESP_BOT  = g_VIPLUA_ESPColor(0.18, 0.86, 0.36, 0.98)
+local ESP_WHITE = g_VIPLUA_ESPColor(1.0, 1.0, 1.0, 1.0)
+local ESP_BLACK = g_VIPLUA_ESPColor(0.0, 0.0, 0.0, 1.0)
+local ESP_TEXT_CLEAR = g_VIPLUA_ESPColor(0.0,0.0,0.0,0.0)
+local ESP_HEADER_BG = g_VIPLUA_ESPColor(0.0, 0.0, 0.0, 0.78)
+local ESP_COUNTER_RED = g_VIPLUA_ESPColor(1.0, 0.055, 0.105, 1.0)
+local ESP_COUNTER_RED_DARK = g_VIPLUA_ESPColor(0.12, 0.008, 0.012, 1.0)
+local ESP_COUNTER_BLUE = g_VIPLUA_ESPColor(0.18, 0.86, 0.36, 1.0)
+local ESP_COUNTER_BLUE_DARK = g_VIPLUA_ESPColor(0.012, 0.06, 0.025, 1.0)
+local ESP_COUNTER_CENTER = g_VIPLUA_ESPColor(0.075, 0.080, 0.095, 1.0)
 
 -- ESP gradient color made by PREMIUM
-local function g_masterahsanyt_ESPScaleColor(color, factor, alphaMul)
-    if not color then return g_masterahsanyt_ESPColor(1, 1, 1, 1) end
+local function g_VIPLUA_ESPScaleColor(color, factor, alphaMul)
+    if not color then return g_VIPLUA_ESPColor(1, 1, 1, 1) end
     local r = math.max(0.0, math.min(1.0, (tonumber(color.R) or 1.0) * (factor or 1.0)))
     local g = math.max(0.0, math.min(1.0, (tonumber(color.G) or 1.0) * (factor or 1.0)))
     local b = math.max(0.0, math.min(1.0, (tonumber(color.B) or 1.0) * (factor or 1.0)))
     local a = math.max(0.0, math.min(1.0, (tonumber(color.A) or 1.0) * (alphaMul or 1.0)))
-    return g_masterahsanyt_ESPColor(r, g, b, a)
+    return g_VIPLUA_ESPColor(r, g, b, a)
 end
 
-local ESP_REAL_DARK  = g_masterahsanyt_ESPScaleColor(ESP_REAL, 0.68, 1.0)
-local ESP_REAL_LIGHT = g_masterahsanyt_ESPScaleColor(ESP_REAL, 1.12, 0.82)
-local ESP_BOT_DARK   = g_masterahsanyt_ESPScaleColor(ESP_BOT, 0.68, 1.0)
-local ESP_BOT_LIGHT  = g_masterahsanyt_ESPScaleColor(ESP_BOT, 1.10, 0.82)
-local ESP_WHITE_SOFT = g_masterahsanyt_ESPColor(0.94, 0.94, 0.94, 0.98)
-local ESP_WHITE_GLOSS = g_masterahsanyt_ESPColor(1.0, 1.0, 1.0, 0.34)
+local ESP_REAL_DARK  = g_VIPLUA_ESPScaleColor(ESP_REAL, 0.68, 1.0)
+local ESP_REAL_LIGHT = g_VIPLUA_ESPScaleColor(ESP_REAL, 1.12, 0.82)
+local ESP_BOT_DARK   = g_VIPLUA_ESPScaleColor(ESP_BOT, 0.68, 1.0)
+local ESP_BOT_LIGHT  = g_VIPLUA_ESPScaleColor(ESP_BOT, 1.10, 0.82)
+local ESP_WHITE_SOFT = g_VIPLUA_ESPColor(0.94, 0.94, 0.94, 0.98)
+local ESP_WHITE_GLOSS = g_VIPLUA_ESPColor(1.0, 1.0, 1.0, 0.34)
 
-local g_masterahsanyt_ESPTheme
+local g_VIPLUA_ESPTheme
 do
 local ESP_REAL_THEME = {Key="REAL",Main=ESP_REAL,Light=ESP_REAL_LIGHT,
-    Text=g_masterahsanyt_ESPColor(1.0,0.86,0.84,1.0),
-    Background=g_masterahsanyt_ESPColor(0.05,0.005,0.005,0.97),
-    Empty=g_masterahsanyt_ESPColor(0.055,0.008,0.008,1.0)}
+    Text=g_VIPLUA_ESPColor(1.0,0.86,0.84,1.0),
+    Background=g_VIPLUA_ESPColor(0.05,0.005,0.005,0.97),
+    Empty=g_VIPLUA_ESPColor(0.055,0.008,0.008,1.0)}
 local ESP_BOT_THEME = {Key="BOT",Main=ESP_BOT,Light=ESP_BOT_LIGHT,
-    Text=g_masterahsanyt_ESPColor(0.82,1.0,0.87,1.0),
-    Background=g_masterahsanyt_ESPColor(0.005,0.05,0.015,0.97),
-    Empty=g_masterahsanyt_ESPColor(0.008,0.055,0.018,1.0)}
-g_masterahsanyt_ESPTheme=function(isBot)
+    Text=g_VIPLUA_ESPColor(0.82,1.0,0.87,1.0),
+    Background=g_VIPLUA_ESPColor(0.005,0.05,0.015,0.97),
+    Empty=g_VIPLUA_ESPColor(0.008,0.055,0.018,1.0)}
+g_VIPLUA_ESPTheme=function(isBot)
     return isBot and ESP_BOT_THEME or ESP_REAL_THEME
 end
 end
 -- ESP object validation made by PREMIUM
-local function g_masterahsanyt_ESPValid(obj)
+local function g_VIPLUA_ESPValid(obj)
     if not obj then return false end
     if not slua or not slua.isValid then return false end
     local ok, valid = pcall(slua.isValid, obj)
@@ -2084,7 +2084,7 @@ function ESPShared.VectorValues(v)
 end
 
 -- ESP timing made by PREMIUM
-local function g_masterahsanyt_ESPNow()
+local function g_VIPLUA_ESPNow()
     local t = nil
     pcall(function()
         local w = (slua and slua.getWorld and slua.getWorld()) or nil
@@ -2096,66 +2096,66 @@ local function g_masterahsanyt_ESPNow()
     if ESPShared.Finite(t) and t>=0 then return t end
     -- os.clock measures CPU time on some platforms, not elapsed frame time.
     -- If the engine clock is unavailable, advance by executed timer delays.
-    return ESPShared.SafeNumber(g_masterahsanyt_ShotESP.TimerClock,0.0,0.0,1e12)
+    return ESPShared.SafeNumber(g_VIPLUA_ShotESP.TimerClock,0.0,0.0,1e12)
 end
 
 -- ESP world access made by PREMIUM
-local function g_masterahsanyt_ESPWorld()
+local function g_VIPLUA_ESPWorld()
     local w = nil
     pcall(function() if slua and slua.getWorld then w = slua.getWorld() end end)
     return w
 end
 
 -- ESP player controller made by PREMIUM
-local function g_masterahsanyt_ESPGetController()
+local function g_VIPLUA_ESPGetController()
     local pc = nil
     pcall(function()
         local GDP = ESPGameplayData
         if GDP and GDP.GetPlayerController then pc = GDP.GetPlayerController() end
     end)
-    if not g_masterahsanyt_ESPValid(pc) then
+    if not g_VIPLUA_ESPValid(pc) then
         pcall(function()
             if slua_GameFrontendHUD then pc = slua_GameFrontendHUD:GetPlayerController() end
         end)
     end
-    return g_masterahsanyt_ESPValid(pc) and pc or nil
+    return g_VIPLUA_ESPValid(pc) and pc or nil
 end
 
 -- ESP local player made by PREMIUM
-local function g_masterahsanyt_ESPGetLocalCharacter()
+local function g_VIPLUA_ESPGetLocalCharacter()
     local c = nil
     pcall(function()
         local GDP = ESPGameplayData
         if GDP then
             if GDP.GetPlayerCharacter then c = GDP.GetPlayerCharacter() end
-            if not g_masterahsanyt_ESPValid(c) and GDP.GetLocalCharacter then c = GDP.GetLocalCharacter() end
+            if not g_VIPLUA_ESPValid(c) and GDP.GetLocalCharacter then c = GDP.GetLocalCharacter() end
         end
     end)
-    if not g_masterahsanyt_ESPValid(c) then
-        local pc = g_masterahsanyt_ESPGetController()
+    if not g_VIPLUA_ESPValid(c) then
+        local pc = g_VIPLUA_ESPGetController()
         pcall(function() if pc and pc.GetPawn then c = pc:GetPawn() end end)
     end
-    return g_masterahsanyt_ESPValid(c) and c or nil
+    return g_VIPLUA_ESPValid(c) and c or nil
 end
 
--- g_masterahsanyt_ESPGetPlayerState made by PREMIUM
-local function g_masterahsanyt_ESPGetPlayerState(character)
-    if not g_masterahsanyt_ESPValid(character) then return nil end
+-- g_VIPLUA_ESPGetPlayerState made by PREMIUM
+local function g_VIPLUA_ESPGetPlayerState(character)
+    if not g_VIPLUA_ESPValid(character) then return nil end
     local ps = nil
     pcall(function()
         if character.GetPlayerStateSafety then ps = character:GetPlayerStateSafety() end
     end)
-    if not g_masterahsanyt_ESPValid(ps) then
+    if not g_VIPLUA_ESPValid(ps) then
         pcall(function() if character.GetPlayerState then ps = character:GetPlayerState() end end)
     end
-    if not g_masterahsanyt_ESPValid(ps) then
+    if not g_VIPLUA_ESPValid(ps) then
         pcall(function() ps = character.PlayerState end)
     end
-    return g_masterahsanyt_ESPValid(ps) and ps or nil
+    return g_VIPLUA_ESPValid(ps) and ps or nil
 end
 
--- g_masterahsanyt_ESPNormalizeName made by PREMIUM
-local function g_masterahsanyt_ESPNormalizeName(value)
+-- g_VIPLUA_ESPNormalizeName made by PREMIUM
+local function g_VIPLUA_ESPNormalizeName(value)
     if value == nil or value == false then return nil end
     local ok, text = pcall(tostring, value)
     if not ok or not text then return nil end
@@ -2166,13 +2166,13 @@ local function g_masterahsanyt_ESPNormalizeName(value)
 end
 
 -- ESP player name made by PREMIUM
-local function g_masterahsanyt_ESPResolvePlayerName(character)
-    if not g_masterahsanyt_ESPValid(character) then return nil end
+local function g_VIPLUA_ESPResolvePlayerName(character)
+    if not g_VIPLUA_ESPValid(character) then return nil end
     local name = nil
 
 -- take made by PREMIUM
     local function take(value)
-        if not name then name = g_masterahsanyt_ESPNormalizeName(value) end
+        if not name then name = g_VIPLUA_ESPNormalizeName(value) end
     end
 
     pcall(function() if character.GetPlayerNameSafety then take(character:GetPlayerNameSafety()) end end)
@@ -2183,7 +2183,7 @@ local function g_masterahsanyt_ESPResolvePlayerName(character)
     pcall(function() if not name then take(character.BotName) end end)
 
     if not name then
-        local ps = g_masterahsanyt_ESPGetPlayerState(character)
+        local ps = g_VIPLUA_ESPGetPlayerState(character)
         if ps then
             pcall(function() if ps.GetPlayerName then take(ps:GetPlayerName()) end end)
             pcall(function() if not name then take(ps.PlayerName) end end)
@@ -2196,13 +2196,13 @@ local function g_masterahsanyt_ESPResolvePlayerName(character)
     return name
 end
 
--- g_masterahsanyt_ESPGetPlayerKey made by PREMIUM
-local function g_masterahsanyt_ESPGetPlayerKey(character)
+-- g_VIPLUA_ESPGetPlayerKey made by PREMIUM
+local function g_VIPLUA_ESPGetPlayerKey(character)
     local key = nil
     pcall(function() if character.GetPlayerKey then key = character:GetPlayerKey() end end)
     if key == nil then pcall(function() key = character.PlayerKey end) end
     if key == nil then
-        local ps = g_masterahsanyt_ESPGetPlayerState(character)
+        local ps = g_VIPLUA_ESPGetPlayerState(character)
         if ps then pcall(function() key = ps.PlayerKey end) end
     end
     if key == nil or tostring(key) == "" or tostring(key) == "0" or tostring(key) == "-1" then
@@ -2212,13 +2212,13 @@ local function g_masterahsanyt_ESPGetPlayerKey(character)
 end
 
 -- ESP team detection made by PREMIUM
-local function g_masterahsanyt_ESPGetTeamID(character)
-    if not g_masterahsanyt_ESPValid(character) then return nil end
+local function g_VIPLUA_ESPGetTeamID(character)
+    if not g_VIPLUA_ESPValid(character) then return nil end
     local id = nil
     pcall(function() if character.GetTeamID then id = character:GetTeamID() end end)
     if id == nil then pcall(function() id = character.TeamID end) end
     if id == nil then
-        local ps = g_masterahsanyt_ESPGetPlayerState(character)
+        local ps = g_VIPLUA_ESPGetPlayerState(character)
         if ps then
             pcall(function() if ps.GetTeamID then id = ps:GetTeamID() end end)
             if id == nil then pcall(function() id = ps.TeamID end) end
@@ -2247,8 +2247,8 @@ local function ESPActorDeadFlag(actor,key)
     local value=ESPReadActorField(actor,key)
     return value==true or value==1
 end
-local function g_masterahsanyt_ESPIsAlive(character)
-    if not g_masterahsanyt_ESPValid(character) then return false,"invalid" end
+local function g_VIPLUA_ESPIsAlive(character)
+    if not g_VIPLUA_ESPValid(character) then return false,"invalid" end
     if ESPActorDeadFlag(character,"bDead") or ESPActorDeadFlag(character,"bIsDead")
         or ESPActorDeadFlag(character,"bIsDeadFlag") then return false,"dead" end
     if ESPFinishedLastBreath~=nil
@@ -2295,7 +2295,7 @@ do
         if not Client then return nil end
         -- Only queried on a native event, never by a new poll or timer. This
         -- prevents a first HUD update from discarding a new-world death event.
-        E.WorldChanged(g_masterahsanyt_ESPWorld())
+        E.WorldChanged(g_VIPLUA_ESPWorld())
         return self and self.Object
     end
 
@@ -2417,7 +2417,7 @@ do
         E.Bindings[actor]=nil
         E.BindingCount=math.max(0,E.BindingCount-1)
         row.Active=false
-        local tracked=_G.g_masterahsanyt_TrackedCharacters
+        local tracked=_G.g_VIPLUA_TrackedCharacters
         local key=tostring(actor)
         if tracked and tracked[key]==actor then tracked[key]=nil end
         row.Actor[1]=nil
@@ -2479,10 +2479,10 @@ do
         E.BindingCount=E.BindingCount+1
         -- Native class lifecycle stays untouched. Existing pawn discovery
         -- supplies tracking/maintenance, and native respawn delegates clear ESP.
-        _G.g_masterahsanyt_TrackedCharacters=_G.g_masterahsanyt_TrackedCharacters or {}
-        _G.g_masterahsanyt_TrackedCharacters[tostring(actor)]=actor
-        if g_masterahsanyt_StartSettingsMaintenance then
-            pcall(g_masterahsanyt_StartSettingsMaintenance,actor)
+        _G.g_VIPLUA_TrackedCharacters=_G.g_VIPLUA_TrackedCharacters or {}
+        _G.g_VIPLUA_TrackedCharacters[tostring(actor)]=actor
+        if g_VIPLUA_StartSettingsMaintenance then
+            pcall(g_VIPLUA_StartSettingsMaintenance,actor)
         end
         if not _G._BYPASS_DONE and type(_G._BYPASS_Execute)=="function" then
             pcall(_G._BYPASS_Execute)
@@ -2544,11 +2544,11 @@ do
 end
 
 -- Bot cache uses the same actor/player key as pruning, with replication retries.
-local function g_masterahsanyt_ESPIsBot(character, key, providedCache, providedNow)
-    if not g_masterahsanyt_ESPValid(character) then return false end
-    key = key or g_masterahsanyt_ESPGetPlayerKey(character)
-    local cache = providedCache or g_masterahsanyt_ShotESP._BotCache
-    local now = providedNow or g_masterahsanyt_ShotESP.Now
+local function g_VIPLUA_ESPIsBot(character, key, providedCache, providedNow)
+    if not g_VIPLUA_ESPValid(character) then return false end
+    key = key or g_VIPLUA_ESPGetPlayerKey(character)
+    local cache = providedCache or g_VIPLUA_ShotESP._BotCache
+    local now = providedNow or g_VIPLUA_ShotESP.Now
     local entry = cache[key]
     if entry and now >= entry.Clock and now - entry.Clock < 2.0 then return entry.Value end
     local result = nil
@@ -2561,7 +2561,7 @@ local function g_masterahsanyt_ESPIsBot(character, key, providedCache, providedN
     if result == nil then pcall(function() take(character.bIsAI) end) end
     if result == nil then pcall(function() if character.IsBot then take(character:IsBot()) end end) end
     if result == nil then
-        local ps = g_masterahsanyt_ESPGetPlayerState(character)
+        local ps = g_VIPLUA_ESPGetPlayerState(character)
         if ps then
             pcall(function() take(ps.bIsABot) end)
             pcall(function() take(ps.bIsBot) end)
@@ -2575,9 +2575,9 @@ local function g_masterahsanyt_ESPIsBot(character, key, providedCache, providedN
 end
 
 -- ESP actor position made by PREMIUM
-local function g_masterahsanyt_ESPActorLocation(character)
+local function g_VIPLUA_ESPActorLocation(character)
     local loc = nil
-    if not g_masterahsanyt_ESPValid(character) then return nil end
+    if not g_VIPLUA_ESPValid(character) then return nil end
     pcall(function()
         if character.K2_GetActorLocation then loc = character:K2_GetActorLocation()
         elseif Game and Game.GetActorLocation then loc = Game:GetActorLocation(character) end
@@ -2586,7 +2586,7 @@ local function g_masterahsanyt_ESPActorLocation(character)
 end
 
 -- ESP distance calculation made by PREMIUM
-local function g_masterahsanyt_ESPDistanceMeters(a,b)
+local function g_VIPLUA_ESPDistanceMeters(a,b)
     local ax,ay,az=ESPShared.VectorValues(a)
     local bx,by,bz=ESPShared.VectorValues(b)
     if not ax or not bx then return math.huge end
@@ -2628,9 +2628,9 @@ function ESPShared.GetFrameRecord(actor)
     if ESPShared.Events.Observe then ESPShared.Events.Observe(actor) end
     entry=frame.Active and table.remove(frame.Pool) or nil
     if not entry then entry={} end
-    entry.Alive,entry.LifeState=g_masterahsanyt_ESPIsAlive(actor)
+    entry.Alive,entry.LifeState=g_VIPLUA_ESPIsAlive(actor)
     entry.Projected=false;entry.OnScreen=false;entry.HasHead=false;entry.HasFeet=false
-    entry.Location=entry.Alive and g_masterahsanyt_ESPActorLocation(actor) or nil
+    entry.Location=entry.Alive and g_VIPLUA_ESPActorLocation(actor) or nil
     entry.LocationX,entry.LocationY,entry.LocationZ=ESPShared.VectorValues(entry.Location)
     if not entry.LocationX then entry.Location=nil end
     if frame.Active and actor~=nil then frame.Entries[actor]=entry end
@@ -2653,7 +2653,7 @@ function ESPShared.GetFramePawns()
     end
     if ESPShared.Frame.Active then ESPShared.Frame.Pawns=pawns end
     local E=ESPShared.Events
-    local now=ESPShared.Frame.Active and ESPShared.Frame.Now or g_masterahsanyt_ESPNow()
+    local now=ESPShared.Frame.Active and ESPShared.Frame.Now or g_VIPLUA_ESPNow()
     if E.SyncObservedPawns and (not E.SyncDue or now>=E.SyncDue or now<(E.SyncClock or now)) then
         E.SyncObservedPawns(pawns);E.SyncDue=now+1;E.SyncClock=now
     end
@@ -2703,9 +2703,9 @@ function ESPShared.ProjectionControllerValid(pc)
     if frame.Active then
         local cached=frame.Controllers[pc]
         if cached~=nil then return cached end
-        local valid=g_masterahsanyt_ESPValid(pc);frame.Controllers[pc]=valid;return valid
+        local valid=g_VIPLUA_ESPValid(pc);frame.Controllers[pc]=valid;return valid
     end
-    return g_masterahsanyt_ESPValid(pc)
+    return g_VIPLUA_ESPValid(pc)
 end
 function ESPShared.CanvasTransform(state)
     local frame=ESPShared.Frame
@@ -2727,12 +2727,12 @@ function ESPShared.AssignProbeVector(vector,x,y,z)
 end
 function ESPShared.UpdateProbeVector(vector,x,y,z)
     if vector and pcall(ESPShared.AssignProbeVector,vector,x,y,z) then return vector end
-    return g_masterahsanyt_ESPV3(x,y,z)
+    return g_VIPLUA_ESPV3(x,y,z)
 end
 
 -- Validate all cached candidates before display caps. Reuse the list and alive
 -- map, so dead/out-of-range actors are pruned on the next scheduled HUD update.
-local function g_masterahsanyt_ESPFilterEnemies(list, myLocation, maxRange, alive)
+local function g_VIPLUA_ESPFilterEnemies(list, myLocation, maxRange, alive)
     for key in pairs(alive) do alive[key]=nil end
     local count,kept,realCount,botCount=#list,0,0,0
     maxRange=tonumber(maxRange) or 450.0
@@ -2756,8 +2756,8 @@ local function g_masterahsanyt_ESPFilterEnemies(list, myLocation, maxRange, aliv
 end
 
 -- ESP character vertical bounds made by PREMIUM
-local function g_masterahsanyt_ESPGetCharacterVerticalBounds(character,cachedLocation)
-    if not g_masterahsanyt_ESPValid(character) then return nil, nil end
+local function g_VIPLUA_ESPGetCharacterVerticalBounds(character,cachedLocation)
+    if not g_VIPLUA_ESPValid(character) then return nil, nil end
 
     local center, halfHeight = nil, nil
     local capsule = nil
@@ -2770,7 +2770,7 @@ local function g_masterahsanyt_ESPGetCharacterVerticalBounds(character,cachedLoc
         end
     end)
 
-    if capsule and g_masterahsanyt_ESPValid(capsule) then
+    if capsule and g_VIPLUA_ESPValid(capsule) then
         pcall(function()
             if capsule.K2_GetComponentLocation then
                 center = capsule:K2_GetComponentLocation()
@@ -2823,17 +2823,17 @@ local function g_masterahsanyt_ESPGetCharacterVerticalBounds(character,cachedLoc
 end
 
 -- ESP head and feet position made by PREMIUM
-local function g_masterahsanyt_ESPGetCharacterBoxLocs(character,cachedLocation)
-    local center, halfHeight, x, y, z = g_masterahsanyt_ESPGetCharacterVerticalBounds(character,cachedLocation)
+local function g_VIPLUA_ESPGetCharacterBoxLocs(character,cachedLocation)
+    local center, halfHeight, x, y, z = g_VIPLUA_ESPGetCharacterVerticalBounds(character,cachedLocation)
     if not x or not halfHeight then return nil,nil end
 
-    local headLoc = g_masterahsanyt_ESPV3(
+    local headLoc = g_VIPLUA_ESPV3(
         x,
         y,
         z + halfHeight
     )
 
-    local feetLoc = g_masterahsanyt_ESPV3(
+    local feetLoc = g_VIPLUA_ESPV3(
         x,
         y,
         z - halfHeight
@@ -2911,7 +2911,7 @@ function ESPWidgetPool.Release(data)
     if data.PoolReleased then return true end
     local pool,kind,canvas=data.PoolOwner,data.PoolKind,data.PoolCanvas
     if not pool or not pool.Enabled or pool.Canvas~=canvas or data.Broken
-        or not g_masterahsanyt_ESPValid(data.Widget) then return false end
+        or not g_VIPLUA_ESPValid(data.Widget) then return false end
     local shape=shapes[kind]
     if not shape then return false end
     local bin=pool.Bins[kind]
@@ -2952,12 +2952,12 @@ function ESPWidgetPool.Take(pool,kind,canvas)
         local item=bin[#bin];bin[#bin]=nil;pool.Weight=pool.Weight-item.Weight
         local valid=true
         for _,field in ipairs(shape.Check) do
-            if not g_masterahsanyt_ESPValid(item[field]) then valid=false;break end
+            if not g_VIPLUA_ESPValid(item[field]) then valid=false;break end
         end
         if valid and item.Groups then
             for _,group in pairs(item.Groups) do
                 for _,piece in ipairs(group) do
-                    if not g_masterahsanyt_ESPValid(piece.Widget) or not g_masterahsanyt_ESPValid(piece.Slot) then
+                    if not g_VIPLUA_ESPValid(piece.Widget) or not g_VIPLUA_ESPValid(piece.Slot) then
                         valid=false;break
                     end
                 end
@@ -2985,107 +2985,107 @@ end
 end
 
 -- ESP widget destroy made by PREMIUM
-local function g_masterahsanyt_ESPDestroyWidgetData(data)
+local function g_VIPLUA_ESPDestroyWidgetData(data)
     if not data then return end
     if ESPWidgetPool.Release(data) then return end
     for _, field in ipairs({"Widget", "Container", "Text", "DistanceText"}) do
         local widget=data[field]
-        if g_masterahsanyt_ESPValid(widget) then
+        if g_VIPLUA_ESPValid(widget) then
             pcall(function() widget:RemoveFromParent() end)
         end
     end
 end
 
 -- ESP widget cleanup made by PREMIUM
-local function g_masterahsanyt_ESPResetWidgets()
+local function g_VIPLUA_ESPResetWidgets()
     ESPWidgetPool.V2.Enabled=false
-    for _, data in pairs(g_masterahsanyt_ShotESP.Lines) do g_masterahsanyt_ESPDestroyWidgetData(data) end
-    for _, data in pairs(g_masterahsanyt_ShotESP.Names) do g_masterahsanyt_ESPDestroyWidgetData(data) end
-    for _, group in pairs(g_masterahsanyt_ShotESP.Boxes) do for _,data in ipairs(group) do g_masterahsanyt_ESPDestroyWidgetData(data) end end
-    for _, group in pairs(g_masterahsanyt_ShotESP.HealthBars) do for _,data in ipairs(group) do g_masterahsanyt_ESPDestroyWidgetData(data) end end
-    for _, group in pairs(g_masterahsanyt_ShotESP.Skeletons) do for _,data in ipairs(group) do g_masterahsanyt_ESPDestroyWidgetData(data) end end
-    for _, group in pairs(g_masterahsanyt_ShotESP.Headers) do for _,data in ipairs(group) do g_masterahsanyt_ESPDestroyWidgetData(data) end end
-    for _, group in pairs(g_masterahsanyt_ShotESP.Footers) do for _,data in ipairs(group) do g_masterahsanyt_ESPDestroyWidgetData(data) end end
-    g_masterahsanyt_ShotESP.Lines = {}
-    g_masterahsanyt_ShotESP.Names = {}
-    g_masterahsanyt_ShotESP.Boxes = {}
-    g_masterahsanyt_ShotESP.HealthBars = {}
-    g_masterahsanyt_ShotESP.Skeletons = {}
-    for _, data in pairs(g_masterahsanyt_ShotESP.HeaderRoots) do g_masterahsanyt_ESPDestroyWidgetData(data) end
-    g_masterahsanyt_ShotESP.HeaderRoots = {}
-    g_masterahsanyt_ShotESP.Headers = {}
-    g_masterahsanyt_ShotESP.Footers = {}
-    g_masterahsanyt_ShotESP.BuildStage = {}
-    g_masterahsanyt_ShotESP.BoneNameCache = {}
-    for _,data in pairs(g_masterahsanyt_ShotESP.Decorations) do g_masterahsanyt_ESPDestroyWidgetData(data) end
-    g_masterahsanyt_ShotESP.Decorations = {}
-    if g_masterahsanyt_ShotESP.Counter then g_masterahsanyt_ESPDestroyWidgetData(g_masterahsanyt_ShotESP.Counter) end
-    g_masterahsanyt_ShotESP.Counter = nil
-    g_masterahsanyt_ShotESP.Canvas = nil
-    g_masterahsanyt_ShotESP.RootUI = nil
-    g_masterahsanyt_ShotESP.Enemies = {}
-    g_masterahsanyt_ShotESP.Active = {}
-    g_masterahsanyt_ShotESP.Alive = {}
-    g_masterahsanyt_ShotESP.BoneMeshes = {}
-    g_masterahsanyt_ShotESP.BonePoints = {}
-    g_masterahsanyt_ShotESP.TemplateFont = nil
-    g_masterahsanyt_ShotESP.TemplateFontObject = nil
-    g_masterahsanyt_ShotESP.TemplateTypeface = nil
-    g_masterahsanyt_ShotESP.TemplateColorAndOpacity = nil
-    g_masterahsanyt_ShotESP.ViewportW, g_masterahsanyt_ShotESP.ViewportH = nil, nil
-    g_masterahsanyt_ShotESP.RawViewportW, g_masterahsanyt_ShotESP.RawViewportH = nil, nil
-    g_masterahsanyt_ShotESP.TracerOrigin = nil
-    g_masterahsanyt_ShotESP.LastScanClock = -999.0
-    g_masterahsanyt_ShotESP.LastTransformClock = -999.0
-    g_masterahsanyt_ShotESP.LastController = nil
-    g_masterahsanyt_ShotESP.LastPawn = nil
-    g_masterahsanyt_ShotESP._BotCache = {}
-    g_masterahsanyt_ShotESP.RealCount = 0
-    g_masterahsanyt_ShotESP.BotCount = 0
+    for _, data in pairs(g_VIPLUA_ShotESP.Lines) do g_VIPLUA_ESPDestroyWidgetData(data) end
+    for _, data in pairs(g_VIPLUA_ShotESP.Names) do g_VIPLUA_ESPDestroyWidgetData(data) end
+    for _, group in pairs(g_VIPLUA_ShotESP.Boxes) do for _,data in ipairs(group) do g_VIPLUA_ESPDestroyWidgetData(data) end end
+    for _, group in pairs(g_VIPLUA_ShotESP.HealthBars) do for _,data in ipairs(group) do g_VIPLUA_ESPDestroyWidgetData(data) end end
+    for _, group in pairs(g_VIPLUA_ShotESP.Skeletons) do for _,data in ipairs(group) do g_VIPLUA_ESPDestroyWidgetData(data) end end
+    for _, group in pairs(g_VIPLUA_ShotESP.Headers) do for _,data in ipairs(group) do g_VIPLUA_ESPDestroyWidgetData(data) end end
+    for _, group in pairs(g_VIPLUA_ShotESP.Footers) do for _,data in ipairs(group) do g_VIPLUA_ESPDestroyWidgetData(data) end end
+    g_VIPLUA_ShotESP.Lines = {}
+    g_VIPLUA_ShotESP.Names = {}
+    g_VIPLUA_ShotESP.Boxes = {}
+    g_VIPLUA_ShotESP.HealthBars = {}
+    g_VIPLUA_ShotESP.Skeletons = {}
+    for _, data in pairs(g_VIPLUA_ShotESP.HeaderRoots) do g_VIPLUA_ESPDestroyWidgetData(data) end
+    g_VIPLUA_ShotESP.HeaderRoots = {}
+    g_VIPLUA_ShotESP.Headers = {}
+    g_VIPLUA_ShotESP.Footers = {}
+    g_VIPLUA_ShotESP.BuildStage = {}
+    g_VIPLUA_ShotESP.BoneNameCache = {}
+    for _,data in pairs(g_VIPLUA_ShotESP.Decorations) do g_VIPLUA_ESPDestroyWidgetData(data) end
+    g_VIPLUA_ShotESP.Decorations = {}
+    if g_VIPLUA_ShotESP.Counter then g_VIPLUA_ESPDestroyWidgetData(g_VIPLUA_ShotESP.Counter) end
+    g_VIPLUA_ShotESP.Counter = nil
+    g_VIPLUA_ShotESP.Canvas = nil
+    g_VIPLUA_ShotESP.RootUI = nil
+    g_VIPLUA_ShotESP.Enemies = {}
+    g_VIPLUA_ShotESP.Active = {}
+    g_VIPLUA_ShotESP.Alive = {}
+    g_VIPLUA_ShotESP.BoneMeshes = {}
+    g_VIPLUA_ShotESP.BonePoints = {}
+    g_VIPLUA_ShotESP.TemplateFont = nil
+    g_VIPLUA_ShotESP.TemplateFontObject = nil
+    g_VIPLUA_ShotESP.TemplateTypeface = nil
+    g_VIPLUA_ShotESP.TemplateColorAndOpacity = nil
+    g_VIPLUA_ShotESP.ViewportW, g_VIPLUA_ShotESP.ViewportH = nil, nil
+    g_VIPLUA_ShotESP.RawViewportW, g_VIPLUA_ShotESP.RawViewportH = nil, nil
+    g_VIPLUA_ShotESP.TracerOrigin = nil
+    g_VIPLUA_ShotESP.LastScanClock = -999.0
+    g_VIPLUA_ShotESP.LastTransformClock = -999.0
+    g_VIPLUA_ShotESP.LastController = nil
+    g_VIPLUA_ShotESP.LastPawn = nil
+    g_VIPLUA_ShotESP._BotCache = {}
+    g_VIPLUA_ShotESP.RealCount = 0
+    g_VIPLUA_ShotESP.BotCount = 0
     ESPWidgetPool.Flush(ESPWidgetPool.V2)
     ESPWidgetPool.V2.Enabled=true
 end
 
 -- ESP HUD canvas made by PREMIUM
-local function g_masterahsanyt_ESPGetCanvas()
-    if g_masterahsanyt_ESPValid(g_masterahsanyt_ShotESP.Canvas) then return g_masterahsanyt_ShotESP.Canvas end
+local function g_VIPLUA_ESPGetCanvas()
+    if g_VIPLUA_ESPValid(g_VIPLUA_ShotESP.Canvas) then return g_VIPLUA_ShotESP.Canvas end
     local root = nil
     pcall(function()
         local InGameUITools = require("GameLua.Mod.BaseMod.Common.UI.InGameUITools")
         if InGameUITools and InGameUITools.GetMainControlBaseUI then root = InGameUITools.GetMainControlBaseUI() end
     end)
-    if not g_masterahsanyt_ESPValid(root) then return nil end
-    g_masterahsanyt_ShotESP.RootUI = root
+    if not g_VIPLUA_ESPValid(root) then return nil end
+    g_VIPLUA_ShotESP.RootUI = root
     local canvas = nil
     pcall(function()
-        if g_masterahsanyt_ESPValid(root.CanvasPanel_0) then canvas = root.CanvasPanel_0
-        elseif g_masterahsanyt_ESPValid(root.CanvasPanel_42) then canvas = root.CanvasPanel_42 end
+        if g_VIPLUA_ESPValid(root.CanvasPanel_0) then canvas = root.CanvasPanel_0
+        elseif g_VIPLUA_ESPValid(root.CanvasPanel_42) then canvas = root.CanvasPanel_42 end
     end)
-    if g_masterahsanyt_ESPValid(canvas) then g_masterahsanyt_ShotESP.Canvas = canvas return canvas end
+    if g_VIPLUA_ESPValid(canvas) then g_VIPLUA_ShotESP.Canvas = canvas return canvas end
     return nil
 end
 
 -- Discover a valid FontObject from existing HUD TextBlocks so dynamic TextBlocks always render glyphs
-local function g_masterahsanyt_ESPGetTemplateTextStyle()
-    if g_masterahsanyt_ESPValid(g_masterahsanyt_ShotESP.TemplateFontObject) then
-        return g_masterahsanyt_ShotESP.TemplateFont
+local function g_VIPLUA_ESPGetTemplateTextStyle()
+    if g_VIPLUA_ESPValid(g_VIPLUA_ShotESP.TemplateFontObject) then
+        return g_VIPLUA_ShotESP.TemplateFont
     end
 
     local visited = 0
     local function scanWidget(w, depth)
         if not w or depth > 6 or visited > 250 then return false end
-        if not g_masterahsanyt_ESPValid(w) then return false end
+        if not g_VIPLUA_ESPValid(w) then return false end
         visited = visited + 1
 
         local found = false
         pcall(function()
             if w.SetText and w.SetFont and w.Font then
                 local f = w.Font
-                if f and g_masterahsanyt_ESPValid(f.FontObject) then
-                    g_masterahsanyt_ShotESP.TemplateFont = f
-                    g_masterahsanyt_ShotESP.TemplateFontObject = f.FontObject
-                    pcall(function() g_masterahsanyt_ShotESP.TemplateTypeface = f.TypefaceFontName end)
-                    pcall(function() g_masterahsanyt_ShotESP.TemplateColorAndOpacity = w.ColorAndOpacity end)
+                if f and g_VIPLUA_ESPValid(f.FontObject) then
+                    g_VIPLUA_ShotESP.TemplateFont = f
+                    g_VIPLUA_ShotESP.TemplateFontObject = f.FontObject
+                    pcall(function() g_VIPLUA_ShotESP.TemplateTypeface = f.TypefaceFontName end)
+                    pcall(function() g_VIPLUA_ShotESP.TemplateColorAndOpacity = w.ColorAndOpacity end)
                     found = true
                 end
             end
@@ -3107,31 +3107,31 @@ local function g_masterahsanyt_ESPGetTemplateTextStyle()
         return false
     end
 
-    local canvas = g_masterahsanyt_ESPGetCanvas()
+    local canvas = g_VIPLUA_ESPGetCanvas()
     if canvas then scanWidget(canvas, 0) end
-    if not g_masterahsanyt_ESPValid(g_masterahsanyt_ShotESP.TemplateFontObject) and g_masterahsanyt_ESPValid(g_masterahsanyt_ShotESP.RootUI) then
-        scanWidget(g_masterahsanyt_ShotESP.RootUI, 0)
+    if not g_VIPLUA_ESPValid(g_VIPLUA_ShotESP.TemplateFontObject) and g_VIPLUA_ESPValid(g_VIPLUA_ShotESP.RootUI) then
+        scanWidget(g_VIPLUA_ShotESP.RootUI, 0)
     end
 
-    if not g_masterahsanyt_ESPValid(g_masterahsanyt_ShotESP.TemplateFontObject) and slua and slua.loadObject then
+    if not g_VIPLUA_ESPValid(g_VIPLUA_ShotESP.TemplateFontObject) and slua and slua.loadObject then
         for _, path in ipairs({
             "/Engine/EngineFonts/Roboto.Roboto",
             "/Engine/EngineFonts/Roboto",
             "/Engine/EngineFonts/DroidSansFallback.DroidSansFallback"
         }) do
             local ok, obj = pcall(slua.loadObject, path)
-            if ok and g_masterahsanyt_ESPValid(obj) then
-                g_masterahsanyt_ShotESP.TemplateFontObject = obj
+            if ok and g_VIPLUA_ESPValid(obj) then
+                g_VIPLUA_ShotESP.TemplateFontObject = obj
                 break
             end
         end
     end
 
-    return g_masterahsanyt_ShotESP.TemplateFont
+    return g_VIPLUA_ShotESP.TemplateFont
 end
 
 -- ESP viewport size made by PREMIUM
-local function g_masterahsanyt_ESPViewport(pc)
+local function g_VIPLUA_ESPViewport(pc)
     local w,h
     local function take(x,y)
         x,y=tonumber(x),tonumber(y)
@@ -3143,15 +3143,15 @@ local function g_masterahsanyt_ESPViewport(pc)
         end
     end)
     if not w then pcall(function() local x,y=pc:GetViewportSize();take(x,y) end) end
-    if not w then pcall(function() local v=g_masterahsanyt_ESPV2(0,0);pc:GetViewportSize(v);take(v.X,v.Y) end) end
+    if not w then pcall(function() local v=g_VIPLUA_ESPV2(0,0);pc:GetViewportSize(v);take(v.X,v.Y) end) end
     if not w then pcall(function() local x,y=pc:GetViewportSize(0,0);take(x,y) end) end
     return w or 2400.0,h or 1080.0
 end
 
 -- ESP HUD canvas made by PREMIUM
-local function g_masterahsanyt_ESPGetCanvasLocalSize()
-    local canvas = g_masterahsanyt_ESPGetCanvas()
-    if not g_masterahsanyt_ESPValid(canvas) then return nil, nil end
+local function g_VIPLUA_ESPGetCanvasLocalSize()
+    local canvas = g_VIPLUA_ESPGetCanvas()
+    if not g_VIPLUA_ESPValid(canvas) then return nil, nil end
 
     local cw, ch = nil, nil
     pcall(function()
@@ -3174,9 +3174,9 @@ local function g_masterahsanyt_ESPGetCanvasLocalSize()
 end
 
 -- ESP canvas transform made by PREMIUM
-local function g_masterahsanyt_ESPUpdateCanvasTransform(pc)
-    local canvas = g_masterahsanyt_ESPGetCanvas()
-    if not g_masterahsanyt_ESPValid(canvas) then return false end
+local function g_VIPLUA_ESPUpdateCanvasTransform(pc)
+    local canvas = g_VIPLUA_ESPGetCanvas()
+    if not g_VIPLUA_ESPValid(canvas) then return false end
 
     local calibrated = false
 
@@ -3186,11 +3186,11 @@ local function g_masterahsanyt_ESPUpdateCanvasTransform(pc)
             if geo then
                 local p0 = SlateBlueprintLibrary.AbsoluteToLocal(
                     geo,
-                    g_masterahsanyt_ESPV2(0, 0)
+                    g_VIPLUA_ESPV2(0, 0)
                 )
                 local p1 = SlateBlueprintLibrary.AbsoluteToLocal(
                     geo,
-                    g_masterahsanyt_ESPV2(100, 100)
+                    g_VIPLUA_ESPV2(100, 100)
                 )
 
                 if p0 and p1
@@ -3200,10 +3200,10 @@ local function g_masterahsanyt_ESPUpdateCanvasTransform(pc)
                     and p1.X>p0.X and p1.Y>p0.Y
                     and p1.X-p0.X<10000 and p1.Y-p0.Y<10000 then
 
-                    g_masterahsanyt_ShotESP.CanvasScaleX = (p1.X - p0.X) / 100.0
-                    g_masterahsanyt_ShotESP.CanvasScaleY = (p1.Y - p0.Y) / 100.0
-                    g_masterahsanyt_ShotESP.CanvasOffsetX = p0.X
-                    g_masterahsanyt_ShotESP.CanvasOffsetY = p0.Y
+                    g_VIPLUA_ShotESP.CanvasScaleX = (p1.X - p0.X) / 100.0
+                    g_VIPLUA_ShotESP.CanvasScaleY = (p1.Y - p0.Y) / 100.0
+                    g_VIPLUA_ShotESP.CanvasOffsetX = p0.X
+                    g_VIPLUA_ShotESP.CanvasOffsetY = p0.Y
                     calibrated = true
                 end
             end
@@ -3221,30 +3221,30 @@ local function g_masterahsanyt_ESPUpdateCanvasTransform(pc)
             end
         end)
 
-        g_masterahsanyt_ShotESP.CanvasScaleX = 1.0 / scale
-        g_masterahsanyt_ShotESP.CanvasScaleY = 1.0 / scale
-        g_masterahsanyt_ShotESP.CanvasOffsetX = 0.0
-        g_masterahsanyt_ShotESP.CanvasOffsetY = 0.0
+        g_VIPLUA_ShotESP.CanvasScaleX = 1.0 / scale
+        g_VIPLUA_ShotESP.CanvasScaleY = 1.0 / scale
+        g_VIPLUA_ShotESP.CanvasOffsetX = 0.0
+        g_VIPLUA_ShotESP.CanvasOffsetY = 0.0
     end
 
     return true
 end
 
 -- ESP world to HUD projection made by PREMIUM
-local function g_masterahsanyt_ESPProject(pc,worldLoc)
+local function g_VIPLUA_ESPProject(pc,worldLoc)
     local frame=ESPShared.Frame
     -- Skeleton results own their output; only the immediate raw scratch is shared.
-    if not frame.RawPixel then frame.RawPixel=g_masterahsanyt_ESPV2(0,0) end
+    if not frame.RawPixel then frame.RawPixel=g_VIPLUA_ESPV2(0,0) end
     local pix=ESPShared.ProjectRaw(pc,worldLoc,frame.Active and frame.RawPixel or nil)
     if not pix then return nil end
-    local sx,sy,ox,oy=ESPShared.CanvasTransform(g_masterahsanyt_ShotESP)
-    return g_masterahsanyt_ESPV2(pix.X*sx+ox,pix.Y*sy+oy)
+    local sx,sy,ox,oy=ESPShared.CanvasTransform(g_VIPLUA_ShotESP)
+    return g_VIPLUA_ESPV2(pix.X*sx+ox,pix.Y*sy+oy)
 end
 
 -- Fresh projections deliberately avoid screen-space lerp: it adds camera lag
 -- and desynchronizes the capsule outline from the independently projected bones.
 
-local function g_masterahsanyt_ESPActorOnScreen(head,feet,minX,minY,maxX,maxY)
+local function g_VIPLUA_ESPActorOnScreen(head,feet,minX,minY,maxX,maxY)
     local function usable(p)
         return p and ESPShared.Finite(p.X) and ESPShared.Finite(p.Y)
     end
@@ -3256,9 +3256,9 @@ local function g_masterahsanyt_ESPActorOnScreen(head,feet,minX,minY,maxX,maxY)
 end
 
 function ESPShared.ViewSize(pc)
-    local now=ESPShared.Frame.Active and ESPShared.Frame.Now or g_masterahsanyt_ESPNow()
+    local now=ESPShared.Frame.Active and ESPShared.Frame.Now or g_VIPLUA_ESPNow()
     if not ESPShared.Frame.Active or ESPShared.Frame.ViewPC~=pc or now<ESPShared.Frame.ViewAt or now-ESPShared.Frame.ViewAt>=0.25 then
-        ESPShared.Frame.ViewW,ESPShared.Frame.ViewH=g_masterahsanyt_ESPViewport(pc)
+        ESPShared.Frame.ViewW,ESPShared.Frame.ViewH=g_VIPLUA_ESPViewport(pc)
         ESPShared.Frame.ViewPC=pc;ESPShared.Frame.ViewAt=now
     end
     return ESPShared.Frame.ViewW,ESPShared.Frame.ViewH
@@ -3267,7 +3267,7 @@ function ESPShared.NativeProject(pc,location,pix)
     return pc:ProjectWorldLocationToScreen(location,pix,true)
 end
 function ESPShared.ActorProbeLocations(actor,entry)
-    local center,height,x,y,z=g_masterahsanyt_ESPGetCharacterVerticalBounds(actor,entry.Location)
+    local center,height,x,y,z=g_VIPLUA_ESPGetCharacterVerticalBounds(actor,entry.Location)
     if not x or not height then return nil,nil end
     entry.WorldHead=ESPShared.UpdateProbeVector(entry.WorldHead,x,y,z+height)
     entry.WorldFeet=ESPShared.UpdateProbeVector(entry.WorldFeet,x,y,z-height)
@@ -3275,7 +3275,7 @@ function ESPShared.ActorProbeLocations(actor,entry)
 end
 function ESPShared.ProjectRaw(pc,location,pix)
     if not ESPShared.VectorValues(location) or not ESPShared.ProjectionControllerValid(pc) then return nil end
-    pix=pix or g_masterahsanyt_ESPV2(0,0);pix.X=0;pix.Y=0
+    pix=pix or g_VIPLUA_ESPV2(0,0);pix.X=0;pix.Y=0
     local ok,result,out=pcall(ESPShared.NativeProject,pc,location,pix)
     if out then pix=out end
     local good,x,y=pcall(function() return tonumber(pix.X),tonumber(pix.Y) end)
@@ -3291,14 +3291,14 @@ function ESPShared.ProbeActor(pc,actor)
     if not entry.Alive or not entry.Location then return entry end
     local ok,head,feet=pcall(ESPShared.ActorProbeLocations,actor,entry)
     if not ok then return entry end
-    entry.RawHead=entry.RawHead or g_masterahsanyt_ESPV2(0,0)
-    entry.RawFeet=entry.RawFeet or g_masterahsanyt_ESPV2(0,0)
+    entry.RawHead=entry.RawHead or g_VIPLUA_ESPV2(0,0)
+    entry.RawFeet=entry.RawFeet or g_VIPLUA_ESPV2(0,0)
     local hp,hr=ESPShared.ProjectRaw(pc,head,entry.RawHead)
     local fp,fr=ESPShared.ProjectRaw(pc,feet,entry.RawFeet)
     if hp then entry.RawHead=hp end;if fp then entry.RawFeet=fp end
     entry.HasHead=hp~=nil;entry.HasFeet=fp~=nil
     local width,height=ESPShared.ViewSize(pc)
-    entry.OnScreen=g_masterahsanyt_ESPActorOnScreen(hp,fp,0,0,width,height)
+    entry.OnScreen=g_VIPLUA_ESPActorOnScreen(hp,fp,0,0,width,height)
     if entry.OnScreen then entry.ProjectionReason="visible"
     elseif hp or fp or hr=="offscreen" or fr=="offscreen" then entry.ProjectionReason="offscreen" end
     return entry
@@ -3315,15 +3315,15 @@ function ESPShared.ProjectActor(pc,actor,state)
     local entry=ESPShared.ProbeActor(pc,actor)
     if not entry.OnScreen then return nil,nil,false,entry.ProjectionReason end
     local sx,sy,ox,oy=ESPShared.CanvasTransform(state)
-    local prefix=state==g_masterahsanyt_ShotESP and "V2" or "V1"
+    local prefix=state==g_VIPLUA_ShotESP and "V2" or "V1"
     local function convert(raw,field)
-        local p=entry[field] or g_masterahsanyt_ESPV2(0,0);entry[field]=p
+        local p=entry[field] or g_VIPLUA_ESPV2(0,0);entry[field]=p
         p.X=raw.X*sx+ox;p.Y=raw.Y*sy+oy;return p
     end
     local head=entry.HasHead and convert(entry.RawHead,prefix.."Head") or nil
     local feet=entry.HasFeet and convert(entry.RawFeet,prefix.."Feet") or nil
     local minX,minY,maxX,maxY=ESPShared.CanvasBounds(pc,state)
-    local visible=g_masterahsanyt_ESPActorOnScreen(head,feet,minX,minY,maxX,maxY)
+    local visible=g_VIPLUA_ESPActorOnScreen(head,feet,minX,minY,maxX,maxY)
     return head,feet,visible,visible and "visible" or "offscreen"
 end
 
@@ -3331,17 +3331,17 @@ end
 -- ESP text setter with FText conversion fallback
 
 -- ESP font style made by PREMIUM
-local function g_masterahsanyt_ESPSetFont(textWidget, size)
-    if not g_masterahsanyt_ESPValid(textWidget) then return end
-    g_masterahsanyt_ESPGetTemplateTextStyle()
+local function g_VIPLUA_ESPSetFont(textWidget, size)
+    if not g_VIPLUA_ESPValid(textWidget) then return end
+    g_VIPLUA_ESPGetTemplateTextStyle()
     pcall(function()
-        local f = textWidget.Font or g_masterahsanyt_ShotESP.TemplateFont
+        local f = textWidget.Font or g_VIPLUA_ShotESP.TemplateFont
         if f then
-            if g_masterahsanyt_ESPValid(g_masterahsanyt_ShotESP.TemplateFontObject) then
-                pcall(function() f.FontObject = g_masterahsanyt_ShotESP.TemplateFontObject end)
+            if g_VIPLUA_ESPValid(g_VIPLUA_ShotESP.TemplateFontObject) then
+                pcall(function() f.FontObject = g_VIPLUA_ShotESP.TemplateFontObject end)
             end
-            if g_masterahsanyt_ShotESP.TemplateTypeface then
-                pcall(function() f.TypefaceFontName = g_masterahsanyt_ShotESP.TemplateTypeface end)
+            if g_VIPLUA_ShotESP.TemplateTypeface then
+                pcall(function() f.TypefaceFontName = g_VIPLUA_ShotESP.TemplateTypeface end)
             end
             pcall(function() f.Size = size end)
             if f.OutlineSettings then
@@ -3356,7 +3356,7 @@ local function g_masterahsanyt_ESPSetFont(textWidget, size)
             pcall(function() textWidget.Font = f end)
         end
         if textWidget.SetShadowOffset then
-            pcall(function() textWidget:SetShadowOffset(g_masterahsanyt_ESPV2(0.0,0.0)) end)
+            pcall(function() textWidget:SetShadowOffset(g_VIPLUA_ESPV2(0.0,0.0)) end)
         end
         if textWidget.SetShadowColorAndOpacity then
             pcall(function() textWidget:SetShadowColorAndOpacity(ESP_TEXT_CLEAR) end)
@@ -3365,11 +3365,11 @@ local function g_masterahsanyt_ESPSetFont(textWidget, size)
 end
 
 -- ESP text color made by PREMIUM
-local function g_masterahsanyt_ESPSetTextColor(textWidget, color)
-    if not g_masterahsanyt_ESPValid(textWidget) or not color then return end
+local function g_VIPLUA_ESPSetTextColor(textWidget, color)
+    if not g_VIPLUA_ESPValid(textWidget) or not color then return end
     local applied = false
     pcall(function()
-        local sc = textWidget.ColorAndOpacity or g_masterahsanyt_ShotESP.TemplateColorAndOpacity or (SlateColor and SlateColor())
+        local sc = textWidget.ColorAndOpacity or g_VIPLUA_ShotESP.TemplateColorAndOpacity or (SlateColor and SlateColor())
         if sc then
             sc.SpecifiedColor = color
             pcall(function() sc.ColorUseRule = 0 end)
@@ -3389,15 +3389,15 @@ local function g_masterahsanyt_ESPSetTextColor(textWidget, color)
 end
 
 -- ESP line widget made by PREMIUM
-local function g_masterahsanyt_ESPCreateLine(color,parent)
-    local canvas = parent or g_masterahsanyt_ESPGetCanvas()
-    if not g_masterahsanyt_ESPValid(canvas) then return nil end
-    local budget = g_masterahsanyt_ShotESP.BuildRemaining
+local function g_VIPLUA_ESPCreateLine(color,parent)
+    local canvas = parent or g_VIPLUA_ESPGetCanvas()
+    if not g_VIPLUA_ESPValid(canvas) then return nil end
+    local budget = g_VIPLUA_ShotESP.BuildRemaining
     if budget ~= nil then
         if budget <= 0 then return nil end
-        g_masterahsanyt_ShotESP.BuildRemaining = budget - 1
+        g_VIPLUA_ShotESP.BuildRemaining = budget - 1
     end
-    local pooled=canvas==g_masterahsanyt_ShotESP.Canvas and ESPWidgetPool.Take(ESPWidgetPool.V2,"Line",canvas)
+    local pooled=canvas==g_VIPLUA_ShotESP.Canvas and ESPWidgetPool.Take(ESPWidgetPool.V2,"Line",canvas)
     if pooled then
         local ok=pcall(function() pooled.Widget:SetBrushColor(color) end)
         if ok then pooled.Visible=false;return pooled end
@@ -3405,23 +3405,23 @@ local function g_masterahsanyt_ESPCreateLine(color,parent)
     end
     local border = nil
     pcall(function() border = CGame:NewObjectFromPath("/Script/UMG.Border", canvas) end)
-    if not g_masterahsanyt_ESPValid(border) then return nil end
+    if not g_VIPLUA_ESPValid(border) then return nil end
     pcall(function()
         border:SetBrushColor(color)
         border:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible)
-        border:SetRenderTransformPivot(g_masterahsanyt_ESPV2(0.0, 0.5))
+        border:SetRenderTransformPivot(g_VIPLUA_ESPV2(0.0, 0.5))
     end)
     local slot = nil
     pcall(function() slot = canvas:AddChildToCanvas(border) end)
-    if not slot then g_masterahsanyt_ESPDestroyWidgetData({Widget=border}) return nil end
+    if not slot then g_VIPLUA_ESPDestroyWidgetData({Widget=border}) return nil end
     pcall(function() slot:SetAutoSize(false) slot:SetZOrder(30) end)
     local data={Widget=border, Slot=slot}
-    if canvas==g_masterahsanyt_ShotESP.Canvas then ESPWidgetPool.Tag(ESPWidgetPool.V2,"Line",canvas,data) end
+    if canvas==g_VIPLUA_ShotESP.Canvas then ESPWidgetPool.Tag(ESPWidgetPool.V2,"Line",canvas,data) end
     return data
 end
 
 -- ESP line made by PREMIUM
-local function g_masterahsanyt_ESPDrawLine(data, x1, y1, x2, y2, thickness)
+local function g_VIPLUA_ESPDrawLine(data, x1, y1, x2, y2, thickness)
     if not data or not data.Widget or not data.Slot then return false end
     local dx, dy = x2-x1, y2-y1
     local len = math.sqrt(dx*dx + dy*dy)
@@ -3442,11 +3442,11 @@ local function g_masterahsanyt_ESPDrawLine(data, x1, y1, x2, y2, thickness)
     -- that reject mutable structs fall back once to the original setter path.
     local setterOK=pcall(function()
         if data.VectorReuseDisabled then
-            data.Slot:SetPosition(g_masterahsanyt_ESPV2(x1, y1 - thickness*0.5))
-            data.Slot:SetSize(g_masterahsanyt_ESPV2(len, thickness))
+            data.Slot:SetPosition(g_VIPLUA_ESPV2(x1, y1 - thickness*0.5))
+            data.Slot:SetSize(g_VIPLUA_ESPV2(len, thickness))
         else
-            data.PosVec=data.PosVec or g_masterahsanyt_ESPV2(x1, y1 - thickness*0.5)
-            data.SizeVec=data.SizeVec or g_masterahsanyt_ESPV2(len, thickness)
+            data.PosVec=data.PosVec or g_VIPLUA_ESPV2(x1, y1 - thickness*0.5)
+            data.SizeVec=data.SizeVec or g_VIPLUA_ESPV2(len, thickness)
             data.PosVec.X=x1;data.PosVec.Y=y1-thickness*0.5
             data.SizeVec.X=len;data.SizeVec.Y=thickness
             data.Slot:SetPosition(data.PosVec)
@@ -3458,8 +3458,8 @@ local function g_masterahsanyt_ESPDrawLine(data, x1, y1, x2, y2, thickness)
     if not setterOK and not data.VectorReuseDisabled then
         data.VectorReuseDisabled=true;data.PosVec=nil;data.SizeVec=nil
         setterOK=pcall(function()
-            data.Slot:SetPosition(g_masterahsanyt_ESPV2(x1, y1 - thickness*0.5))
-            data.Slot:SetSize(g_masterahsanyt_ESPV2(len, thickness))
+            data.Slot:SetPosition(g_VIPLUA_ESPV2(x1, y1 - thickness*0.5))
+            data.Slot:SetSize(g_VIPLUA_ESPV2(len, thickness))
             data.Widget:SetRenderAngle(angle)
             if not data.Visible then data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible) end
         end)
@@ -3472,7 +3472,7 @@ local function g_masterahsanyt_ESPDrawLine(data, x1, y1, x2, y2, thickness)
 end
 
 -- ESP widget hide made by PREMIUM
-local function g_masterahsanyt_ESPHide(data)
+local function g_VIPLUA_ESPHide(data)
     if data and data.Visible~=false and data.Widget then
         local ok=pcall(function() data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.Collapsed) end)
         if not ok then data.Broken=true end
@@ -3480,48 +3480,48 @@ local function g_masterahsanyt_ESPHide(data)
     end
 end
 
-local function g_masterahsanyt_ESPDestroyGroup(group)
+local function g_VIPLUA_ESPDestroyGroup(group)
     if not group then return end
-    for _, data in ipairs(group) do g_masterahsanyt_ESPDestroyWidgetData(data) end
+    for _, data in ipairs(group) do g_VIPLUA_ESPDestroyWidgetData(data) end
 end
 
 -- Check native widget validity at discovery cadence; failed setters mark a
 -- piece broken immediately. This avoids an IsValid bridge call per piece/frame.
-local function g_masterahsanyt_ESPGroupHealthy(group)
+local function g_VIPLUA_ESPGroupHealthy(group)
     if not group then return false end
-    local now = g_masterahsanyt_ShotESP.Now
+    local now = g_VIPLUA_ShotESP.Now
     local validate = not group.ValidatedAt or now < group.ValidatedAt or now-group.ValidatedAt >= 0.35
     for _, data in ipairs(group) do
-        if data.Broken or (validate and not g_masterahsanyt_ESPValid(data.Widget)) then return false end
+        if data.Broken or (validate and not g_VIPLUA_ESPValid(data.Widget)) then return false end
     end
     if validate then group.ValidatedAt = now end
     return true
 end
 
 -- Keep partial groups across ticks; budgeted creation prevents first-visibility spikes.
-local function g_masterahsanyt_ESPLineGroup(registry, key, count, color, parent)
+local function g_VIPLUA_ESPLineGroup(registry, key, count, color, parent)
     local group = registry[key]
-    if group and not g_masterahsanyt_ESPGroupHealthy(group) then
-        g_masterahsanyt_ESPDestroyGroup(group)
+    if group and not g_VIPLUA_ESPGroupHealthy(group) then
+        g_VIPLUA_ESPDestroyGroup(group)
         group = nil
     end
     if not group or #group > count then
-        g_masterahsanyt_ESPDestroyGroup(group)
+        g_VIPLUA_ESPDestroyGroup(group)
         group = {}
         registry[key] = group
     end
     while #group < count do
-        local data = g_masterahsanyt_ESPCreateLine(color, parent)
+        local data = g_VIPLUA_ESPCreateLine(color, parent)
         if not data then return nil end
         group[#group + 1] = data
-        g_masterahsanyt_ESPHide(data)
+        g_VIPLUA_ESPHide(data)
     end
     return group
 end
 
 -- Existing geometry and widgets are reused. Stable identity performs no native
 -- color setters; failed brush assignments remain eligible for retry.
-local function g_masterahsanyt_ESPApplyGroupTheme(group,theme,kind)
+local function g_VIPLUA_ESPApplyGroupTheme(group,theme,kind)
     if not group or group.ThemeKey==theme.Key then return end
     local ok=pcall(function()
         for i,piece in ipairs(group) do
@@ -3544,43 +3544,43 @@ local function g_masterahsanyt_ESPApplyGroupTheme(group,theme,kind)
     if ok then group.ThemeKey=theme.Key end
 end
 
-local function g_masterahsanyt_ESPHideGroup(group)
+local function g_VIPLUA_ESPHideGroup(group)
     if not group then return end
-    for _, data in ipairs(group) do g_masterahsanyt_ESPHide(data) end
+    for _, data in ipairs(group) do g_VIPLUA_ESPHide(data) end
 end
 
-local function g_masterahsanyt_ESPHideDetailedEnemy(key)
-    g_masterahsanyt_ESPHide(g_masterahsanyt_ShotESP.Lines[key])
-    g_masterahsanyt_ESPHideGroup(g_masterahsanyt_ShotESP.Boxes[key])
-    g_masterahsanyt_ESPHideGroup(g_masterahsanyt_ShotESP.HealthBars[key])
-    g_masterahsanyt_ESPHideGroup(g_masterahsanyt_ShotESP.Skeletons[key])
-    g_masterahsanyt_ESPHideGroup(g_masterahsanyt_ShotESP.Headers[key])
-    local decor=g_masterahsanyt_ShotESP.Decorations[key]
+local function g_VIPLUA_ESPHideDetailedEnemy(key)
+    g_VIPLUA_ESPHide(g_VIPLUA_ShotESP.Lines[key])
+    g_VIPLUA_ESPHideGroup(g_VIPLUA_ShotESP.Boxes[key])
+    g_VIPLUA_ESPHideGroup(g_VIPLUA_ShotESP.HealthBars[key])
+    g_VIPLUA_ESPHideGroup(g_VIPLUA_ShotESP.Skeletons[key])
+    g_VIPLUA_ESPHideGroup(g_VIPLUA_ShotESP.Headers[key])
+    local decor=g_VIPLUA_ShotESP.Decorations[key]
     if decor and decor.Visible~=false then pcall(function() decor.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.Collapsed) end) decor.Visible=false end
 end
 
-local g_masterahsanyt_ESPHealthRatio
+local g_VIPLUA_ESPHealthRatio
 
-local function g_masterahsanyt_ESPSetGroupVisible(group,visible)
+local function g_VIPLUA_ESPSetGroupVisible(group,visible)
     if not group or group.GroupVisible==visible then return end
     for _,data in ipairs(group) do
         if visible then
             pcall(function() data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible) end)
             data.Visible=true
-        else g_masterahsanyt_ESPHide(data) end
+        else g_VIPLUA_ESPHide(data) end
     end
     group.GroupVisible=visible
 end
 
-local function g_masterahsanyt_ESPCreateDecorationRoot(poolKind)
-    local canvas=g_masterahsanyt_ESPGetCanvas()
-    if not g_masterahsanyt_ESPValid(canvas) then return nil end
+local function g_VIPLUA_ESPCreateDecorationRoot(poolKind)
+    local canvas=g_VIPLUA_ESPGetCanvas()
+    if not g_VIPLUA_ESPValid(canvas) then return nil end
     poolKind=poolKind or "Decor"
     local pooled=ESPWidgetPool.Take(ESPWidgetPool.V2,poolKind,canvas)
     if pooled then
         local ok=pcall(function()
             pooled.Slot:SetZOrder(poolKind=="Header" and 30 or 29)
-            pooled.Widget:SetRenderScale(g_masterahsanyt_ESPV2(1.0,1.0))
+            pooled.Widget:SetRenderScale(g_VIPLUA_ESPV2(1.0,1.0))
             pooled.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible)
         end)
         if ok then pooled.Visible=true;return pooled end
@@ -3588,27 +3588,27 @@ local function g_masterahsanyt_ESPCreateDecorationRoot(poolKind)
     end
     local root=nil
     pcall(function() root=CGame:NewObjectFromPath("/Script/UMG.CanvasPanel",canvas) end)
-    if not g_masterahsanyt_ESPValid(root) then return nil end
+    if not g_VIPLUA_ESPValid(root) then return nil end
     local slot=nil
     pcall(function() slot=canvas:AddChildToCanvas(root) end)
-    if not slot then g_masterahsanyt_ESPDestroyWidgetData({Widget=root}) return nil end
+    if not slot then g_VIPLUA_ESPDestroyWidgetData({Widget=root}) return nil end
     pcall(function()
         slot:SetAutoSize(false)
-        slot:SetSize(g_masterahsanyt_ESPV2(1000.0,1400.0))
+        slot:SetSize(g_VIPLUA_ESPV2(1000.0,1400.0))
         slot:SetZOrder(29)
-        root:SetRenderTransformPivot(g_masterahsanyt_ESPV2(0.0,0.0))
+        root:SetRenderTransformPivot(g_VIPLUA_ESPV2(0.0,0.0))
         root:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible)
     end)
     return ESPWidgetPool.Tag(ESPWidgetPool.V2,poolKind,canvas,{Widget=root,Slot=slot,Groups={},Visible=true})
 end
 
-local function g_masterahsanyt_ESPDecorGroup(data,name,count,color)
-    return g_masterahsanyt_ESPLineGroup(data.Groups,name,count,color,data.Widget)
+local function g_VIPLUA_ESPDecorGroup(data,name,count,color)
+    return g_VIPLUA_ESPLineGroup(data.Groups,name,count,color,data.Widget)
 end
 
 
-local function g_masterahsanyt_ESPBuildArcs(data)
-    local group=g_masterahsanyt_ESPDecorGroup(data,"Arcs",26,ESP_REAL)
+local function g_VIPLUA_ESPBuildArcs(data)
+    local group=g_VIPLUA_ESPDecorGroup(data,"Arcs",26,ESP_REAL)
     if not group then return nil end
     if group.Built then return group end
     local cx,cy,half,ry=500.0,385.0,268.0,180.0
@@ -3623,7 +3623,7 @@ local function g_masterahsanyt_ESPBuildArcs(data)
             local angle=(-70+step*28)*math.pi/180
             local p={X=cx+side*half*math.cos(angle),Y=cy+ry*math.sin(angle)}
             if previous then
-                g_masterahsanyt_ESPDrawLine(group[index],previous.X,previous.Y,p.X,p.Y,redThickness[step])
+                g_VIPLUA_ESPDrawLine(group[index],previous.X,previous.Y,p.X,p.Y,redThickness[step])
                 index=index+1
             end
             previous=p
@@ -3633,7 +3633,7 @@ local function g_masterahsanyt_ESPBuildArcs(data)
     for _,side in ipairs({-1,1}) do
         local x=cx+side*half*1.02
         for _,oy in ipairs({-24.0,0.0,24.0}) do
-            g_masterahsanyt_ESPDrawLine(group[tickIndex],x-side*5.0,cy+oy,x+side*2.0,cy+oy,2.2)
+            g_VIPLUA_ESPDrawLine(group[tickIndex],x-side*5.0,cy+oy,x+side*2.0,cy+oy,2.2)
             tickIndex=tickIndex+1
         end
     end
@@ -3645,7 +3645,7 @@ local function g_masterahsanyt_ESPBuildArcs(data)
             local p={X=cx+side*ih*math.cos(angle),Y=cy+ir*math.sin(angle)}
             if previous then
                 pcall(function() group[index].Widget:SetBrushColor(ESP_WHITE) end)
-                g_masterahsanyt_ESPDrawLine(group[index],previous.X,previous.Y,p.X,p.Y,whiteThickness[step])
+                g_VIPLUA_ESPDrawLine(group[index],previous.X,previous.Y,p.X,p.Y,whiteThickness[step])
                 index=index+1
             end
             previous=p
@@ -3655,8 +3655,8 @@ local function g_masterahsanyt_ESPBuildArcs(data)
     return group
 end
 
-local function g_masterahsanyt_ESPBuildHealth(data)
-    local group=g_masterahsanyt_ESPDecorGroup(data,"Health",11,ESP_REAL)
+local function g_VIPLUA_ESPBuildHealth(data)
+    local group=g_VIPLUA_ESPDecorGroup(data,"Health",11,ESP_REAL)
     if not group then return nil end
     if group.Built then return group end
     -- Twice the original footprint so distant health remains readable.
@@ -3664,41 +3664,41 @@ local function g_masterahsanyt_ESPBuildHealth(data)
     pcall(function()
         for i=1,11 do group[i].Widget:SetBrushColor(ESP_REAL) end
     end)
-    g_masterahsanyt_ESPDrawLine(group[1],x,barTop,x,barBottom,barW)
+    g_VIPLUA_ESPDrawLine(group[1],x,barTop,x,barBottom,barW)
     local sh=(barBottom-barTop)/8
     for i=1,8 do
         local y1=barBottom-(i-1)*sh-2
         local y2=barBottom-i*sh+2
-        g_masterahsanyt_ESPDrawLine(group[i+1],x,y1,x,y2,barW*.64)
+        g_VIPLUA_ESPDrawLine(group[i+1],x,y1,x,y2,barW*.64)
     end
-    g_masterahsanyt_ESPDrawLine(group[10],x-barW*.5,barTop,x+barW*.5,barTop,2.0)
-    g_masterahsanyt_ESPDrawLine(group[11],x-barW*.5,barBottom,x+barW*.5,barBottom,2.0)
+    g_VIPLUA_ESPDrawLine(group[10],x-barW*.5,barTop,x+barW*.5,barTop,2.0)
+    g_VIPLUA_ESPDrawLine(group[11],x-barW*.5,barBottom,x+barW*.5,barBottom,2.0)
     group.Built=true group.GroupVisible=true group.Filled=-1
     return group
 end
 
-local function g_masterahsanyt_ESPBuildFooter(data)
-    local group=g_masterahsanyt_ESPDecorGroup(data,"Footer",6,ESP_WHITE)
+local function g_VIPLUA_ESPBuildFooter(data)
+    local group=g_VIPLUA_ESPDecorGroup(data,"Footer",6,ESP_WHITE)
     if not group then return nil end
     if group.Built then return group end
     local cx,y,w=500.0,1243.0,394.0
     local s={{cx-w*.5,y,cx-w*.29,y},{cx-w*.5,y,cx-w*.58,y-7},{cx+w*.29,y,cx+w*.5,y},{cx+w*.5,y,cx+w*.58,y-7},{cx-w*.23,y,cx-w*.19,y},{cx+w*.19,y,cx+w*.23,y}}
-    for i,v in ipairs(s) do pcall(function() group[i].Widget:SetBrushColor(i>=5 and ESP_REAL or ESP_WHITE) end) g_masterahsanyt_ESPDrawLine(group[i],v[1],v[2],v[3],v[4],i>=5 and 2.2 or 1.6) end
+    for i,v in ipairs(s) do pcall(function() group[i].Widget:SetBrushColor(i>=5 and ESP_REAL or ESP_WHITE) end) g_VIPLUA_ESPDrawLine(group[i],v[1],v[2],v[3],v[4],i>=5 and 2.2 or 1.6) end
     group.Built=true group.GroupVisible=true
     return group
 end
 
-local function g_masterahsanyt_ESPUpdateDecoration(key,character,head,feet,opt,stage,isBot)
+local function g_VIPLUA_ESPUpdateDecoration(key,character,head,feet,opt,stage,isBot)
     local enabled=opt.Name or opt.Box or opt.Health or opt.Distance
-    local data=g_masterahsanyt_ShotESP.Decorations[key]
+    local data=g_VIPLUA_ShotESP.Decorations[key]
     if not enabled or not head or not feet then
         if data and data.Visible~=false then pcall(function() data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.Collapsed) end) data.Visible=false end
         return
     end
-    if not data or not g_masterahsanyt_ESPValid(data.Widget) then
-        g_masterahsanyt_ESPDestroyWidgetData(data)
-        data=g_masterahsanyt_ESPCreateDecorationRoot()
-        g_masterahsanyt_ShotESP.Decorations[key]=data
+    if not data or not g_VIPLUA_ESPValid(data.Widget) then
+        g_VIPLUA_ESPDestroyWidgetData(data)
+        data=g_VIPLUA_ESPCreateDecorationRoot()
+        g_VIPLUA_ShotESP.Decorations[key]=data
     end
     if not data then return end
     local h=math.abs(feet.Y-head.Y)
@@ -3708,11 +3708,11 @@ local function g_masterahsanyt_ESPUpdateDecoration(key,character,head,feet,opt,s
     local moved=not data.X or math.abs(data.X-x)>=.25 or math.abs(data.Y-y)>=.25
     local scaled=not data.Scale or math.abs(data.Scale-scale)>=.001
     if moved then
-        local ok=pcall(function() data.Slot:SetPosition(g_masterahsanyt_ESPV2(x,y)) end)
+        local ok=pcall(function() data.Slot:SetPosition(g_VIPLUA_ESPV2(x,y)) end)
         if ok then data.X,data.Y=x,y end
     end
     if scaled then
-        local ok=pcall(function() data.Widget:SetRenderScale(g_masterahsanyt_ESPV2(scale,scale)) end)
+        local ok=pcall(function() data.Widget:SetRenderScale(g_VIPLUA_ESPV2(scale,scale)) end)
         if ok then data.Scale=scale else data.Scale=nil end
     end
     if data.Visible~=true then
@@ -3720,38 +3720,38 @@ local function g_masterahsanyt_ESPUpdateDecoration(key,character,head,feet,opt,s
         if ok then data.Visible=true end
     end
     -- Header: handled by ESPUpdateHeaderFrame (screen-space, dynamic width) — hide DecorationRoot version
-    if data.Groups.Header then g_masterahsanyt_ESPSetGroupVisible(data.Groups.Header, false) end
-    local theme=g_masterahsanyt_ESPTheme(isBot)
+    if data.Groups.Header then g_VIPLUA_ESPSetGroupVisible(data.Groups.Header, false) end
+    local theme=g_VIPLUA_ESPTheme(isBot)
     local arcs=data.Groups.Arcs
-    if opt.Box then arcs=g_masterahsanyt_ESPBuildArcs(data) end
-    if arcs then g_masterahsanyt_ESPApplyGroupTheme(arcs,theme,"Arcs") end
-    g_masterahsanyt_ESPSetGroupVisible(arcs,opt.Box==true)
+    if opt.Box then arcs=g_VIPLUA_ESPBuildArcs(data) end
+    if arcs then g_VIPLUA_ESPApplyGroupTheme(arcs,theme,"Arcs") end
+    g_VIPLUA_ESPSetGroupVisible(arcs,opt.Box==true)
     local health=data.Groups.Health
-    if opt.Health then health=g_masterahsanyt_ESPBuildHealth(data) end
+    if opt.Health then health=g_VIPLUA_ESPBuildHealth(data) end
     local healthTypeChanged=health and health.ThemeKey~=theme.Key
-    if health then g_masterahsanyt_ESPApplyGroupTheme(health,theme,"Health") end
-    g_masterahsanyt_ESPSetGroupVisible(health,opt.Health==true)
+    if health then g_VIPLUA_ESPApplyGroupTheme(health,theme,"Health") end
+    g_VIPLUA_ESPSetGroupVisible(health,opt.Health==true)
     if health and opt.Health then
-        local filled=math.ceil(g_masterahsanyt_ESPHealthRatio(character)*8-.001)
+        local filled=math.ceil(g_VIPLUA_ESPHealthRatio(character)*8-.001)
         if health.Filled~=filled or healthTypeChanged then
             local ok=pcall(function() for i=1,8 do health[i+1].Widget:SetBrushColor(i<=filled and theme.Main or theme.Empty) end end)
             if ok then health.Filled=filled end
         end
     end
     local footer=data.Groups.Footer
-    if opt.Distance then footer=g_masterahsanyt_ESPBuildFooter(data) end
-    if footer then g_masterahsanyt_ESPApplyGroupTheme(footer,theme,"Footer") end
-    g_masterahsanyt_ESPSetGroupVisible(footer,opt.Distance==true)
+    if opt.Distance then footer=g_VIPLUA_ESPBuildFooter(data) end
+    if footer then g_VIPLUA_ESPApplyGroupTheme(footer,theme,"Footer") end
+    g_VIPLUA_ESPSetGroupVisible(footer,opt.Distance==true)
 end
 
-local function g_masterahsanyt_ESPUpdateHeaderFrame(key,head,feet,enabled,isBot)
-    local group=g_masterahsanyt_ShotESP.Headers[key]
-    if not enabled or not head or not feet then g_masterahsanyt_ESPHideGroup(group) return end
+local function g_VIPLUA_ESPUpdateHeaderFrame(key,head,feet,enabled,isBot)
+    local group=g_VIPLUA_ShotESP.Headers[key]
+    if not enabled or not head or not feet then g_VIPLUA_ESPHideGroup(group) return end
     local h=math.abs(feet.Y-head.Y)
     -- Compact distance scaling.  The bottom edge stays above the head and all
     -- height growth happens upward, so zooming never pushes the plate onto the body.
     local w=math.max(68.0,math.min(232.0,h*0.315))
-    local cached=g_masterahsanyt_ShotESP.Names[key] and g_masterahsanyt_ShotESP.Names[key].CachedName or ""
+    local cached=g_VIPLUA_ShotESP.Names[key] and g_VIPLUA_ShotESP.Names[key].CachedName or ""
     w=math.max(w,math.min(232.0,28.0+#tostring(cached)*6.0))
     local hh=math.max(18.0,math.min(48.0,h*0.070))
     local headGap=math.max(4.0,math.min(10.0,h*0.025))
@@ -3764,18 +3764,18 @@ local function g_masterahsanyt_ESPUpdateHeaderFrame(key,head,feet,enabled,isBot)
     -- 25 frame/background widgets + 8 horizontal fill bands per corner.
     -- The bands approximate true triangles without using rotated rectangles,
     -- which were the source of the original black corner leakage.
-    local root = g_masterahsanyt_ShotESP.HeaderRoots[key]
-    if not root or not g_masterahsanyt_ESPValid(root.Widget) then
-        g_masterahsanyt_ESPDestroyGroup(group)
-        g_masterahsanyt_ShotESP.Headers[key] = nil
+    local root = g_VIPLUA_ShotESP.HeaderRoots[key]
+    if not root or not g_VIPLUA_ESPValid(root.Widget) then
+        g_VIPLUA_ESPDestroyGroup(group)
+        g_VIPLUA_ShotESP.Headers[key] = nil
         group = nil
-        g_masterahsanyt_ESPDestroyWidgetData(root)
-        root = g_masterahsanyt_ESPCreateDecorationRoot("Header")
-        g_masterahsanyt_ShotESP.HeaderRoots[key] = root
+        g_VIPLUA_ESPDestroyWidgetData(root)
+        root = g_VIPLUA_ESPCreateDecorationRoot("Header")
+        g_VIPLUA_ShotESP.HeaderRoots[key] = root
         if not root then return end
         group=root.Groups.__Header
         root.Groups.__Header=nil
-        g_masterahsanyt_ShotESP.Headers[key]=group
+        g_VIPLUA_ShotESP.Headers[key]=group
         pcall(function() root.Slot:SetZOrder(30) end)
     end
     -- Move 57 header pieces with one parent slot. Width/height changes still
@@ -3783,14 +3783,14 @@ local function g_masterahsanyt_ESPUpdateHeaderFrame(key,head,feet,enabled,isBot)
     local rootY = b
     local moved = not root.X or math.abs(root.X-cx) >= 0.25 or math.abs(root.Y-rootY) >= 0.25
     if moved then
-        local ok = pcall(function() root.Slot:SetPosition(g_masterahsanyt_ESPV2(cx,rootY)) end)
+        local ok = pcall(function() root.Slot:SetPosition(g_VIPLUA_ESPV2(cx,rootY)) end)
         if ok then root.X,root.Y = cx,rootY end
     end
-    local theme=g_masterahsanyt_ESPTheme(isBot)
+    local theme=g_VIPLUA_ESPTheme(isBot)
     local ready = group and #group == 57
-    if ready then g_masterahsanyt_ESPApplyGroupTheme(group,theme,"Header") end
+    if ready then g_VIPLUA_ESPApplyGroupTheme(group,theme,"Header") end
     if ready and group.Width and math.abs(group.Width-w) < 0.25 and math.abs(group.Height-hh) < 0.25 then
-        local healthy = g_masterahsanyt_ESPGroupHealthy(group)
+        local healthy = g_VIPLUA_ESPGroupHealthy(group)
         if healthy then
             for _, piece in ipairs(group) do
                 if piece.Drawn then
@@ -3798,12 +3798,12 @@ local function g_masterahsanyt_ESPUpdateHeaderFrame(key,head,feet,enabled,isBot)
                         local ok = pcall(function() piece.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible) end)
                         if ok then piece.Visible = true end
                     end
-                else g_masterahsanyt_ESPHide(piece) end
+                else g_VIPLUA_ESPHide(piece) end
             end
             return
         end
     end
-    group=g_masterahsanyt_ESPLineGroup(g_masterahsanyt_ShotESP.Headers,key,57,ESP_REAL,root.Widget)
+    group=g_VIPLUA_ESPLineGroup(g_VIPLUA_ShotESP.Headers,key,57,ESP_REAL,root.Widget)
     if not group then return end
     cx, b, t, cy = 0.0, 0.0, -hh, -hh*0.5
     l, r = -w*0.5, w*0.5
@@ -3812,31 +3812,31 @@ local function g_masterahsanyt_ESPUpdateHeaderFrame(key,head,feet,enabled,isBot)
         local ok=pcall(function() for i=23,57 do group[i].Slot:SetZOrder(0) end end)
         if ok then group.HeaderStyled=true end
     end
-    g_masterahsanyt_ESPApplyGroupTheme(group,theme,"Header")
+    g_VIPLUA_ESPApplyGroupTheme(group,theme,"Header")
     -- octagon border
-    for i,s in ipairs(seg) do g_masterahsanyt_ESPDrawLine(group[i],s[1],s[2],s[3],s[4],2.0) end
+    for i,s in ipairs(seg) do g_VIPLUA_ESPDrawLine(group[i],s[1],s[2],s[3],s[4],2.0) end
     -- white inner accent lines on top/bottom edges
-    g_masterahsanyt_ESPDrawLine(group[9],l+cut*1.05,t,l+w*0.16,t,1.25)
-    g_masterahsanyt_ESPDrawLine(group[10],r-w*0.16,t,r-cut*1.05,t,1.25)
-    g_masterahsanyt_ESPDrawLine(group[11],l+cut*1.05,b,l+w*0.16,b,1.25)
-    g_masterahsanyt_ESPDrawLine(group[12],r-w*0.16,b,r-cut*1.05,b,1.25)
+    g_VIPLUA_ESPDrawLine(group[9],l+cut*1.05,t,l+w*0.16,t,1.25)
+    g_VIPLUA_ESPDrawLine(group[10],r-w*0.16,t,r-cut*1.05,t,1.25)
+    g_VIPLUA_ESPDrawLine(group[11],l+cut*1.05,b,l+w*0.16,b,1.25)
+    g_VIPLUA_ESPDrawLine(group[12],r-w*0.16,b,r-cut*1.05,b,1.25)
     -- bottom spike
-    g_masterahsanyt_ESPDrawLine(group[13],cx-cut*0.7,b,cx,b+cut,2.0)
-    g_masterahsanyt_ESPDrawLine(group[14],cx,b+cut,cx+cut*0.7,b,2.0)
+    g_VIPLUA_ESPDrawLine(group[13],cx-cut*0.7,b,cx,b+cut,2.0)
+    g_VIPLUA_ESPDrawLine(group[14],cx,b+cut,cx+cut*0.7,b,2.0)
     -- chevrons (side arrows)
     local co=cut*0.70
-    g_masterahsanyt_ESPDrawLine(group[15],l-co*1.9,cy,l-co*1.25,cy-co,2.2)
-    g_masterahsanyt_ESPDrawLine(group[16],l-co*1.9,cy,l-co*1.25,cy+co,2.2)
-    g_masterahsanyt_ESPDrawLine(group[17],r+co*1.9,cy,r+co*1.25,cy-co,2.2)
-    g_masterahsanyt_ESPDrawLine(group[18],r+co*1.9,cy,r+co*1.25,cy+co,2.2)
-    g_masterahsanyt_ESPDrawLine(group[19],l-co*2.8,cy,l-co*2.15,cy-co,2.2)
-    g_masterahsanyt_ESPDrawLine(group[20],l-co*2.8,cy,l-co*2.15,cy+co,2.2)
-    g_masterahsanyt_ESPDrawLine(group[21],r+co*2.8,cy,r+co*2.15,cy-co,2.2)
-    g_masterahsanyt_ESPDrawLine(group[22],r+co*2.8,cy,r+co*2.15,cy+co,2.2)
+    g_VIPLUA_ESPDrawLine(group[15],l-co*1.9,cy,l-co*1.25,cy-co,2.2)
+    g_VIPLUA_ESPDrawLine(group[16],l-co*1.9,cy,l-co*1.25,cy+co,2.2)
+    g_VIPLUA_ESPDrawLine(group[17],r+co*1.9,cy,r+co*1.25,cy-co,2.2)
+    g_VIPLUA_ESPDrawLine(group[18],r+co*1.9,cy,r+co*1.25,cy+co,2.2)
+    g_VIPLUA_ESPDrawLine(group[19],l-co*2.8,cy,l-co*2.15,cy-co,2.2)
+    g_VIPLUA_ESPDrawLine(group[20],l-co*2.8,cy,l-co*2.15,cy+co,2.2)
+    g_VIPLUA_ESPDrawLine(group[21],r+co*2.8,cy,r+co*2.15,cy-co,2.2)
+    g_VIPLUA_ESPDrawLine(group[22],r+co*2.8,cy,r+co*2.15,cy+co,2.2)
     -- background: center + left strip + right strip (3-part fill of octagon interior)
-    g_masterahsanyt_ESPDrawLine(group[23],l+cut,cy,r-cut,cy,hh)
-    g_masterahsanyt_ESPDrawLine(group[24],l,cy,l+cut,cy,hh-2*cut)
-    g_masterahsanyt_ESPDrawLine(group[25],r-cut,cy,r,cy,hh-2*cut)
+    g_VIPLUA_ESPDrawLine(group[23],l+cut,cy,r-cut,cy,hh)
+    g_VIPLUA_ESPDrawLine(group[24],l,cy,l+cut,cy,hh-2*cut)
+    g_VIPLUA_ESPDrawLine(group[25],r-cut,cy,r,cy,hh-2*cut)
     -- Fill each missing corner triangle with horizontal stepped bands.  Every
     -- band starts inside the diagonal, so black cannot cross the red border.
     local cornerSteps=8
@@ -3849,15 +3849,15 @@ local function g_masterahsanyt_ESPUpdateHeaderFrame(key,head,feet,enabled,isBot)
         local rightEnd=r-cut+inset
 
         if inset>0.5 then
-            g_masterahsanyt_ESPDrawLine(group[25+i],leftStart,topY,l+cut+0.5,topY,bandH)
-            g_masterahsanyt_ESPDrawLine(group[33+i],r-cut-0.5,topY,rightEnd,topY,bandH)
-            g_masterahsanyt_ESPDrawLine(group[41+i],leftStart,bottomY,l+cut+0.5,bottomY,bandH)
-            g_masterahsanyt_ESPDrawLine(group[49+i],r-cut-0.5,bottomY,rightEnd,bottomY,bandH)
+            g_VIPLUA_ESPDrawLine(group[25+i],leftStart,topY,l+cut+0.5,topY,bandH)
+            g_VIPLUA_ESPDrawLine(group[33+i],r-cut-0.5,topY,rightEnd,topY,bandH)
+            g_VIPLUA_ESPDrawLine(group[41+i],leftStart,bottomY,l+cut+0.5,bottomY,bandH)
+            g_VIPLUA_ESPDrawLine(group[49+i],r-cut-0.5,bottomY,rightEnd,bottomY,bandH)
         else
-            g_masterahsanyt_ESPHide(group[25+i])
-            g_masterahsanyt_ESPHide(group[33+i])
-            g_masterahsanyt_ESPHide(group[41+i])
-            g_masterahsanyt_ESPHide(group[49+i])
+            g_VIPLUA_ESPHide(group[25+i])
+            g_VIPLUA_ESPHide(group[33+i])
+            g_VIPLUA_ESPHide(group[41+i])
+            g_VIPLUA_ESPHide(group[49+i])
         end
     end
     group.Width, group.Height = w, hh
@@ -3866,7 +3866,7 @@ end
 
 
 
-g_masterahsanyt_ESPHealthRatio = function(character)
+g_VIPLUA_ESPHealthRatio = function(character)
     local hp, maxHp = nil, nil
     pcall(function()
         hp = character.Health or character.HP or character.CurrentHealth
@@ -3882,24 +3882,24 @@ end
 
 
 
-local g_masterahsanyt_ESPBones = {
+local g_VIPLUA_ESPBones = {
     head={"Head","head","head_01"}, neck={"neck_01","Neck","neck"}, pelvis={"pelvis","Pelvis"},
     ls={"upperarm_l","UpperArm_L","clavicle_l"}, le={"lowerarm_l","LowerArm_L"}, lw={"hand_l","Hand_L"},
     rs={"upperarm_r","UpperArm_R","clavicle_r"}, re={"lowerarm_r","LowerArm_R"}, rw={"hand_r","Hand_R"},
     lh={"thigh_l","Thigh_L","hip_l"}, lk={"calf_l","Calf_L","knee_l"}, la={"foot_l","Foot_L"},
     rh={"thigh_r","Thigh_R","hip_r"}, rk={"calf_r","Calf_R","knee_r"}, ra={"foot_r","Foot_R"}
 }
-local g_masterahsanyt_ESPBoneLinks={{"head","neck"},{"neck","ls"},{"ls","le"},{"le","lw"},{"neck","rs"},{"rs","re"},{"re","rw"},{"neck","pelvis"},{"pelvis","lh"},{"lh","lk"},{"lk","la"},{"pelvis","rh"},{"rh","rk"},{"rk","ra"}}
+local g_VIPLUA_ESPBoneLinks={{"head","neck"},{"neck","ls"},{"ls","le"},{"le","lw"},{"neck","rs"},{"rs","re"},{"re","rw"},{"neck","pelvis"},{"pelvis","lh"},{"lh","lk"},{"lk","la"},{"pelvis","rh"},{"rh","rk"},{"rk","ra"}}
 
 -- Cache only the bone-name lookup; world positions and camera projections remain fresh.
-local function g_masterahsanyt_ESPBoneScreen(pc, mesh, id, names, cache)
+local function g_VIPLUA_ESPBoneScreen(pc, mesh, id, names, cache)
     local cached = cache[id]
     if cached then
         local ok, loc = pcall(function()
             if mesh.GetSocketLocation then return mesh:GetSocketLocation(cached)
             elseif mesh.GetBoneLocation then return mesh:GetBoneLocation(cached) end
         end)
-        if ok and loc and tonumber(loc.X) then return g_masterahsanyt_ESPProject(pc,loc) end
+        if ok and loc and tonumber(loc.X) then return g_VIPLUA_ESPProject(pc,loc) end
         cache[id] = nil
     end
     for _, name in ipairs(names) do
@@ -3914,63 +3914,63 @@ local function g_masterahsanyt_ESPBoneScreen(pc, mesh, id, names, cache)
         end)
         if ok and loc and tonumber(loc.X) then
             cache[id] = name
-            return g_masterahsanyt_ESPProject(pc,loc)
+            return g_VIPLUA_ESPProject(pc,loc)
         end
     end
     return nil
 end
 
-local function g_masterahsanyt_ESPUpdateSkeleton(key, character, pc, enabled, isBot)
-    local group = g_masterahsanyt_ShotESP.Skeletons[key]
-    if not enabled then g_masterahsanyt_ESPHideGroup(group) return end
+local function g_VIPLUA_ESPUpdateSkeleton(key, character, pc, enabled, isBot)
+    local group = g_VIPLUA_ShotESP.Skeletons[key]
+    if not enabled then g_VIPLUA_ESPHideGroup(group) return end
     local mesh = nil
     pcall(function() mesh=character.Mesh or (character.GetMesh and character:GetMesh()) end)
-    if not g_masterahsanyt_ESPValid(mesh) then g_masterahsanyt_ESPHideGroup(group) return end
-    if g_masterahsanyt_ShotESP.BoneMeshes[key] ~= mesh then
-        g_masterahsanyt_ShotESP.BoneMeshes[key] = mesh
-        g_masterahsanyt_ShotESP.BoneNameCache[key] = {}
-        g_masterahsanyt_ShotESP.BonePoints[key] = {}
+    if not g_VIPLUA_ESPValid(mesh) then g_VIPLUA_ESPHideGroup(group) return end
+    if g_VIPLUA_ShotESP.BoneMeshes[key] ~= mesh then
+        g_VIPLUA_ShotESP.BoneMeshes[key] = mesh
+        g_VIPLUA_ShotESP.BoneNameCache[key] = {}
+        g_VIPLUA_ShotESP.BonePoints[key] = {}
     end
-    local points = g_masterahsanyt_ShotESP.BonePoints[key]
-    local cache = g_masterahsanyt_ShotESP.BoneNameCache[key]
-    local theme=g_masterahsanyt_ESPTheme(isBot)
-    group = g_masterahsanyt_ESPLineGroup(g_masterahsanyt_ShotESP.Skeletons,key,#g_masterahsanyt_ESPBoneLinks,theme.Main)
+    local points = g_VIPLUA_ShotESP.BonePoints[key]
+    local cache = g_VIPLUA_ShotESP.BoneNameCache[key]
+    local theme=g_VIPLUA_ESPTheme(isBot)
+    group = g_VIPLUA_ESPLineGroup(g_VIPLUA_ShotESP.Skeletons,key,#g_VIPLUA_ESPBoneLinks,theme.Main)
     if not group then return end
-    g_masterahsanyt_ESPApplyGroupTheme(group,theme,"Skeleton")
-    for id, names in pairs(g_masterahsanyt_ESPBones) do
-        points[id] = g_masterahsanyt_ESPBoneScreen(pc,mesh,id,names,cache)
+    g_VIPLUA_ESPApplyGroupTheme(group,theme,"Skeleton")
+    for id, names in pairs(g_VIPLUA_ESPBones) do
+        points[id] = g_VIPLUA_ESPBoneScreen(pc,mesh,id,names,cache)
     end
     local ankle = points.la or points.ra
     local skeletonH = (points.head and ankle) and math.abs(ankle.Y-points.head.Y) or 360.0
     local thickness = math.max(1.0,math.min(2.8,skeletonH*0.0028))
-    for i, link in ipairs(g_masterahsanyt_ESPBoneLinks) do
+    for i, link in ipairs(g_VIPLUA_ESPBoneLinks) do
         local a, b = points[link[1]], points[link[2]]
-        if a and b then g_masterahsanyt_ESPDrawLine(group[i],a.X,a.Y,b.X,b.Y,thickness)
-        else g_masterahsanyt_ESPHide(group[i]) end
+        if a and b then g_VIPLUA_ESPDrawLine(group[i],a.X,a.Y,b.X,b.Y,thickness)
+        else g_VIPLUA_ESPHide(group[i]) end
     end
 end
 
 -- ESP enemy name widget made by PREMIUM
-local function g_masterahsanyt_ESPCreateNameTag(isBot)
-    local canvas = g_masterahsanyt_ESPGetCanvas()
-    if not g_masterahsanyt_ESPValid(canvas) then return nil end
+local function g_VIPLUA_ESPCreateNameTag(isBot)
+    local canvas = g_VIPLUA_ESPGetCanvas()
+    if not g_VIPLUA_ESPValid(canvas) then return nil end
     local pooled=ESPWidgetPool.Take(ESPWidgetPool.V2,"NameV2",canvas)
     if pooled then
-        local theme=g_masterahsanyt_ESPTheme(isBot)
-        g_masterahsanyt_ESPSetTextColor(pooled.Text,theme.Text)
-        g_masterahsanyt_ESPSetTextColor(pooled.DistanceText,theme.Text)
-        g_masterahsanyt_ESPSetFont(pooled.Text,tonumber(_G.g_masterahsanyt_MasterShotESP.NameFontSize) or 16,0)
-        g_masterahsanyt_ESPSetFont(pooled.DistanceText,tonumber(_G.g_masterahsanyt_MasterShotESP.DistanceFontSize) or 20,0)
+        local theme=g_VIPLUA_ESPTheme(isBot)
+        g_VIPLUA_ESPSetTextColor(pooled.Text,theme.Text)
+        g_VIPLUA_ESPSetTextColor(pooled.DistanceText,theme.Text)
+        g_VIPLUA_ESPSetFont(pooled.Text,tonumber(_G.g_VIPLUA_AHMADShotESP.NameFontSize) or 16,0)
+        g_VIPLUA_ESPSetFont(pooled.DistanceText,tonumber(_G.g_VIPLUA_AHMADShotESP.DistanceFontSize) or 20,0)
         pooled.IsBot=isBot;pooled.ContainerVisible=false
         if pooled then return pooled end
     end
 
     local container, nameText, distanceText = nil, nil, nil
     pcall(function() container = CGame:NewObjectFromPath("/Script/UMG.CanvasPanel", canvas) end)
-    if not g_masterahsanyt_ESPValid(container) then return nil end
+    if not g_VIPLUA_ESPValid(container) then return nil end
     pcall(function() nameText = CGame:NewObjectFromPath("/Script/UMG.TextBlock", container) end)
     pcall(function() distanceText = CGame:NewObjectFromPath("/Script/UMG.TextBlock", container) end)
-    if not g_masterahsanyt_ESPValid(nameText) or not g_masterahsanyt_ESPValid(distanceText) then
+    if not g_VIPLUA_ESPValid(nameText) or not g_VIPLUA_ESPValid(distanceText) then
         pcall(function() container:RemoveFromParent() end)
         return nil
     end
@@ -3981,17 +3981,17 @@ local function g_masterahsanyt_ESPCreateNameTag(isBot)
         nameText:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible)
         distanceText:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible)
         if nameText.SetJustification then nameText:SetJustification(1) end
-        if nameText.SetRenderTransformPivot then nameText:SetRenderTransformPivot(g_masterahsanyt_ESPV2(.5,.5)) end
+        if nameText.SetRenderTransformPivot then nameText:SetRenderTransformPivot(g_VIPLUA_ESPV2(.5,.5)) end
         if distanceText.SetJustification then distanceText:SetJustification(1) end
-        if distanceText.SetRenderTransformPivot then distanceText:SetRenderTransformPivot(g_masterahsanyt_ESPV2(.5,.5)) end
+        if distanceText.SetRenderTransformPivot then distanceText:SetRenderTransformPivot(g_VIPLUA_ESPV2(.5,.5)) end
     end)
 
-    local theme=g_masterahsanyt_ESPTheme(isBot)
-    g_masterahsanyt_ESPSetTextColor(nameText, theme.Text)
-    g_masterahsanyt_ESPSetTextColor(distanceText, theme.Text)
-    g_masterahsanyt_ESPSetFont(nameText, tonumber(_G.g_masterahsanyt_MasterShotESP.NameFontSize) or 16, 0)
+    local theme=g_VIPLUA_ESPTheme(isBot)
+    g_VIPLUA_ESPSetTextColor(nameText, theme.Text)
+    g_VIPLUA_ESPSetTextColor(distanceText, theme.Text)
+    g_VIPLUA_ESPSetFont(nameText, tonumber(_G.g_VIPLUA_AHMADShotESP.NameFontSize) or 16, 0)
     -- Distance labels are intentionally borderless; the larger glyphs provide clarity.
-    g_masterahsanyt_ESPSetFont(distanceText, tonumber(_G.g_masterahsanyt_MasterShotESP.DistanceFontSize) or 20, 0)
+    g_VIPLUA_ESPSetFont(distanceText, tonumber(_G.g_VIPLUA_AHMADShotESP.DistanceFontSize) or 20, 0)
     local nameSlot, distanceSlot, mainSlot = nil, nil, nil
     pcall(function() nameSlot = container:AddChildToCanvas(nameText) end)
     pcall(function() distanceSlot = container:AddChildToCanvas(distanceText) end)
@@ -4007,13 +4007,13 @@ local function g_masterahsanyt_ESPCreateNameTag(isBot)
 
     pcall(function()
         mainSlot:SetAutoSize(false)
-        mainSlot:SetAlignment(g_masterahsanyt_ESPV2(0.0, 0.0))
+        mainSlot:SetAlignment(g_VIPLUA_ESPV2(0.0, 0.0))
         mainSlot:SetZOrder(65)
         nameSlot:SetAutoSize(true)
-        nameSlot:SetAlignment(g_masterahsanyt_ESPV2(0.5, 0.5))
+        nameSlot:SetAlignment(g_VIPLUA_ESPV2(0.5, 0.5))
         nameSlot:SetZOrder(1)
         distanceSlot:SetAutoSize(true)
-        distanceSlot:SetAlignment(g_masterahsanyt_ESPV2(0.5, 0.5))
+        distanceSlot:SetAlignment(g_VIPLUA_ESPV2(0.5, 0.5))
         distanceSlot:SetZOrder(1)
     end)
 
@@ -4030,14 +4030,14 @@ local function g_masterahsanyt_ESPCreateNameTag(isBot)
 end
 
 -- ESP enemy name and distance made by PREMIUM
-local function g_masterahsanyt_ESPUpdateNameTag(key, character, headScreen, footScreen, isBot, distance, forceName, forceDistance)
-    local showName = _G.g_masterahsanyt_ESPOptions.Name == true
-    local showDistance = _G.g_masterahsanyt_ESPOptions.Distance == true
+local function g_VIPLUA_ESPUpdateNameTag(key, character, headScreen, footScreen, isBot, distance, forceName, forceDistance)
+    local showName = _G.g_VIPLUA_ESPOptions.Name == true
+    local showDistance = _G.g_VIPLUA_ESPOptions.Distance == true
     if forceName~=nil then showName=forceName==true end
     if forceDistance~=nil then showDistance=forceDistance==true end
-    local data = g_masterahsanyt_ShotESP.Names[key]
+    local data = g_VIPLUA_ShotESP.Names[key]
     if not showName and not showDistance then
-        if data and data.ContainerVisible~=false and g_masterahsanyt_ESPValid(data.Widget) then pcall(function() data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.Collapsed) end) data.ContainerVisible=false end
+        if data and data.ContainerVisible~=false and g_VIPLUA_ESPValid(data.Widget) then pcall(function() data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.Collapsed) end) data.ContainerVisible=false end
         return
     end
     -- Fix: only cache non-empty resolved names; "" is truthy in Lua so never cache it
@@ -4047,7 +4047,7 @@ local function g_masterahsanyt_ESPUpdateNameTag(key, character, headScreen, foot
         if type(cached) == "string" and #cached > 0 then
             name = cached
         else
-            name = g_masterahsanyt_ESPResolvePlayerName(character)
+            name = g_VIPLUA_ESPResolvePlayerName(character)
             if data and type(name) == "string" and #name > 0 then
                 data.CachedName = name
             end
@@ -4060,17 +4060,17 @@ local function g_masterahsanyt_ESPUpdateNameTag(key, character, headScreen, foot
         name = ""
     end
     if not headScreen then
-        if data and g_masterahsanyt_ESPValid(data.Widget) then
+        if data and g_VIPLUA_ESPValid(data.Widget) then
             pcall(function() data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.Collapsed) end)
             data.ContainerVisible=false
         end
         return
     end
 
-    if not data or not g_masterahsanyt_ESPValid(data.Widget) then
-        g_masterahsanyt_ESPDestroyWidgetData(data)
-        data = g_masterahsanyt_ESPCreateNameTag(isBot)
-        g_masterahsanyt_ShotESP.Names[key] = data
+    if not data or not g_VIPLUA_ESPValid(data.Widget) then
+        g_VIPLUA_ESPDestroyWidgetData(data)
+        data = g_VIPLUA_ESPCreateNameTag(isBot)
+        g_VIPLUA_ShotESP.Names[key] = data
         -- Only cache real resolved names on creation, not fallback labels
         if data and type(name)=="string" and #name>0 and name~="BOT" and name~="PLAYER" then
             data.CachedName = name
@@ -4078,9 +4078,9 @@ local function g_masterahsanyt_ESPUpdateNameTag(key, character, headScreen, foot
     end
     if not data then return end
     if data.IsBot~=isBot then
-        local theme=g_masterahsanyt_ESPTheme(isBot)
-        g_masterahsanyt_ESPSetTextColor(data.Text,theme.Text)
-        g_masterahsanyt_ESPSetTextColor(data.DistanceText,theme.Text)
+        local theme=g_VIPLUA_ESPTheme(isBot)
+        g_VIPLUA_ESPSetTextColor(data.Text,theme.Text)
+        g_VIPLUA_ESPSetTextColor(data.DistanceText,theme.Text)
         data.IsBot=isBot
     end
 
@@ -4123,8 +4123,8 @@ local function g_masterahsanyt_ESPUpdateNameTag(key, character, headScreen, foot
             data.Text:SetText(shownName)
             data.LastName = shownName
         end
-        if data.NameScale~=nameScale then data.Text:SetRenderScale(g_masterahsanyt_ESPV2(nameScale,nameScale)) end
-        if data.DistanceScale~=distanceScale then data.DistanceText:SetRenderScale(g_masterahsanyt_ESPV2(distanceScale,distanceScale)) end
+        if data.NameScale~=nameScale then data.Text:SetRenderScale(g_VIPLUA_ESPV2(nameScale,nameScale)) end
+        if data.DistanceScale~=distanceScale then data.DistanceText:SetRenderScale(g_VIPLUA_ESPV2(distanceScale,distanceScale)) end
         if data.LastDistance ~= shownDistance then
             data.DistanceText:SetText(shownDistance)
             data.LastDistance = shownDistance
@@ -4138,19 +4138,19 @@ local function g_masterahsanyt_ESPUpdateNameTag(key, character, headScreen, foot
 
         -- Move the container to match the header octagon exactly
         if layoutChanged then
-            data.Slot:SetPosition(g_masterahsanyt_ESPV2(x, y))
-            data.Slot:SetSize(g_masterahsanyt_ESPV2(w, hh))
+            data.Slot:SetPosition(g_VIPLUA_ESPV2(x, y))
+            data.Slot:SetSize(g_VIPLUA_ESPV2(w, hh))
         end
 
         -- Name text centered inside container (matches header box center)
         if data.LayoutW~=w or data.LayoutH~=hh then
-            data.TextSlot:SetPosition(g_masterahsanyt_ESPV2(w*0.5, hh*0.5))
+            data.TextSlot:SetPosition(g_VIPLUA_ESPV2(w*0.5, hh*0.5))
         end
 
         -- Distance text below the header box
         local distChanged = not data.DistX or math.abs(data.DistX-distX)>=0.25 or math.abs((data.DistY or 0)-distY)>=0.25
         if distChanged then
-            data.DistanceSlot:SetPosition(g_masterahsanyt_ESPV2(distX, distY))
+            data.DistanceSlot:SetPosition(g_VIPLUA_ESPV2(distX, distY))
         end
 
         if data.ContainerVisible~=true then
@@ -4167,12 +4167,12 @@ local function g_masterahsanyt_ESPUpdateNameTag(key, character, headScreen, foot
 end
 
 -- ESP enemy and bot counter HUD made by PREMIUM
-local function g_masterahsanyt_ESPCreateCounter()
-    local canvas = g_masterahsanyt_ESPGetCanvas()
-    if not g_masterahsanyt_ESPValid(canvas) then return nil end
+local function g_VIPLUA_ESPCreateCounter()
+    local canvas = g_VIPLUA_ESPGetCanvas()
+    if not g_VIPLUA_ESPValid(canvas) then return nil end
     local container=nil
     pcall(function() container=CGame:NewObjectFromPath("/Script/UMG.CanvasPanel",canvas) end)
-    if not g_masterahsanyt_ESPValid(container) then return nil end
+    if not g_VIPLUA_ESPValid(container) then return nil end
     local currentV1=_G.LunarFeatures and _G.LunarFeatures.V1 and _G.LunarFeatures.V1.Counter
     local displayW=currentV1 and tonumber(currentV1.Width) or 218.4
     local displayH=currentV1 and tonumber(currentV1.Height) or 33.6
@@ -4187,15 +4187,15 @@ local function g_masterahsanyt_ESPCreateCounter()
     local function addRect(x,y,w,h,color,z)
         local widget=nil
         pcall(function() widget=CGame:NewObjectFromPath("/Script/UMG.Border",container) end)
-        if not g_masterahsanyt_ESPValid(widget) then return nil end
+        if not g_VIPLUA_ESPValid(widget) then return nil end
         local slot=nil
         pcall(function()
             widget:SetBrushColor(color)
             widget:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible)
             slot=container:AddChildToCanvas(widget)
             slot:SetAutoSize(false)
-            slot:SetPosition(g_masterahsanyt_ESPV2(x*sx,y*sy))
-            slot:SetSize(g_masterahsanyt_ESPV2(math.max(1.0,w*sx),math.max(1.0,h*sy)))
+            slot:SetPosition(g_VIPLUA_ESPV2(x*sx,y*sy))
+            slot:SetSize(g_VIPLUA_ESPV2(math.max(1.0,w*sx),math.max(1.0,h*sy)))
             slot:SetZOrder(z or 1)
         end)
         if not slot then return nil end
@@ -4204,10 +4204,10 @@ local function g_masterahsanyt_ESPCreateCounter()
     end
 
     local function addLine(x1,y1,x2,y2,thickness,color,z)
-        local line=g_masterahsanyt_ESPCreateLine(color,container)
+        local line=g_VIPLUA_ESPCreateLine(color,container)
         if not line then return nil end
         pcall(function() line.Slot:SetZOrder(z or 8) end)
-        g_masterahsanyt_ESPDrawLine(line,x1*sx,y1*sy,x2*sx,y2*sy,thickness*strokeScale)
+        g_VIPLUA_ESPDrawLine(line,x1*sx,y1*sy,x2*sx,y2*sy,thickness*strokeScale)
         pieces[#pieces+1]=line
         return line
     end
@@ -4222,8 +4222,8 @@ local function g_masterahsanyt_ESPCreateCounter()
         local innerInset=34.0-t*24.0
         local leftRight=half-innerInset
         local rightLeft=half+innerInset
-        local red=g_masterahsanyt_ESPScaleColor(ESP_COUNTER_RED_DARK,0.82+t*0.28,1.0)
-        local blue=g_masterahsanyt_ESPScaleColor(ESP_COUNTER_BLUE_DARK,0.92+t*0.42,1.0)
+        local red=g_VIPLUA_ESPScaleColor(ESP_COUNTER_RED_DARK,0.82+t*0.28,1.0)
+        local blue=g_VIPLUA_ESPScaleColor(ESP_COUNTER_BLUE_DARK,0.92+t*0.42,1.0)
         addRect(outerInset,y,leftRight-outerInset,bandH+0.15,red,1)
         addRect(rightLeft,y,width-outerInset-rightLeft,bandH+0.15,blue,1)
     end
@@ -4259,7 +4259,7 @@ local function g_masterahsanyt_ESPCreateCounter()
     local function addText(initial,x,color)
         local text=nil
         pcall(function() text=CGame:NewObjectFromPath("/Script/UMG.TextBlock",container) end)
-        if not g_masterahsanyt_ESPValid(text) then return nil,nil end
+        if not g_VIPLUA_ESPValid(text) then return nil,nil end
         local slot=nil
         pcall(function()
             text:SetText(initial)
@@ -4267,34 +4267,34 @@ local function g_masterahsanyt_ESPCreateCounter()
             if text.SetJustification then text:SetJustification(1) end
             slot=container:AddChildToCanvas(text)
             slot:SetAutoSize(true)
-            slot:SetAlignment(g_masterahsanyt_ESPV2(0.5,0.5))
-            slot:SetPosition(g_masterahsanyt_ESPV2(x*sx,displayH*0.5))
+            slot:SetAlignment(g_VIPLUA_ESPV2(0.5,0.5))
+            slot:SetPosition(g_VIPLUA_ESPV2(x*sx,displayH*0.5))
             slot:SetZOrder(12)
         end)
-        g_masterahsanyt_ESPSetTextColor(text,color)
-        g_masterahsanyt_ESPSetFont(text,fontSize,0)
+        g_VIPLUA_ESPSetTextColor(text,color)
+        g_VIPLUA_ESPSetFont(text,fontSize,0)
         pcall(function()
-            text:SetRenderTransformPivot(g_masterahsanyt_ESPV2(0.5,0.5))
-            text:SetRenderScale(g_masterahsanyt_ESPV2(fontScale,fontScale))
+            text:SetRenderTransformPivot(g_VIPLUA_ESPV2(0.5,0.5))
+            text:SetRenderScale(g_VIPLUA_ESPV2(fontScale,fontScale))
         end)
         return text,slot
     end
 
-    local realText=addText("REAL: 0",half*0.5,g_masterahsanyt_ESPTheme(false).Text)
-    local botText=addText("BOT: 0",half+half*0.5,g_masterahsanyt_ESPTheme(true).Text)
+    local realText=addText("REAL: 0",half*0.5,g_VIPLUA_ESPTheme(false).Text)
+    local botText=addText("BOT: 0",half+half*0.5,g_VIPLUA_ESPTheme(true).Text)
     if not realText or not botText then
-        g_masterahsanyt_ESPDestroyWidgetData({Widget=container})
+        g_VIPLUA_ESPDestroyWidgetData({Widget=container})
         return nil
     end
 
     local mainSlot=nil
     pcall(function() mainSlot=canvas:AddChildToCanvas(container) end)
-    if not mainSlot then g_masterahsanyt_ESPDestroyWidgetData({Widget=container}) return nil end
+    if not mainSlot then g_VIPLUA_ESPDestroyWidgetData({Widget=container}) return nil end
 
     local anchored=false
     pcall(function()
         mainSlot:SetAutoSize(false)
-        mainSlot:SetSize(g_masterahsanyt_ESPV2(displayW,displayH))
+        mainSlot:SetSize(g_VIPLUA_ESPV2(displayW,displayH))
         mainSlot:SetZOrder(60)
         -- Viewport-independent top-center anchor: survives aspect ratio, DPI,
         -- notch and safe-zone variations without drifting toward a corner.
@@ -4302,16 +4302,16 @@ local function g_masterahsanyt_ESPCreateCounter()
             local anchors=nil
             pcall(function()
                 anchors=Anchors(
-                    g_masterahsanyt_ESPV2(0.5,0.0),
-                    g_masterahsanyt_ESPV2(0.5,0.0)
+                    g_VIPLUA_ESPV2(0.5,0.0),
+                    g_VIPLUA_ESPV2(0.5,0.0)
                 )
             end)
             if not anchors then pcall(function() anchors=Anchors() end) end
             if anchors then
-                pcall(function() anchors.Minimum=g_masterahsanyt_ESPV2(0.5,0.0) end)
-                pcall(function() anchors.Maximum=g_masterahsanyt_ESPV2(0.5,0.0) end)
+                pcall(function() anchors.Minimum=g_VIPLUA_ESPV2(0.5,0.0) end)
+                pcall(function() anchors.Maximum=g_VIPLUA_ESPV2(0.5,0.0) end)
                 mainSlot:SetAnchors(anchors)
-                mainSlot:SetAlignment(g_masterahsanyt_ESPV2(0.5,0.0))
+                mainSlot:SetAlignment(g_VIPLUA_ESPV2(0.5,0.0))
                 anchored=true
             end
         end
@@ -4322,36 +4322,36 @@ local function g_masterahsanyt_ESPCreateCounter()
 end
 
 -- ESP counter position and tracer origin made by PREMIUM
-local function g_masterahsanyt_ESPUpdateCounter(realCount, botCount, pc)
+local function g_VIPLUA_ESPUpdateCounter(realCount, botCount, pc)
 
-    local data = g_masterahsanyt_ShotESP.Counter
-    if not data or not g_masterahsanyt_ESPValid(data.Widget) then
+    local data = g_VIPLUA_ShotESP.Counter
+    if not data or not g_VIPLUA_ESPValid(data.Widget) then
         -- The static counter is built atomically; the budget applies to enemy
         -- line groups that would otherwise all spawn together.
-        local budget = g_masterahsanyt_ShotESP.BuildRemaining
-        g_masterahsanyt_ShotESP.BuildRemaining = nil
-        data = g_masterahsanyt_ESPCreateCounter()
-        g_masterahsanyt_ShotESP.BuildRemaining = budget
-        g_masterahsanyt_ShotESP.Counter = data
+        local budget = g_VIPLUA_ShotESP.BuildRemaining
+        g_VIPLUA_ShotESP.BuildRemaining = nil
+        data = g_VIPLUA_ESPCreateCounter()
+        g_VIPLUA_ShotESP.BuildRemaining = budget
+        g_VIPLUA_ShotESP.Counter = data
     end
     if not data then return nil end
 
-    local cw = g_masterahsanyt_ShotESP.ViewportW
+    local cw = g_VIPLUA_ShotESP.ViewportW
     local centerX = nil
 
     if tonumber(cw) and cw > 1 then
         centerX = cw * 0.5
     else
 
-        local vw = g_masterahsanyt_ESPViewport(pc)
+        local vw = g_VIPLUA_ESPViewport(pc)
         centerX =
-            (vw * 0.5) * (g_masterahsanyt_ShotESP.CanvasScaleX or 1.0)
-            + (g_masterahsanyt_ShotESP.CanvasOffsetX or 0.0)
+            (vw * 0.5) * (g_VIPLUA_ShotESP.CanvasScaleX or 1.0)
+            + (g_VIPLUA_ShotESP.CanvasOffsetX or 0.0)
     end
 
     if not centerX then return nil end
 
-    local counterY = tonumber(_G.g_masterahsanyt_MasterShotESP.CounterY) or 36.0
+    local counterY = tonumber(_G.g_VIPLUA_AHMADShotESP.CounterY) or 36.0
 
     if data.LastReal ~= realCount then
         local ok=pcall(function() data.RealText:SetText(string.format("REAL: %d", realCount or 0)) end)
@@ -4366,10 +4366,10 @@ local function g_masterahsanyt_ESPUpdateCounter(realCount, botCount, pc)
     local visibleChanged = data.Visible ~= true
     local applied = pcall(function()
         if positionChanged and data.ViewportAnchored then
-            data.Slot:SetPosition(g_masterahsanyt_ESPV2(0.0,counterY))
+            data.Slot:SetPosition(g_VIPLUA_ESPV2(0.0,counterY))
         elseif positionChanged then
-            data.Slot:SetAlignment(g_masterahsanyt_ESPV2(0.0,0.0))
-            data.Slot:SetPosition(g_masterahsanyt_ESPV2(centerX-data.Width*0.5,counterY))
+            data.Slot:SetAlignment(g_VIPLUA_ESPV2(0.0,0.0))
+            data.Slot:SetPosition(g_VIPLUA_ESPV2(centerX-data.Width*0.5,counterY))
         end
         if visibleChanged then data.Widget:SetWidgetVisibility(UEnums.ESlateVisibility.SelfHitTestInvisible) end
     end)
@@ -4382,27 +4382,27 @@ local function g_masterahsanyt_ESPUpdateCounter(realCount, botCount, pc)
     data.AnchorX = anchorX
     data.AnchorY = anchorY
 
-    g_masterahsanyt_ShotESP.TracerOrigin = g_masterahsanyt_ESPV2(anchorX, anchorY)
-    return g_masterahsanyt_ShotESP.TracerOrigin
+    g_VIPLUA_ShotESP.TracerOrigin = g_VIPLUA_ESPV2(anchorX, anchorY)
+    return g_VIPLUA_ShotESP.TracerOrigin
 end
 
 -- ESP enemy scan made by PREMIUM
-local function g_masterahsanyt_ESPScanEnemies()
-    local pc = g_masterahsanyt_ESPGetController()
-    local me = g_masterahsanyt_ESPGetLocalCharacter()
-    if not pc or not me then g_masterahsanyt_ShotESP.Enemies = {} return nil, 0, 0 end
+local function g_VIPLUA_ESPScanEnemies()
+    local pc = g_VIPLUA_ESPGetController()
+    local me = g_VIPLUA_ESPGetLocalCharacter()
+    if not pc or not me then g_VIPLUA_ShotESP.Enemies = {} return nil, 0, 0 end
     local myLoc = ESPShared.GetFrameRecord(me).Location
-    if not myLoc then g_masterahsanyt_ShotESP.Enemies = {} return pc, 0, 0 end
-    local myTeam = g_masterahsanyt_ESPGetTeamID(me)
+    if not myLoc then g_VIPLUA_ShotESP.Enemies = {} return pc, 0, 0 end
+    local myTeam = g_VIPLUA_ESPGetTeamID(me)
 
     local list = {}
     local realCount, botCount = 0, 0
     local pawns=ESPShared.GetFramePawns()
-    pawns = pawns or _G.g_masterahsanyt_TrackedCharacters
+    pawns = pawns or _G.g_VIPLUA_TrackedCharacters
     if pawns then
         for _, character in pairs(pawns) do
             if character~=me and ESPShared.GetFrameRecord(character).Alive and ESPShared.Events.Counted(character) then
-                local team = g_masterahsanyt_ESPGetTeamID(character)
+                local team = g_VIPLUA_ESPGetTeamID(character)
                 -- Fix: only skip as same-team when both IDs are non-zero and equal
                 local sameTeam = false
                 if myTeam ~= nil and team ~= nil then
@@ -4412,9 +4412,9 @@ local function g_masterahsanyt_ESPScanEnemies()
                 if not sameTeam then
                     local loc = ESPShared.GetFrameRecord(character).Location
                     local dist = ESPShared.DistanceMetersFrom(ESPShared.GetFrameRecord(character),myLoc)
-                    if dist <= (tonumber(_G.g_masterahsanyt_MasterShotESP.MaxRangeMeters) or 400.0) then
-                        local key = g_masterahsanyt_ESPGetPlayerKey(character)
-                        local isBot = g_masterahsanyt_ESPIsBot(character,key)
+                    if dist <= (tonumber(_G.g_VIPLUA_AHMADShotESP.MaxRangeMeters) or 400.0) then
+                        local key = g_VIPLUA_ESPGetPlayerKey(character)
+                        local isBot = g_VIPLUA_ESPIsBot(character,key)
                         if isBot then botCount = botCount + 1 else realCount = realCount + 1 end
                         list[#list+1] = {Character=character, Key=key, IsBot=isBot, Distance=dist}
                     end
@@ -4426,129 +4426,129 @@ local function g_masterahsanyt_ESPScanEnemies()
         if a.Distance == b.Distance then return a.Key < b.Key end
         return (a.Distance or 99999) < (b.Distance or 99999)
     end)
-    g_masterahsanyt_ShotESP.Enemies = list
+    g_VIPLUA_ShotESP.Enemies = list
     return pc, realCount, botCount
 end
 
 -- ESP stale widget cleanup made by PREMIUM
-local function g_masterahsanyt_ESPPrune(active,alive)
+local function g_VIPLUA_ESPPrune(active,alive)
     -- Visual caches follow the displayed set. Counting metadata follows alive.
     -- Move header children into their actor-free parent bundle before pruning
     -- either registry; no detached child can follow a different enemy.
-    for key,root in pairs(g_masterahsanyt_ShotESP.HeaderRoots) do
+    for key,root in pairs(g_VIPLUA_ShotESP.HeaderRoots) do
         if not active[key] and root.PoolOwner and root.Groups then
-            root.Groups.__Header=g_masterahsanyt_ShotESP.Headers[key]
-            g_masterahsanyt_ShotESP.Headers[key]=nil
+            root.Groups.__Header=g_VIPLUA_ShotESP.Headers[key]
+            g_VIPLUA_ShotESP.Headers[key]=nil
         end
     end
-    for _,registry in ipairs({g_masterahsanyt_ShotESP.Lines,g_masterahsanyt_ShotESP.Names,
-        g_masterahsanyt_ShotESP.Decorations,g_masterahsanyt_ShotESP.HeaderRoots}) do
+    for _,registry in ipairs({g_VIPLUA_ShotESP.Lines,g_VIPLUA_ShotESP.Names,
+        g_VIPLUA_ShotESP.Decorations,g_VIPLUA_ShotESP.HeaderRoots}) do
         for key,data in pairs(registry) do
-            if not active[key] then g_masterahsanyt_ESPDestroyWidgetData(data);registry[key]=nil end
+            if not active[key] then g_VIPLUA_ESPDestroyWidgetData(data);registry[key]=nil end
         end
     end
-    for _,registry in ipairs({g_masterahsanyt_ShotESP.Boxes,g_masterahsanyt_ShotESP.HealthBars,
-        g_masterahsanyt_ShotESP.Skeletons,g_masterahsanyt_ShotESP.Headers,g_masterahsanyt_ShotESP.Footers}) do
+    for _,registry in ipairs({g_VIPLUA_ShotESP.Boxes,g_VIPLUA_ShotESP.HealthBars,
+        g_VIPLUA_ShotESP.Skeletons,g_VIPLUA_ShotESP.Headers,g_VIPLUA_ShotESP.Footers}) do
         for key,group in pairs(registry) do
-            if not active[key] then g_masterahsanyt_ESPDestroyGroup(group);registry[key]=nil end
+            if not active[key] then g_VIPLUA_ESPDestroyGroup(group);registry[key]=nil end
         end
     end
-    for _,registry in ipairs({g_masterahsanyt_ShotESP.BuildStage,g_masterahsanyt_ShotESP.BoneNameCache,
-        g_masterahsanyt_ShotESP.BoneMeshes,g_masterahsanyt_ShotESP.BonePoints}) do
+    for _,registry in ipairs({g_VIPLUA_ShotESP.BuildStage,g_VIPLUA_ShotESP.BoneNameCache,
+        g_VIPLUA_ShotESP.BoneMeshes,g_VIPLUA_ShotESP.BonePoints}) do
         for key in pairs(registry) do if not active[key] then registry[key]=nil end end
     end
-    for key in pairs(g_masterahsanyt_ShotESP._BotCache) do if not alive[key] then g_masterahsanyt_ShotESP._BotCache[key]=nil end end
+    for key in pairs(g_VIPLUA_ShotESP._BotCache) do if not alive[key] then g_VIPLUA_ShotESP._BotCache[key]=nil end end
 end
 
 ESPShared.Events.Clearers[#ESPShared.Events.Clearers+1]=function(actor)
-    ESPShared.Events.ClearIn(g_masterahsanyt_ShotESP,g_masterahsanyt_ESPPrune,actor)
+    ESPShared.Events.ClearIn(g_VIPLUA_ShotESP,g_VIPLUA_ESPPrune,actor)
 end
 
 -- ESP main HUD update made by PREMIUM
-local function g_masterahsanyt_ESPUpdate()
-    local opt = _G.g_masterahsanyt_ESPOptions
+local function g_VIPLUA_ESPUpdate()
+    local opt = _G.g_VIPLUA_ESPOptions
     local anyEnabled = opt and (opt.Name or opt.Line or opt.Box or opt.Health or opt.Distance or opt.Skeleton or opt.Counter)
-    if not (_G.LunarLoginRuntime and _G.LunarLoginRuntime.Authorized) or not _G.g_masterahsanyt_MasterShotESP.Enabled or not anyEnabled then
-        if not g_masterahsanyt_ShotESP.Disabled then g_masterahsanyt_ESPResetWidgets() end
-        g_masterahsanyt_ShotESP.Disabled = true
+    if not (_G.LunarLoginRuntime and _G.LunarLoginRuntime.Authorized) or not _G.g_VIPLUA_AHMADShotESP.Enabled or not anyEnabled then
+        if not g_VIPLUA_ShotESP.Disabled then g_VIPLUA_ESPResetWidgets() end
+        g_VIPLUA_ShotESP.Disabled = true
         return
     end
-    g_masterahsanyt_ShotESP.Disabled = false
-    local buildBudget = tonumber(_G.g_masterahsanyt_MasterShotESP.WidgetBuildBudget) or 96
+    g_VIPLUA_ShotESP.Disabled = false
+    local buildBudget = tonumber(_G.g_VIPLUA_AHMADShotESP.WidgetBuildBudget) or 96
     if buildBudget ~= buildBudget or buildBudget == math.huge then buildBudget = 96 end
-    g_masterahsanyt_ShotESP.BuildRemaining = math.max(1, math.floor(buildBudget))
+    g_VIPLUA_ShotESP.BuildRemaining = math.max(1, math.floor(buildBudget))
 
-    local world = g_masterahsanyt_ESPWorld()
+    local world = g_VIPLUA_ESPWorld()
     ESPShared.Events.WorldChanged(world)
-    if world ~= g_masterahsanyt_ShotESP.LastWorld then
-        g_masterahsanyt_ESPResetWidgets()
-        g_masterahsanyt_ShotESP.LastWorld = world
-        g_masterahsanyt_ShotESP.LastScanClock = -999.0
-        g_masterahsanyt_ShotESP.LastTransformClock = -999.0
-        g_masterahsanyt_ShotESP.TracerOrigin = nil
+    if world ~= g_VIPLUA_ShotESP.LastWorld then
+        g_VIPLUA_ESPResetWidgets()
+        g_VIPLUA_ShotESP.LastWorld = world
+        g_VIPLUA_ShotESP.LastScanClock = -999.0
+        g_VIPLUA_ShotESP.LastTransformClock = -999.0
+        g_VIPLUA_ShotESP.TracerOrigin = nil
     end
 
-    if g_masterahsanyt_ShotESP.Canvas and not g_masterahsanyt_ESPValid(g_masterahsanyt_ShotESP.Canvas) then
-        g_masterahsanyt_ESPResetWidgets()
+    if g_VIPLUA_ShotESP.Canvas and not g_VIPLUA_ESPValid(g_VIPLUA_ShotESP.Canvas) then
+        g_VIPLUA_ESPResetWidgets()
     end
-    local canvas = g_masterahsanyt_ESPGetCanvas()
+    local canvas = g_VIPLUA_ESPGetCanvas()
     if not canvas then return end
-    local now = g_masterahsanyt_ESPNow()
-    g_masterahsanyt_ShotESP.Now = now
-    if now < g_masterahsanyt_ShotESP.LastScanClock then
-        g_masterahsanyt_ShotESP.LastScanClock = -999.0
-        g_masterahsanyt_ShotESP.LastTransformClock = -999.0
+    local now = g_VIPLUA_ESPNow()
+    g_VIPLUA_ShotESP.Now = now
+    if now < g_VIPLUA_ShotESP.LastScanClock then
+        g_VIPLUA_ShotESP.LastScanClock = -999.0
+        g_VIPLUA_ShotESP.LastTransformClock = -999.0
     end
-    local pc = g_masterahsanyt_ESPGetController()
-    local me = g_masterahsanyt_ESPGetLocalCharacter()
-    if pc ~= g_masterahsanyt_ShotESP.LastController or me ~= g_masterahsanyt_ShotESP.LastPawn then
-        g_masterahsanyt_ESPResetWidgets()
-        g_masterahsanyt_ShotESP.LastController, g_masterahsanyt_ShotESP.LastPawn = pc,me
-        canvas = g_masterahsanyt_ESPGetCanvas()
+    local pc = g_VIPLUA_ESPGetController()
+    local me = g_VIPLUA_ESPGetLocalCharacter()
+    if pc ~= g_VIPLUA_ShotESP.LastController or me ~= g_VIPLUA_ShotESP.LastPawn then
+        g_VIPLUA_ESPResetWidgets()
+        g_VIPLUA_ShotESP.LastController, g_VIPLUA_ShotESP.LastPawn = pc,me
+        canvas = g_VIPLUA_ESPGetCanvas()
         if not canvas then return end
     end
     if not pc or not me then return end
     local myLoc = ESPShared.GetFrameRecord(me).Location
     local realCount, botCount = nil, nil
-    if (now - g_masterahsanyt_ShotESP.LastScanClock) >= (tonumber(_G.g_masterahsanyt_MasterShotESP.ScanInterval) or 0.30) then
-        pc, realCount, botCount = g_masterahsanyt_ESPScanEnemies()
-        g_masterahsanyt_ShotESP.LastScanClock = now
-        g_masterahsanyt_ShotESP.RealCount, g_masterahsanyt_ShotESP.BotCount = realCount, botCount
+    if (now - g_VIPLUA_ShotESP.LastScanClock) >= (tonumber(_G.g_VIPLUA_AHMADShotESP.ScanInterval) or 0.30) then
+        pc, realCount, botCount = g_VIPLUA_ESPScanEnemies()
+        g_VIPLUA_ShotESP.LastScanClock = now
+        g_VIPLUA_ShotESP.RealCount, g_VIPLUA_ShotESP.BotCount = realCount, botCount
     end
-    pc = pc or g_masterahsanyt_ESPGetController()
+    pc = pc or g_VIPLUA_ESPGetController()
     if not pc then return end
 
-    if (now - (g_masterahsanyt_ShotESP.LastTransformClock or -999.0))
-        >= (tonumber(_G.g_masterahsanyt_MasterShotESP.TransformInterval) or 0.50) then
-        g_masterahsanyt_ESPUpdateCanvasTransform(pc)
-        local cw,ch=g_masterahsanyt_ESPGetCanvasLocalSize()
-        if cw and ch then g_masterahsanyt_ShotESP.ViewportW,g_masterahsanyt_ShotESP.ViewportH=cw,ch end
-        local rw,rh=g_masterahsanyt_ESPViewport(pc)
-        g_masterahsanyt_ShotESP.RawViewportW,g_masterahsanyt_ShotESP.RawViewportH=rw,rh
-        g_masterahsanyt_ShotESP.LastTransformClock = now
+    if (now - (g_VIPLUA_ShotESP.LastTransformClock or -999.0))
+        >= (tonumber(_G.g_VIPLUA_AHMADShotESP.TransformInterval) or 0.50) then
+        g_VIPLUA_ESPUpdateCanvasTransform(pc)
+        local cw,ch=g_VIPLUA_ESPGetCanvasLocalSize()
+        if cw and ch then g_VIPLUA_ShotESP.ViewportW,g_VIPLUA_ShotESP.ViewportH=cw,ch end
+        local rw,rh=g_VIPLUA_ESPViewport(pc)
+        g_VIPLUA_ShotESP.RawViewportW,g_VIPLUA_ShotESP.RawViewportH=rw,rh
+        g_VIPLUA_ShotESP.LastTransformClock = now
     end
 
     local rawW,rawH=ESPShared.ViewSize(pc)
     -- The tracer uses the physical viewport midpoint in canvas coordinates.
-    local canvasScaleX=ESPShared.SafeNumber(g_masterahsanyt_ShotESP.CanvasScaleX,1.0,0.00001,100)
-    local canvasScaleY=ESPShared.SafeNumber(g_masterahsanyt_ShotESP.CanvasScaleY,1.0,0.00001,100)
-    local canvasOffsetX=ESPShared.SafeNumber(g_masterahsanyt_ShotESP.CanvasOffsetX,0.0,-1e7,1e7)
-    local canvasOffsetY=ESPShared.SafeNumber(g_masterahsanyt_ShotESP.CanvasOffsetY,0.0,-1e7,1e7)
-    local originCenter = g_masterahsanyt_ESPV2(
+    local canvasScaleX=ESPShared.SafeNumber(g_VIPLUA_ShotESP.CanvasScaleX,1.0,0.00001,100)
+    local canvasScaleY=ESPShared.SafeNumber(g_VIPLUA_ShotESP.CanvasScaleY,1.0,0.00001,100)
+    local canvasOffsetX=ESPShared.SafeNumber(g_VIPLUA_ShotESP.CanvasOffsetX,0.0,-1e7,1e7)
+    local canvasOffsetY=ESPShared.SafeNumber(g_VIPLUA_ShotESP.CanvasOffsetY,0.0,-1e7,1e7)
+    local originCenter = g_VIPLUA_ESPV2(
         (rawW*0.5)*canvasScaleX+canvasOffsetX,
         4.0*canvasScaleY+canvasOffsetY
     )
-    local active,alive=g_masterahsanyt_ShotESP.Active,g_masterahsanyt_ShotESP.Alive
-    g_masterahsanyt_ShotESP.RealCount,g_masterahsanyt_ShotESP.BotCount=g_masterahsanyt_ESPFilterEnemies(
-        g_masterahsanyt_ShotESP.Enemies,myLoc,_G.g_masterahsanyt_MasterShotESP.MaxRangeMeters,alive)
+    local active,alive=g_VIPLUA_ShotESP.Active,g_VIPLUA_ShotESP.Alive
+    g_VIPLUA_ShotESP.RealCount,g_VIPLUA_ShotESP.BotCount=g_VIPLUA_ESPFilterEnemies(
+        g_VIPLUA_ShotESP.Enemies,myLoc,_G.g_VIPLUA_AHMADShotESP.MaxRangeMeters,alive)
     if opt.Counter then
-        g_masterahsanyt_ESPUpdateCounter(
-            g_masterahsanyt_ShotESP.RealCount or 0,
-            g_masterahsanyt_ShotESP.BotCount or 0,
+        g_VIPLUA_ESPUpdateCounter(
+            g_VIPLUA_ShotESP.RealCount or 0,
+            g_VIPLUA_ShotESP.BotCount or 0,
             pc
         )
-    elseif g_masterahsanyt_ShotESP.Counter then
-        g_masterahsanyt_ESPHide(g_masterahsanyt_ShotESP.Counter)
+    elseif g_VIPLUA_ShotESP.Counter then
+        g_VIPLUA_ESPHide(g_VIPLUA_ShotESP.Counter)
     end
 
     -- Counter-only mode stops here after validating cached scan candidates, avoiding
@@ -4556,33 +4556,33 @@ local function g_masterahsanyt_ESPUpdate()
     local detailedEnabled=opt.Name or opt.Line or opt.Box or opt.Health or opt.Distance or opt.Skeleton
     if not detailedEnabled then
         for key in pairs(active) do active[key]=nil end
-        g_masterahsanyt_ESPPrune(active,alive)
+        g_VIPLUA_ESPPrune(active,alive)
         return
     end
 
     for key in pairs(active) do active[key]=nil end
-    local configuredMax=math.floor(ESPShared.SafeNumber(_G.g_masterahsanyt_MasterShotESP.MaxRendered,8,1,64))
+    local configuredMax=math.floor(ESPShared.SafeNumber(_G.g_VIPLUA_AHMADShotESP.MaxRendered,8,1,64))
     local maxRendered = configuredMax
     local renderedCount=0
     -- Keep the nearest-candidate budget; counting still validates every actor.
-    for index,item in ipairs(g_masterahsanyt_ShotESP.Enemies) do
+    for index,item in ipairs(g_VIPLUA_ShotESP.Enemies) do
         if index>maxRendered then break end
         local c,key=item.Character,item.Key
-        local headScreen,footScreen,onScreen=ESPShared.Events.Project(pc,c,g_masterahsanyt_ShotESP)
+        local headScreen,footScreen,onScreen=ESPShared.Events.Project(pc,c,g_VIPLUA_ShotESP)
         if onScreen then
             if renderedCount<maxRendered then
                 renderedCount=renderedCount+1
                 active[key] = true
-                local buildStage=g_masterahsanyt_ShotESP.BuildStage[key] or 1
+                local buildStage=g_VIPLUA_ShotESP.BuildStage[key] or 1
                 local color = item.IsBot and ESP_BOT or ESP_REAL
-                local line = g_masterahsanyt_ShotESP.Lines[key]
+                local line = g_VIPLUA_ShotESP.Lines[key]
 
                 local colorKey = item.IsBot and "BOT" or "REAL"
-                if opt.Line and (not line or not g_masterahsanyt_ESPValid(line.Widget)) then
-                    g_masterahsanyt_ESPDestroyWidgetData(line)
-                    line = g_masterahsanyt_ESPCreateLine(color)
+                if opt.Line and (not line or not g_VIPLUA_ESPValid(line.Widget)) then
+                    g_VIPLUA_ESPDestroyWidgetData(line)
+                    line = g_VIPLUA_ESPCreateLine(color)
                     if line then line.ColorKey = colorKey end
-                    g_masterahsanyt_ShotESP.Lines[key] = line
+                    g_VIPLUA_ShotESP.Lines[key] = line
                 elseif opt.Line and line and line.ColorKey ~= colorKey then
                     pcall(function() line.Widget:SetBrushColor(color) end)
                     line.ColorKey = colorKey
@@ -4591,132 +4591,132 @@ local function g_masterahsanyt_ESPUpdate()
                 if opt.Line and line then
                     local tracerTarget = headScreen or footScreen
                     if tracerTarget then
-                        g_masterahsanyt_ESPDrawLine(
+                        g_VIPLUA_ESPDrawLine(
                             line,
                             originCenter.X, originCenter.Y,
                             tracerTarget.X, tracerTarget.Y,
-                            tonumber(_G.g_masterahsanyt_MasterShotESP.TracerThickness) or 1.80
+                            tonumber(_G.g_VIPLUA_AHMADShotESP.TracerThickness) or 1.80
                         )
                     end
-                elseif line then g_masterahsanyt_ESPHide(line) end
+                elseif line then g_VIPLUA_ESPHide(line) end
 
-                g_masterahsanyt_ESPUpdateDecoration(key,c,headScreen,footScreen,opt,buildStage,item.IsBot)
-                g_masterahsanyt_ESPUpdateNameTag(key,c,headScreen,footScreen,item.IsBot,item.Distance)
+                g_VIPLUA_ESPUpdateDecoration(key,c,headScreen,footScreen,opt,buildStage,item.IsBot)
+                g_VIPLUA_ESPUpdateNameTag(key,c,headScreen,footScreen,item.IsBot,item.Distance)
                 -- Header frame: dynamic per-frame update (fills, corner fills, scale with name)
-                g_masterahsanyt_ESPUpdateHeaderFrame(key,headScreen,footScreen,opt.Name==true,item.IsBot)
+                g_VIPLUA_ESPUpdateHeaderFrame(key,headScreen,footScreen,opt.Name==true,item.IsBot)
 
                 -- All visible skeletons refresh with the current camera; no round-robin delay.
-                g_masterahsanyt_ESPUpdateSkeleton(key, c, pc, opt.Skeleton == true, item.IsBot)
-                g_masterahsanyt_ShotESP.BuildStage[key]=math.min(5,buildStage+1)
+                g_VIPLUA_ESPUpdateSkeleton(key, c, pc, opt.Skeleton == true, item.IsBot)
+                g_VIPLUA_ShotESP.BuildStage[key]=math.min(5,buildStage+1)
 
             end
         end
     end
-    g_masterahsanyt_ESPPrune(active,alive)
+    g_VIPLUA_ESPPrune(active,alive)
 end
 
 -- One pending render chain. Menu refreshes invalidate/wake it rather than
 -- drawing synchronously multiple times in the same frame.
-local g_masterahsanyt_ESPRunnerToken={}
-if type(_G.__MasterShotESPCleanup) == "function" then pcall(_G.__MasterShotESPCleanup) end
-_G.__MasterShotESPRunner=g_masterahsanyt_ESPRunnerToken
-_G.__MasterShotESPCleanup=g_masterahsanyt_ESPResetWidgets
-local g_masterahsanyt_ESPDiagnostics={Updates=0,Errors=0,LastError=nil}
-_G.g_masterahsanyt_ESPDiagnostics=g_masterahsanyt_ESPDiagnostics
-local g_masterahsanyt_ESPTicker=nil
-pcall(function() g_masterahsanyt_ESPTicker=require("common.time_ticker") end)
-local g_masterahsanyt_ESPTick
-local function g_masterahsanyt_ESPSchedule(delay)
+local g_VIPLUA_ESPRunnerToken={}
+if type(_G.__AHMADShotESPCleanup) == "function" then pcall(_G.__AHMADShotESPCleanup) end
+_G.__AHMADShotESPRunner=g_VIPLUA_ESPRunnerToken
+_G.__AHMADShotESPCleanup=g_VIPLUA_ESPResetWidgets
+local g_VIPLUA_ESPDiagnostics={Updates=0,Errors=0,LastError=nil}
+_G.g_VIPLUA_ESPDiagnostics=g_VIPLUA_ESPDiagnostics
+local g_VIPLUA_ESPTicker=nil
+pcall(function() g_VIPLUA_ESPTicker=require("common.time_ticker") end)
+local g_VIPLUA_ESPTick
+local function g_VIPLUA_ESPSchedule(delay)
     delay=ESPShared.SafeNumber(delay,0.50,0.001,0.50)
-    if _G.__MasterShotESPRunner~=g_masterahsanyt_ESPRunnerToken then return end
-    if not g_masterahsanyt_ESPTicker or not g_masterahsanyt_ESPTicker.AddTimerOnce then
-        g_masterahsanyt_ESPDiagnostics.LastError="common.time_ticker.AddTimerOnce unavailable"
+    if _G.__AHMADShotESPRunner~=g_VIPLUA_ESPRunnerToken then return end
+    if not g_VIPLUA_ESPTicker or not g_VIPLUA_ESPTicker.AddTimerOnce then
+        g_VIPLUA_ESPDiagnostics.LastError="common.time_ticker.AddTimerOnce unavailable"
         return
     end
-    local serial=(g_masterahsanyt_ESPRunnerToken.Serial or 0)+1
-    g_masterahsanyt_ESPRunnerToken.Serial=serial
-    g_masterahsanyt_ESPRunnerToken.Due=g_masterahsanyt_ESPNow()+delay
-    local ok, err=pcall(g_masterahsanyt_ESPTicker.AddTimerOnce,delay,function()
-        if _G.__MasterShotESPRunner~=g_masterahsanyt_ESPRunnerToken
-            or g_masterahsanyt_ESPRunnerToken.Serial~=serial then return end
-        g_masterahsanyt_ESPRunnerToken.Due=nil
-        g_masterahsanyt_ShotESP.TimerClock=g_masterahsanyt_ShotESP.TimerClock+delay
-        g_masterahsanyt_ESPTick()
+    local serial=(g_VIPLUA_ESPRunnerToken.Serial or 0)+1
+    g_VIPLUA_ESPRunnerToken.Serial=serial
+    g_VIPLUA_ESPRunnerToken.Due=g_VIPLUA_ESPNow()+delay
+    local ok, err=pcall(g_VIPLUA_ESPTicker.AddTimerOnce,delay,function()
+        if _G.__AHMADShotESPRunner~=g_VIPLUA_ESPRunnerToken
+            or g_VIPLUA_ESPRunnerToken.Serial~=serial then return end
+        g_VIPLUA_ESPRunnerToken.Due=nil
+        g_VIPLUA_ShotESP.TimerClock=g_VIPLUA_ShotESP.TimerClock+delay
+        g_VIPLUA_ESPTick()
     end)
     if not ok or err==false then
-        g_masterahsanyt_ESPRunnerToken.Due=nil
-        g_masterahsanyt_ESPDiagnostics.Errors=g_masterahsanyt_ESPDiagnostics.Errors+1
-        g_masterahsanyt_ESPDiagnostics.LastError=tostring(err)
+        g_VIPLUA_ESPRunnerToken.Due=nil
+        g_VIPLUA_ESPDiagnostics.Errors=g_VIPLUA_ESPDiagnostics.Errors+1
+        g_VIPLUA_ESPDiagnostics.LastError=tostring(err)
     end
 end
-g_masterahsanyt_ESPTick=function()
-    local token=g_masterahsanyt_ESPRunnerToken
-    if _G.__MasterShotESPRunner~=token then return end
-    local now=g_masterahsanyt_ESPNow()
-    local profiling=_G.g_masterahsanyt_MasterShotESP.Profile and os and type(os.clock)=="function"
+g_VIPLUA_ESPTick=function()
+    local token=g_VIPLUA_ESPRunnerToken
+    if _G.__AHMADShotESPRunner~=token then return end
+    local now=g_VIPLUA_ESPNow()
+    local profiling=_G.g_VIPLUA_AHMADShotESP.Profile and os and type(os.clock)=="function"
     local callbackStarted=profiling and os.clock() or nil
     ESPShared.Frame.Begin(now)
     local F=_G.LunarFeatures
-    if F then F.TimerClock=g_masterahsanyt_ShotESP.TimerClock end
+    if F then F.TimerClock=g_VIPLUA_ShotESP.TimerClock end
     if not token.RenderDue or now>=token.RenderDue-0.000001 or (token.LastRenderClock and now<token.LastRenderClock) then
-        local previous=g_masterahsanyt_ESPDiagnostics.LastTickSeconds
-        if previous and now>previous then g_masterahsanyt_ESPDiagnostics.UpdateHz=1/(now-previous) end
-        g_masterahsanyt_ESPDiagnostics.LastTickSeconds=now
+        local previous=g_VIPLUA_ESPDiagnostics.LastTickSeconds
+        if previous and now>previous then g_VIPLUA_ESPDiagnostics.UpdateHz=1/(now-previous) end
+        g_VIPLUA_ESPDiagnostics.LastTickSeconds=now
         local started=profiling and os.clock() or nil
-        local ok,err=pcall(g_masterahsanyt_ESPUpdate)
-        g_masterahsanyt_ESPDiagnostics.LastUpdateOK=ok
-        g_masterahsanyt_ESPDiagnostics.Updates=g_masterahsanyt_ESPDiagnostics.Updates+1
+        local ok,err=pcall(g_VIPLUA_ESPUpdate)
+        g_VIPLUA_ESPDiagnostics.LastUpdateOK=ok
+        g_VIPLUA_ESPDiagnostics.Updates=g_VIPLUA_ESPDiagnostics.Updates+1
         if not ok then
-            g_masterahsanyt_ESPDiagnostics.Errors=g_masterahsanyt_ESPDiagnostics.Errors+1
-            g_masterahsanyt_ESPDiagnostics.LastError=tostring(err)
+            g_VIPLUA_ESPDiagnostics.Errors=g_VIPLUA_ESPDiagnostics.Errors+1
+            g_VIPLUA_ESPDiagnostics.LastError=tostring(err)
         end
         if started then
             local elapsed=os.clock()-started
-            g_masterahsanyt_ESPDiagnostics.LastUpdateCPUSeconds=elapsed
-            g_masterahsanyt_ESPDiagnostics.MaxUpdateCPUSeconds=math.max(elapsed,g_masterahsanyt_ESPDiagnostics.MaxUpdateCPUSeconds or 0)
+            g_VIPLUA_ESPDiagnostics.LastUpdateCPUSeconds=elapsed
+            g_VIPLUA_ESPDiagnostics.MaxUpdateCPUSeconds=math.max(elapsed,g_VIPLUA_ESPDiagnostics.MaxUpdateCPUSeconds or 0)
         end
-        local o=_G.g_masterahsanyt_ESPOptions or {}
-        local enabled=_G.g_masterahsanyt_MasterShotESP.Enabled and _G.LunarLoginRuntime and _G.LunarLoginRuntime.Authorized
+        local o=_G.g_VIPLUA_ESPOptions or {}
+        local enabled=_G.g_VIPLUA_AHMADShotESP.Enabled and _G.LunarLoginRuntime and _G.LunarLoginRuntime.Authorized
         local detailed=enabled and (o.Name or o.Line or o.Box or o.Health or o.Distance or o.Skeleton)
-        local interval=tonumber(_G.g_masterahsanyt_MasterShotESP.UpdateInterval) or 1/60
-        if not detailed then interval=enabled and o.Counter and math.max(0.05,tonumber(_G.g_masterahsanyt_MasterShotESP.ScanInterval) or 0.35) or 0.50 end
+        local interval=tonumber(_G.g_VIPLUA_AHMADShotESP.UpdateInterval) or 1/60
+        if not detailed then interval=enabled and o.Counter and math.max(0.05,tonumber(_G.g_VIPLUA_AHMADShotESP.ScanInterval) or 0.35) or 0.50 end
         if interval~=interval or math.abs(interval)==math.huge or interval<=0 then interval=1/60 end
         token.LastRenderClock=now
         token.RenderDue=now+math.max(0.001,interval)
     end
-    if profiling then g_masterahsanyt_ESPDiagnostics.LastPumpCPUSeconds=0 end
+    if profiling then g_VIPLUA_ESPDiagnostics.LastPumpCPUSeconds=0 end
     if F and F.Pump and not F.Token.Stopped then
         local pumpStarted=profiling and os.clock() or nil
         local ok,err=pcall(F.Pump,now)
         if not ok then F.Error("Scheduler",err) end
         if pumpStarted then
             local elapsed=os.clock()-pumpStarted
-            g_masterahsanyt_ESPDiagnostics.LastPumpCPUSeconds=elapsed
-            g_masterahsanyt_ESPDiagnostics.MaxPumpCPUSeconds=math.max(elapsed,g_masterahsanyt_ESPDiagnostics.MaxPumpCPUSeconds or 0)
+            g_VIPLUA_ESPDiagnostics.LastPumpCPUSeconds=elapsed
+            g_VIPLUA_ESPDiagnostics.MaxPumpCPUSeconds=math.max(elapsed,g_VIPLUA_ESPDiagnostics.MaxPumpCPUSeconds or 0)
         end
     end
     ESPShared.Frame.Finish()
-    local after=g_masterahsanyt_ESPNow()
+    local after=g_VIPLUA_ESPNow()
     local interval=math.max(0.001,token.RenderDue-after)
     if F and F.NextInterval and not F.Token.Stopped then interval=math.min(interval,F.NextInterval(after)) end
-    g_masterahsanyt_ESPSchedule(interval)
+    g_VIPLUA_ESPSchedule(interval)
     if callbackStarted then
         local elapsed=os.clock()-callbackStarted
-        g_masterahsanyt_ESPDiagnostics.LastCallbackCPUSeconds=elapsed
-        g_masterahsanyt_ESPDiagnostics.MaxCallbackCPUSeconds=math.max(elapsed,g_masterahsanyt_ESPDiagnostics.MaxCallbackCPUSeconds or 0)
-        g_masterahsanyt_ESPDiagnostics.TotalCallbackCPUSeconds=(g_masterahsanyt_ESPDiagnostics.TotalCallbackCPUSeconds or 0)+elapsed
-        g_masterahsanyt_ESPDiagnostics.CallbackSamples=(g_masterahsanyt_ESPDiagnostics.CallbackSamples or 0)+1
+        g_VIPLUA_ESPDiagnostics.LastCallbackCPUSeconds=elapsed
+        g_VIPLUA_ESPDiagnostics.MaxCallbackCPUSeconds=math.max(elapsed,g_VIPLUA_ESPDiagnostics.MaxCallbackCPUSeconds or 0)
+        g_VIPLUA_ESPDiagnostics.TotalCallbackCPUSeconds=(g_VIPLUA_ESPDiagnostics.TotalCallbackCPUSeconds or 0)+elapsed
+        g_VIPLUA_ESPDiagnostics.CallbackSamples=(g_VIPLUA_ESPDiagnostics.CallbackSamples or 0)+1
     end
 end
 
 
-_G.g_masterahsanyt_MasterShotESPForceRefresh = function()
-    if _G.__MasterShotESPRunner~=g_masterahsanyt_ESPRunnerToken then return end
-    g_masterahsanyt_ESPRunnerToken.RenderDue=nil
-    g_masterahsanyt_ShotESP.LastScanClock = -999.0
-    g_masterahsanyt_ShotESP.LastTransformClock = -999.0
-    local due=g_masterahsanyt_ESPRunnerToken.Due
-    if not due or due-g_masterahsanyt_ESPNow()>0.002 then g_masterahsanyt_ESPSchedule(0.001) end
+_G.g_VIPLUA_AHMADShotESPForceRefresh = function()
+    if _G.__AHMADShotESPRunner~=g_VIPLUA_ESPRunnerToken then return end
+    g_VIPLUA_ESPRunnerToken.RenderDue=nil
+    g_VIPLUA_ShotESP.LastScanClock = -999.0
+    g_VIPLUA_ShotESP.LastTransformClock = -999.0
+    local due=g_VIPLUA_ESPRunnerToken.Due
+    if not due or due-g_VIPLUA_ESPNow()>0.002 then g_VIPLUA_ESPSchedule(0.001) end
 end
 
 -- Managed feature state. Source settings are data, never loaded as executable Lua.
@@ -4746,8 +4746,8 @@ do
     for _,key in ipairs({"Name","Line","Health","Distance","EnemyCounter"}) do
         if _G.g_Botmater_ESPOptions[key]==nil then _G.g_Botmater_ESPOptions[key]=false end
     end
-    local paths=g_masterahsanyt_ESPSettingsPaths()
-    for i,path in ipairs(paths) do paths[i]=path:gsub("MASTERPIECE_UMG_ESP_settings.lua$","MASTERAHSAN_FEATURES_V3_settings.lua") end
+    local paths=g_VIPLUA_ESPSettingsPaths()
+    for i,path in ipairs(paths) do paths[i]=path:gsub("AHMADPIECE_UMG_ESP_settings.lua$","LUALOGIN_FEATURES_V3_settings.lua") end
     if io and io.open then
         for _,path in ipairs(paths) do
             local ok,file=pcall(io.open,path,"r")
@@ -4776,22 +4776,22 @@ do
                     end
                     for _,key in ipairs({"Name","Line","Box","Health","Distance","Skeleton","Counter"}) do
                         local val=payload:match("%f[%w_]V2_"..key.."%s*=%s*(%a+)")
-                        if val=="true" or val=="false" then _G.g_masterahsanyt_ESPOptions[key]=val=="true" end
+                        if val=="true" or val=="false" then _G.g_VIPLUA_ESPOptions[key]=val=="true" end
                     end
                     break
                 end
             end
         end
     end
-    if not F.SettingsReadPath and g_masterahsanyt_ESPLoadedSettingsPath then
-        F.SettingsReadPath=g_masterahsanyt_ESPLoadedSettingsPath:gsub("MASTERPIECE_UMG_ESP_settings%.lua$","MASTERAHSAN_FEATURES_V3_settings.lua")
+    if not F.SettingsReadPath and g_VIPLUA_ESPLoadedSettingsPath then
+        F.SettingsReadPath=g_VIPLUA_ESPLoadedSettingsPath:gsub("AHMADPIECE_UMG_ESP_settings%.lua$","LUALOGIN_FEATURES_V3_settings.lua")
     end
     if settings.Aim2Enabled then settings.AimEnabled=false end
     _G.LexusState.CustomTextData.IpadViewFOV=settings.IpadFOV
     F.Now=function()
         local now=nil
         pcall(function()
-            local world=g_masterahsanyt_ESPWorld()
+            local world=g_VIPLUA_ESPWorld()
             if world and GameplayStaticsESP and GameplayStaticsESP.GetRealTimeSeconds then now=GameplayStaticsESP.GetRealTimeSeconds(world) end
         end)
         return tonumber(now) or F.TimerClock
@@ -4801,12 +4801,12 @@ do
         local lines={"return {", "  IpadEnabled = "..tostring(_G.LexusConfig.IpadView==true)..","}
         for _,key in ipairs({"AimEnabled","WallEnabled","Aim2Enabled","MortarEnabled","IpadFOV","AimSpeed","AimTarget","WallVisible","WallOccluded"}) do lines[#lines+1]="  "..key.." = "..tostring(settings[key]).."," end
         for _,key in ipairs({"Name","Line","Health","Distance","EnemyCounter"}) do lines[#lines+1]="  V1_"..key.." = "..tostring(_G.g_Botmater_ESPOptions[key]==true).."," end
-        for _,key in ipairs({"Name","Line","Box","Health","Distance","Skeleton","Counter"}) do lines[#lines+1]="  V2_"..key.." = "..tostring(_G.g_masterahsanyt_ESPOptions[key]==true).."," end
+        for _,key in ipairs({"Name","Line","Box","Health","Distance","Skeleton","Counter"}) do lines[#lines+1]="  V2_"..key.." = "..tostring(_G.g_VIPLUA_ESPOptions[key]==true).."," end
         lines[#lines+1]="}"
         local payload=table.concat(lines,"\n")
         local savePaths=F.SettingsReadPath and {F.SettingsReadPath} or paths
         for _,path in ipairs(savePaths) do
-            local wrote,reason,atomic=g_masterahsanyt_ESPWriteSettings(path,payload)
+            local wrote,reason,atomic=g_VIPLUA_ESPWriteSettings(path,payload)
             if wrote then
                 F.SettingsReadPath=path;F.Dirty=false;F.Diagnostics.LastSaveOK=true;F.Diagnostics.LastSavePath=path;F.Diagnostics.AtomicSave=atomic
                 return true
@@ -4820,13 +4820,13 @@ do
     F.SetIpad=function(enabled)
         _G.LexusConfig.IpadView=enabled==true or enabled==1
         _G.LexusState.CustomTextData.IpadViewFOV=settings.IpadFOV
-        pcall(g_masterahsanyt_ApplyiPadView)
+        pcall(g_VIPLUA_ApplyiPadView)
         F.MarkDirty(true)
     end
     F.SetIpadFOV=function(value)
         settings.IpadFOV=number(value,90,120,120)
         _G.LexusState.CustomTextData.IpadViewFOV=settings.IpadFOV
-        pcall(g_masterahsanyt_ApplyiPadView)
+        pcall(g_VIPLUA_ApplyiPadView)
         F.MarkDirty()
     end
     F.SetAimSpeed=function(value)
@@ -4917,8 +4917,8 @@ do
     F.ESPSettingsEventID=2
     local function applyESP(version,key,on)
         local first,second=false,false
-        local own=version==1 and _G.g_Botmater_ESPOptions or _G.g_masterahsanyt_ESPOptions
-        local other=version==1 and _G.g_masterahsanyt_ESPOptions or _G.g_Botmater_ESPOptions
+        local own=version==1 and _G.g_Botmater_ESPOptions or _G.g_VIPLUA_ESPOptions
+        local other=version==1 and _G.g_VIPLUA_ESPOptions or _G.g_Botmater_ESPOptions
         local mapped=(version==1 and v1ToV2 or v2ToV1)[key]
         if (own[key]==true)~=on then own[key]=on;first=true end
         if on and mapped and other[mapped]==true then other[mapped]=false;second=true end
@@ -4933,10 +4933,10 @@ do
         if changedV1 and F.V1 then F.V1.Refresh();F.V1Due=0 end
         F.MarkDirty(true)
         if changedV2 then
-            _G.g_masterahsanyt_MasterShotESPForceRefresh()
+            _G.g_VIPLUA_AHMADShotESPForceRefresh()
         else
-            local due=g_masterahsanyt_ESPRunnerToken.Due
-            if not due or due-g_masterahsanyt_ESPNow()>0.002 then g_masterahsanyt_ESPSchedule(0.001) end
+            local due=g_VIPLUA_ESPRunnerToken.Due
+            if not due or due-g_VIPLUA_ESPNow()>0.002 then g_VIPLUA_ESPSchedule(0.001) end
         end
         if EventSystem and type(EventSystem.postEvent)=="function" then
             local ok,err=pcall(EventSystem.postEvent,EventSystem,F.ESPSettingsEventType,F.ESPSettingsEventID)
@@ -4952,7 +4952,7 @@ do
     end
     F.GetESPAll=function(version)
         if version~=1 and version~=2 then return false end
-        local own=version==1 and _G.g_Botmater_ESPOptions or _G.g_masterahsanyt_ESPOptions
+        local own=version==1 and _G.g_Botmater_ESPOptions or _G.g_VIPLUA_ESPOptions
         for _,key in ipairs(version==1 and v1Keys or v2Keys) do if own[key]~=true then return false end end
         return true
     end
@@ -4987,8 +4987,8 @@ do
     -- Old versions allowed both copies on. Resolve old conflicts once at load,
     -- giving V1 priority; persist the merged state through the existing save pump.
     for key,mapped in pairs(v1ToV2) do
-        if _G.g_Botmater_ESPOptions[key]==true and _G.g_masterahsanyt_ESPOptions[mapped]==true then
-            _G.g_masterahsanyt_ESPOptions[mapped]=false
+        if _G.g_Botmater_ESPOptions[key]==true and _G.g_VIPLUA_ESPOptions[mapped]==true then
+            _G.g_VIPLUA_ESPOptions[mapped]=false
             F.MarkDirty()
         end
     end
@@ -5472,7 +5472,7 @@ end
 -- Deduplicate mesh identities; do not assume the game leaves material flags alone.
 do
     local F=_G.LunarFeatures
-    local valid=g_masterahsanyt_ESPValid
+    local valid=g_VIPLUA_ESPValid
     local classes={}
     for _,name in ipairs({"SkeletalMeshComponent","StaticMeshComponent"}) do
         local ok,value=pcall(import,name)
@@ -5503,8 +5503,8 @@ do
     W.UpdateColors=function()
         local a=palette[F.Settings.WallVisible] or palette[1]
         local b=palette[F.Settings.WallOccluded] or palette[2]
-        local vis=g_masterahsanyt_ESPColor(a[1],a[2],a[3],100)
-        local occ=g_masterahsanyt_ESPColor(b[1],b[2],b[3],100)
+        local vis=g_VIPLUA_ESPColor(a[1],a[2],a[3],100)
+        local occ=g_VIPLUA_ESPColor(b[1],b[2],b[3],100)
         colorCalls=calls(vis,occ)
         W.LastTick=-999
     end
@@ -5569,10 +5569,10 @@ do
     W.Tick=function(now,me,pc)
         if not F.Settings.WallEnabled then return end
         now=now or F.Now()
-        me=me or g_masterahsanyt_ESPGetLocalCharacter()
-        pc=pc or g_masterahsanyt_ESPGetController()
+        me=me or g_VIPLUA_ESPGetLocalCharacter()
+        pc=pc or g_VIPLUA_ESPGetController()
         if not valid(me) or not valid(pc) then W.Stop() return end
-        local maxRange=tonumber(_G.g_masterahsanyt_MasterShotESP.MaxRangeMeters) or 450.0
+        local maxRange=tonumber(_G.g_VIPLUA_AHMADShotESP.MaxRangeMeters) or 450.0
         if maxRange~=maxRange or maxRange<=0 or maxRange==math.huge then maxRange=450.0 end
         local myLocation=ESPShared.GetFrameRecord(me).Location
         if now<W.LastCleanup or now-W.LastCleanup>=W.CleanupInterval-0.000001 then
@@ -5580,7 +5580,7 @@ do
         end
         if now>=W.LastTick and now-W.LastTick<0.30-0.000001 then return end
         W.LastTick=now
-        local world=g_masterahsanyt_ESPWorld()
+        local world=g_VIPLUA_ESPWorld()
         if world~=W.ConsoleWorld then
             local ok=pcall(function()
                 if not world or not UKismetSystemLibrary.ExecuteConsoleCommand then return end
@@ -5639,7 +5639,7 @@ _G.g_Botmater_ESPOptions = _G.g_Botmater_ESPOptions or {
     EnemyCounter = false,
 }
 
-_G.g_Botmater_MasterShotESP = _G.g_Botmater_MasterShotESP or {
+_G.g_Botmater_AHMADShotESP = _G.g_Botmater_AHMADShotESP or {
     Enabled = true,
     MaxRangeMeters = 300.0,
     ScanInterval = 0.05,
@@ -5652,7 +5652,7 @@ _G.g_Botmater_MasterShotESP = _G.g_Botmater_MasterShotESP or {
     DistanceFontSize = 10,
     DistanceBelowFeet = 14,
 }
--- ESP V1 settings remain independent from _G.MasterShotESP (ESP V2).
+-- ESP V1 settings remain independent from _G.AHMADShotESP (ESP V2).
 
 local g_Botmater_ShotESP = {
     Canvas = nil,
@@ -5718,8 +5718,8 @@ local COLOR_HP = {
     BotBG=g_Botmater_ESPColor(0.005,0.06,0.06,0.75)}
 
 -- Ensure old in-memory options do not retain the tiny shipped label fonts.
-_G.g_Botmater_MasterShotESP.NameFontSize=math.max(12,tonumber(_G.g_Botmater_MasterShotESP.NameFontSize) or 12)
-_G.g_Botmater_MasterShotESP.DistanceFontSize=math.max(12,tonumber(_G.g_Botmater_MasterShotESP.DistanceFontSize) or 12)
+_G.g_Botmater_AHMADShotESP.NameFontSize=math.max(12,tonumber(_G.g_Botmater_AHMADShotESP.NameFontSize) or 12)
+_G.g_Botmater_AHMADShotESP.DistanceFontSize=math.max(12,tonumber(_G.g_Botmater_AHMADShotESP.DistanceFontSize) or 12)
 
 local function g_Botmater_ESPGetColors(isBot)
     if isBot then
@@ -5743,8 +5743,8 @@ local function g_Botmater_ESPWorld()
     return w
 end
 
-local function g_Botmater_ESPGetController() return g_masterahsanyt_ESPGetController() end
-local function g_Botmater_ESPGetLocalCharacter() return g_masterahsanyt_ESPGetLocalCharacter() end
+local function g_Botmater_ESPGetController() return g_VIPLUA_ESPGetController() end
+local function g_Botmater_ESPGetLocalCharacter() return g_VIPLUA_ESPGetLocalCharacter() end
 
 local function g_Botmater_ESPGetPlayerState(character)
     if not g_Botmater_ESPValid(character) then return nil end
@@ -5792,7 +5792,7 @@ local function g_Botmater_ESPResolvePlayerName(character)
     return name
 end
 
-local function g_Botmater_ESPGetPlayerKey(c) return g_masterahsanyt_ESPGetPlayerKey(c) end
+local function g_Botmater_ESPGetPlayerKey(c) return g_VIPLUA_ESPGetPlayerKey(c) end
 
 local function g_Botmater_ESPGetTeamID(character)
     if not g_Botmater_ESPValid(character) then return nil end
@@ -5833,7 +5833,7 @@ end
 
 local function g_Botmater_ESPIsBot(c)
     g_Botmater_ShotESP._BotCache=g_Botmater_ShotESP._BotCache or {}
-    return g_masterahsanyt_ESPIsBot(c,g_masterahsanyt_ESPGetPlayerKey(c),g_Botmater_ShotESP._BotCache,_G.LunarFeatures.Now())
+    return g_VIPLUA_ESPIsBot(c,g_VIPLUA_ESPGetPlayerKey(c),g_Botmater_ShotESP._BotCache,_G.LunarFeatures.Now())
 end
 
 -- Deferred cleanup owns widgets only, never an actor, key or player name.
@@ -5947,7 +5947,7 @@ local function g_Botmater_ESPGetCanvas()
     return canvas
 end
 
-local function g_Botmater_ESPViewport(pc) return g_masterahsanyt_ESPViewport(pc) end
+local function g_Botmater_ESPViewport(pc) return g_VIPLUA_ESPViewport(pc) end
 
 local function g_Botmater_ESPGetCanvasLocalSize()
     local canvas = g_Botmater_ESPGetCanvas()
@@ -6007,8 +6007,8 @@ local function g_Botmater_ESPUpdateCanvasTransform(pc)
     return true
 end
 
-local function g_Botmater_ESPSetFont(widget,size) g_masterahsanyt_ESPSetFont(widget,size,0) end
-local function g_Botmater_ESPSetTextColor(widget,color) g_masterahsanyt_ESPSetTextColor(widget,color) end
+local function g_Botmater_ESPSetFont(widget,size) g_VIPLUA_ESPSetFont(widget,size,0) end
+local function g_Botmater_ESPSetTextColor(widget,color) g_VIPLUA_ESPSetTextColor(widget,color) end
 
 local function g_Botmater_ESPCreateLine(color)
     if V1Cleanup.Count>=V1Cleanup.AdmissionLimit then return nil end
@@ -6037,7 +6037,7 @@ local function g_Botmater_ESPCreateLine(color)
     return data
 end
 
-local function g_Botmater_ESPDrawLine(...) return g_masterahsanyt_ESPDrawLine(...) end
+local function g_Botmater_ESPDrawLine(...) return g_VIPLUA_ESPDrawLine(...) end
 
 local function g_Botmater_ESPHide(data)
     if data and g_Botmater_ESPValid(data.Widget) then
@@ -6065,8 +6065,8 @@ local function g_Botmater_ESPCreateNameTag(isBot)
         if pooled then
             g_Botmater_ESPSetTextColor(pooled.Text,textColor)
             g_Botmater_ESPSetTextColor(pooled.DistanceText,textColor)
-            g_Botmater_ESPSetFont(pooled.Text,tonumber(_G.g_Botmater_MasterShotESP.NameFontSize) or 9)
-            g_Botmater_ESPSetFont(pooled.DistanceText,tonumber(_G.g_Botmater_MasterShotESP.DistanceFontSize) or 10)
+            g_Botmater_ESPSetFont(pooled.Text,tonumber(_G.g_Botmater_AHMADShotESP.NameFontSize) or 9)
+            g_Botmater_ESPSetFont(pooled.DistanceText,tonumber(_G.g_Botmater_AHMADShotESP.DistanceFontSize) or 10)
             pooled.IsBot=isBot;pooled.Visible=false;pooled.LastHealthPct=-1
         end
         if pooled then return pooled end
@@ -6117,8 +6117,8 @@ local function g_Botmater_ESPCreateNameTag(isBot)
 
     g_Botmater_ESPSetTextColor(nameText, textColor)
     g_Botmater_ESPSetTextColor(distanceText, textColor)
-    g_Botmater_ESPSetFont(nameText, tonumber(_G.g_Botmater_MasterShotESP.NameFontSize) or 9)
-    g_Botmater_ESPSetFont(distanceText, tonumber(_G.g_Botmater_MasterShotESP.DistanceFontSize) or 10)
+    g_Botmater_ESPSetFont(nameText, tonumber(_G.g_Botmater_AHMADShotESP.NameFontSize) or 9)
+    g_Botmater_ESPSetFont(distanceText, tonumber(_G.g_Botmater_AHMADShotESP.DistanceFontSize) or 10)
 
     local lineSlot, nameSlot, distanceSlot, mainSlot = nil, nil, nil, nil
     local healthBgSlot, healthFillSlot = nil, nil
@@ -6250,13 +6250,13 @@ local function g_Botmater_ESPUpdateNameTag(key, character, headScreen, footScree
     end
 
     local bottomLineH = 4.32
-    local baseFontSize=ESPShared.SafeNumber(_G.g_Botmater_MasterShotESP.NameFontSize,12,1,96)
+    local baseFontSize=ESPShared.SafeNumber(_G.g_Botmater_AHMADShotESP.NameFontSize,12,1,96)
     local baseBottomLineH = 3.6
     local fontSize = baseFontSize * (bottomLineH / baseBottomLineH)
     local paddingX    = 5.0
     local paddingY    = 2.0
     local nameHeight  = fontSize + paddingY * 2 + bottomLineH
-    local gap=ESPShared.SafeNumber(_G.g_Botmater_MasterShotESP.NameGap,2,0,128)
+    local gap=ESPShared.SafeNumber(_G.g_Botmater_AHMADShotESP.NameGap,2,0,128)
 
     local nameChars = #name
     local textWidth = math.max(30.0, nameChars * (fontSize * 0.52))
@@ -6275,11 +6275,11 @@ local function g_Botmater_ESPUpdateNameTag(key, character, headScreen, footScree
 
     -- The meter label remains inside the HUD, including when feet are clipped.
     local anchor=footScreen or headScreen
-    local df=ESPShared.SafeNumber(_G.g_Botmater_MasterShotESP.DistanceFontSize,12,1,96)
+    local df=ESPShared.SafeNumber(_G.g_Botmater_AHMADShotESP.DistanceFontSize,12,1,96)
     local halfW=math.min(math.max(18,#distanceLabel*df*0.30),(maxX-minX)*0.49)
     local halfH=math.min(df*0.7+2,(maxY-minY)*0.49)
     local distAbsX=ESPShared.SafeNumber(anchor.X,headScreen.X,minX+halfW,maxX-halfW)
-    local distAbsY=ESPShared.SafeNumber(anchor.Y+ESPShared.SafeNumber(_G.g_Botmater_MasterShotESP.DistanceBelowFeet,14,0,128),
+    local distAbsY=ESPShared.SafeNumber(anchor.Y+ESPShared.SafeNumber(_G.g_Botmater_AHMADShotESP.DistanceBelowFeet,14,0,128),
         minY+halfH,minY+halfH,maxY-halfH)
     containerY=math.min(containerY,distAbsY-halfH)
     local distanceY=distAbsY-containerY
@@ -6398,7 +6398,7 @@ local function g_Botmater_ESPScanEnemies()
                 if myTeam == nil or team == nil or tostring(team) ~= tostring(myTeam) then
                     local loc = ESPShared.GetFrameRecord(character).Location
                     local dist = ESPShared.DistanceMetersFrom(ESPShared.GetFrameRecord(character),myLoc)
-                    if dist <= (tonumber(_G.g_Botmater_MasterShotESP.MaxRangeMeters) or 300.0) then
+                    if dist <= (tonumber(_G.g_Botmater_AHMADShotESP.MaxRangeMeters) or 300.0) then
                         local isBot = g_Botmater_ESPIsBot(character)
                         local k = g_Botmater_ESPGetPlayerKey(character)
                         if k then
@@ -6410,7 +6410,7 @@ local function g_Botmater_ESPScanEnemies()
             end
         end
     end
-    local maxRendered = math.floor(ESPShared.SafeNumber(_G.g_Botmater_MasterShotESP.MaxRendered,10,1,64))
+    local maxRendered = math.floor(ESPShared.SafeNumber(_G.g_Botmater_AHMADShotESP.MaxRendered,10,1,64))
     if #list > maxRendered then
         table.sort(list,function(a,b)
             if a.Distance==b.Distance then return a.Key<b.Key end
@@ -6460,7 +6460,7 @@ local g_Botmater_EnemyCounter = {
 }
 
 local function g_Botmater_CounterTextColor(widget,color)
-    g_masterahsanyt_ESPSetTextColor(widget,color)
+    g_VIPLUA_ESPSetTextColor(widget,color)
 end
 
 local function g_Botmater_CounterCreate()
@@ -6518,8 +6518,8 @@ local function g_Botmater_CounterCreate()
     pcall(function()
         PlayerText:SetText("REAL: 0")
         BotText:SetText("BOT: 0")
-        g_masterahsanyt_ESPSetFont(PlayerText,g_Botmater_EnemyCounter.FontSize,0)
-        g_masterahsanyt_ESPSetFont(BotText,g_Botmater_EnemyCounter.FontSize,0)
+        g_VIPLUA_ESPSetFont(PlayerText,g_Botmater_EnemyCounter.FontSize,0)
+        g_VIPLUA_ESPSetFont(BotText,g_Botmater_EnemyCounter.FontSize,0)
         local scale=g_Botmater_EnemyCounter.FontScale
         PlayerText:SetRenderTransformPivot(g_Botmater_ESPV2(0.5,0.5))
         BotText:SetRenderTransformPivot(g_Botmater_ESPV2(0.5,0.5))
@@ -6601,7 +6601,7 @@ local function g_Botmater_CounterUpdatePosition(pc)
 
     local canvasCenterX = canvasW * 0.5
     local canvasCenterY = g_Botmater_EnemyCounter.OffsetY
-    if _G.g_masterahsanyt_ESPOptions.Counter then canvasCenterY=106 end
+    if _G.g_VIPLUA_ESPOptions.Counter then canvasCenterY=106 end
 
     local x = canvasCenterX - g_Botmater_EnemyCounter.Width * 0.5
     local y = canvasCenterY
@@ -6629,7 +6629,7 @@ local function g_Botmater_GetLineOrigin(pc)
         local vw=g_Botmater_ESPViewport(pc)
         width=(vw or 2400)*g_Botmater_ShotESP.CanvasScaleX+g_Botmater_ShotESP.CanvasOffsetX
     end
-    local top=_G.g_masterahsanyt_ESPOptions.Counter and 106 or g_Botmater_EnemyCounter.OffsetY
+    local top=_G.g_VIPLUA_ESPOptions.Counter and 106 or g_Botmater_EnemyCounter.OffsetY
     return g_Botmater_ESPV2(width*0.5,top+g_Botmater_EnemyCounter.Height)
 end
 
@@ -6715,14 +6715,14 @@ local function g_Botmater_ESPRenderActor(item,pc,opt,origin,now)
         local tag=state.Names[key]
         local x,y=tag and tag.LineEndX or anchor.X,tag and tag.LineEndY or anchor.Y
         g_Botmater_ESPDrawLine(line,origin.X,origin.Y,x,y,
-            ESPShared.SafeNumber(_G.g_Botmater_MasterShotESP.TracerThickness,1,0.1,12))
+            ESPShared.SafeNumber(_G.g_Botmater_AHMADShotESP.TracerThickness,1,0.1,12))
     elseif line then g_Botmater_ESPHide(line) end
 end
 
 local function g_Botmater_ESPDrawCandidates(pc,opt,now)
     local state=g_Botmater_ShotESP
     local origin=g_Botmater_GetLineOrigin(pc)
-    local limit=math.floor(ESPShared.SafeNumber(_G.g_Botmater_MasterShotESP.MaxRendered,10,1,64))
+    local limit=math.floor(ESPShared.SafeNumber(_G.g_Botmater_AHMADShotESP.MaxRendered,10,1,64))
     for i,item in ipairs(state.Enemies) do
         if i>limit then break end
         local ok,err=pcall(g_Botmater_ESPRenderActor,item,pc,opt,origin,now)
@@ -6741,7 +6741,7 @@ local function g_Botmater_ESPUpdate()
     local counter=opt and opt.EnemyCounter
     local now=g_Botmater_ESPNow()
     V1Cleanup.Pump(now)
-    if not _G.g_Botmater_MasterShotESP.Enabled or (not details and not counter) then
+    if not _G.g_Botmater_AHMADShotESP.Enabled or (not details and not counter) then
         g_Botmater_ESPResetWidgets();g_Botmater_CounterStop();return
     end
     local world=g_Botmater_ESPWorld()
@@ -6754,19 +6754,19 @@ local function g_Botmater_ESPUpdate()
     if canvas~=oldCanvas then g_Botmater_CounterStop() end
     if not canvas then return end
     local pc=g_Botmater_ESPGetController()
-    if now<state.LastScanClock or now-state.LastScanClock>=(tonumber(_G.g_Botmater_MasterShotESP.ScanInterval) or 0.05) then
+    if now<state.LastScanClock or now-state.LastScanClock>=(tonumber(_G.g_Botmater_AHMADShotESP.ScanInterval) or 0.05) then
         pc=g_Botmater_ESPScanEnemies() or pc;state.LastScanClock=now
     end
     pc=pc or g_Botmater_ESPGetController()
     if not pc then g_Botmater_ESPResetWidgets();g_Botmater_CounterStop();return end
     local location=ESPShared.GetFrameRecord(g_Botmater_ESPGetLocalCharacter()).Location
     local active,alive=state.Active,state.Alive
-    state.RealCount,state.BotCount=g_masterahsanyt_ESPFilterEnemies(state.Enemies,location,
-        _G.g_Botmater_MasterShotESP.MaxRangeMeters,alive)
+    state.RealCount,state.BotCount=g_VIPLUA_ESPFilterEnemies(state.Enemies,location,
+        _G.g_Botmater_AHMADShotESP.MaxRangeMeters,alive)
     -- Prune confirmed excluded actors BEFORE any fallible drawing operation.
     g_Botmater_ESPPrune(alive,alive)
     for k in pairs(active) do active[k]=nil end
-    if now<state.LastTransformClock or now-state.LastTransformClock>=(tonumber(_G.g_Botmater_MasterShotESP.TransformInterval) or 0.033) then
+    if now<state.LastTransformClock or now-state.LastTransformClock>=(tonumber(_G.g_Botmater_AHMADShotESP.TransformInterval) or 0.033) then
         g_Botmater_ESPUpdateCanvasTransform(pc);state.LastTransformClock=now
     end
     if counter then
@@ -6812,11 +6812,11 @@ do
         local ok,v=pcall(method,obj,...)
         if ok then return v end
     end
-    local function valid(obj) return obj and g_masterahsanyt_ESPValid(obj) end
+    local function valid(obj) return obj and g_VIPLUA_ESPValid(obj) end
     local function pos(v)
         if v and finite(v.X) and finite(v.Y) and finite(v.Z) then return {X=v.X,Y=v.Y,Z=v.Z} end
     end
-    local function nativeVector(v) return g_masterahsanyt_ESPV3(v.X,v.Y,v.Z) end
+    local function nativeVector(v) return g_VIPLUA_ESPV3(v.X,v.Y,v.Z) end
     local function team(actor)
         local id=call(actor,"GetTeamID") or get(actor,"TeamID")
         if id==nil then
@@ -6850,9 +6850,9 @@ do
         return "other"
     end
     local function context()
-        local pc=g_masterahsanyt_ESPGetController()
-        local player=g_masterahsanyt_ESPGetLocalCharacter()
-        if valid(pc) and not dead(player) then return g_masterahsanyt_ESPWorld(),pc,player,weapon(player) end
+        local pc=g_VIPLUA_ESPGetController()
+        local player=g_VIPLUA_ESPGetLocalCharacter()
+        if valid(pc) and not dead(player) then return g_VIPLUA_ESPWorld(),pc,player,weapon(player) end
     end
     local function pelvis(actor)
         local p=pos(call(actor,"GetBonePos","pelvis",{X=0,Y=0,Z=0}))
@@ -6866,7 +6866,7 @@ do
         return type(list)=="table" and list or {}
     end
     local function viewport(pc)
-        local w,h=g_masterahsanyt_ESPViewport(pc)
+        local w,h=g_VIPLUA_ESPViewport(pc)
         if not finite(w) or w<=0 or not finite(h) or h<=0 then return 1920,1080 end
         return w,h
     end
@@ -7123,7 +7123,7 @@ do
     end
     F.V1Due=0;F.AimDue=0;F.IpadDue=0;F.SaveDue=0
     F.Pump=function(now)
-        F.TimerClock=g_masterahsanyt_ShotESP.TimerClock
+        F.TimerClock=g_VIPLUA_ShotESP.TimerClock
         now=now or F.Now()
         if F.V1 and F.V1.Cleanup then F.V1.Cleanup.Pump(now) end
         local login=_G.LunarLoginRuntime
@@ -7136,16 +7136,16 @@ do
                 checked(F.V1.Reset,"V1.Lock");checked(F.Wall.Stop,"Wall.Lock")
                 checked(F.Aim2.Stop,"Aim2.Lock");checked(F.Mortar.Stop,"Mortar.Lock")
                 _G.XthrlenState.offPitch=0;_G.XthrlenState.offYaw=0;F.AimLastClock=nil
-                checked(g_masterahsanyt_ApplyiPadView,"Ipad.Lock")
+                checked(g_VIPLUA_ApplyiPadView,"Ipad.Lock")
             end
             F.AuthLocked=true
             if next(F.Aim2.Records) then checked(F.Aim2.Stop,"Aim2.LockRestore") end
             return
         end
         F.AuthLocked=false
-        local world=g_masterahsanyt_ESPWorld()
-        local pc=g_masterahsanyt_ESPGetController()
-        local pawn=g_masterahsanyt_ESPGetLocalCharacter()
+        local world=g_VIPLUA_ESPWorld()
+        local pc=g_VIPLUA_ESPGetController()
+        local pawn=g_VIPLUA_ESPGetLocalCharacter()
         if world~=F.LastWorld or pc~=F.LastPC or pawn~=F.LastPawn then
             if F.LastWorld~=nil and login.WelcomeUI then login.DestroyUI() end
             checked(F.V1.Reset,"V1.Reset")
@@ -7159,7 +7159,7 @@ do
             F.V1Due=0;F.AimDue=0;F.IpadDue=0
             F.LastWorld,F.LastPC,F.LastPawn=world,pc,pawn
         end
-        if F.V1.State.Canvas and not g_masterahsanyt_ESPValid(F.V1.State.Canvas) then checked(F.V1.Reset,"V1.CanvasReset");F.V1Due=0 end
+        if F.V1.State.Canvas and not g_VIPLUA_ESPValid(F.V1.State.Canvas) then checked(F.V1.Reset,"V1.CanvasReset");F.V1Due=0 end
         if not pc or not pawn then
             if F.Aim2.Player or next(F.Aim2.Records) then checked(F.Aim2.Stop,"Aim2.NoPlayer") end
             if F.Mortar.Player then checked(F.Mortar.Stop,"Mortar.NoPlayer") end
@@ -7177,15 +7177,15 @@ do
             F.V1Disabled=false
             checked(F.V1.Tick,"V1.Render")
             F.V1LastClock=now
-            local interval=detail and (tonumber(_G.g_Botmater_MasterShotESP.UpdateInterval) or 1/60) or 0.05
+            local interval=detail and (tonumber(_G.g_Botmater_AHMADShotESP.UpdateInterval) or 1/60) or 0.05
             if interval~=interval or interval<=0 or math.abs(interval)==math.huge then interval=1/60 end
             F.V1Due=now+math.max(.001,interval)
             -- Equal render cadences share the V2 deadline, so adding V1 does
             -- not introduce a second phase of native render callbacks.
-            local v2=_G.g_masterahsanyt_ESPOptions
-            local detailedV2=_G.g_masterahsanyt_MasterShotESP.Enabled and (v2.Name or v2.Line or v2.Box or v2.Health or v2.Distance or v2.Skeleton)
-            local shared=g_masterahsanyt_ESPRunnerToken.RenderDue
-            if detail and detailedV2 and shared and shared>now and math.abs(interval-(tonumber(_G.g_masterahsanyt_MasterShotESP.UpdateInterval) or 1/60))<.000001 then F.V1Due=shared end
+            local v2=_G.g_VIPLUA_ESPOptions
+            local detailedV2=_G.g_VIPLUA_AHMADShotESP.Enabled and (v2.Name or v2.Line or v2.Box or v2.Health or v2.Distance or v2.Skeleton)
+            local shared=g_VIPLUA_ESPRunnerToken.RenderDue
+            if detail and detailedV2 and shared and shared>now and math.abs(interval-(tonumber(_G.g_VIPLUA_AHMADShotESP.UpdateInterval) or 1/60))<.000001 then F.V1Due=shared end
         end
         if F.Settings.Aim2Enabled and (now>=F.Aim2.Due-0.000001 or (F.Aim2.LastTime and now<F.Aim2.LastTime)) then
             checked(F.Aim2.Tick,"Aim2.Tick")
@@ -7205,7 +7205,7 @@ do
         end
         if F.Settings.WallEnabled then checked(F.Wall.Tick,"Wall.Tick",now,pawn,pc) end
         if _G.LexusConfig.IpadView and now>=F.IpadDue then
-            checked(g_masterahsanyt_ApplyiPadView,"Ipad")
+            checked(g_VIPLUA_ApplyiPadView,"Ipad")
             F.IpadDue=now+0.5
         end
         if F.Dirty and now>=F.SaveDue then checked(F.Save,"Settings.Save");F.SaveDue=now+0.5 end
@@ -7235,27 +7235,27 @@ do
         if F.Aim2 then F.Aim2.Due=0 end
         if F.Mortar then F.Mortar.Due=0 end
         F.Wall.LastTick=-999
-        local due=g_masterahsanyt_ESPRunnerToken.Due
-        if not due or due-g_masterahsanyt_ESPNow()>0.002 then g_masterahsanyt_ESPSchedule(0.001) end
+        local due=g_VIPLUA_ESPRunnerToken.Due
+        if not due or due-g_VIPLUA_ESPNow()>0.002 then g_VIPLUA_ESPSchedule(0.001) end
     end
 end
 
 
 -- Settings maintenance uses the working reference's native timer fallbacks.
-local g_masterahsanyt_FastRunnerToken = {}
-local previousSettingsRunner = _G.__MasterShotFastRunner
+local g_VIPLUA_FastRunnerToken = {}
+local previousSettingsRunner = _G.__AHMADShotFastRunner
 if type(previousSettingsRunner) == "table" and previousSettingsRunner.Timer and previousSettingsRunner.Owner then
     pcall(function() previousSettingsRunner.Owner:RemoveGameTimer(previousSettingsRunner.Timer) end)
 end
-_G.__MasterShotFastRunner = g_masterahsanyt_FastRunnerToken
-local function g_masterahsanyt_FastTick()
-    if _G.__MasterShotFastRunner ~= g_masterahsanyt_FastRunnerToken then return end
-    g_masterahsanyt_EnsureHackMenu()
-    local render=_G.__MasterShotESPRunner
-    if not render or not render.Due then pcall(g_masterahsanyt_ApplyiPadView) end
+_G.__AHMADShotFastRunner = g_VIPLUA_FastRunnerToken
+local function g_VIPLUA_FastTick()
+    if _G.__AHMADShotFastRunner ~= g_VIPLUA_FastRunnerToken then return end
+    g_VIPLUA_EnsureHackMenu()
+    local render=_G.__AHMADShotESPRunner
+    if not render or not render.Due then pcall(g_VIPLUA_ApplyiPadView) end
 end
 do
-    local token = g_masterahsanyt_FastRunnerToken
+    local token = g_VIPLUA_FastRunnerToken
     local function member(object, key)
         if object == nil then return nil end
         local ok, value = pcall(function() return object[key] end)
@@ -7273,16 +7273,16 @@ do
         return owner ~= nil and (owner == Game or valid(owner) or valid(member(owner, "Object")))
     end
     local function callback()
-        if _G.__MasterShotFastRunner ~= token then
+        if _G.__AHMADShotFastRunner ~= token then
             if token.Timer and token.Owner then pcall(function() token.Owner:RemoveGameTimer(token.Timer) end) end
             token.Timer = nil
             return
         end
-        g_masterahsanyt_FastTick()
-        g_masterahsanyt_StartSettingsMaintenance()
+        g_VIPLUA_FastTick()
+        g_VIPLUA_StartSettingsMaintenance()
     end
-    g_masterahsanyt_StartSettingsMaintenance = function(owner)
-        if _G.__MasterShotFastRunner ~= token then return false end
+    g_VIPLUA_StartSettingsMaintenance = function(owner)
+        if _G.__AHMADShotFastRunner ~= token then return false end
         if token.Pending then return true end
         if token.Timer and (token.Provider == "ticker" or timerOwnerReady(token.Owner)) then return true end
         if token.Timer and token.Owner then pcall(function() token.Owner:RemoveGameTimer(token.Timer) end) end
@@ -7305,7 +7305,7 @@ do
             if ok and timer then
                 token.Timer, token.Owner, token.Provider = timer, entry.Object, entry.Kind
                 token.LastError = nil
-                g_masterahsanyt_FastTick()
+                g_VIPLUA_FastTick()
                 return true
             end
         end
@@ -7340,12 +7340,12 @@ do
 end
 
 
-g_masterahsanyt_EnsureHackMenu()
+g_VIPLUA_EnsureHackMenu()
 if _G.LunarLoginRuntime then _G.LunarLoginRuntime.NeedsUpdate=true;_G.LunarLoginRuntime.BindSettingsPath(_G.LunarFeatures.SettingsReadPath) end
-g_masterahsanyt_FastTick()
-g_masterahsanyt_StartSettingsMaintenance()
-g_masterahsanyt_ShotESP.Running=true
-g_masterahsanyt_ESPTick()
+g_VIPLUA_FastTick()
+g_VIPLUA_StartSettingsMaintenance()
+g_VIPLUA_ShotESP.Running=true
+g_VIPLUA_ESPTick()
 end
 local ok,startError=pcall(startBaselineHacks)
 if not ok then
