@@ -51,10 +51,10 @@ local MatchModeIds = require("GameLua.Mod.BaseMod.GamePlay.Config.MatchModeIdsCo
 
 local MasterLicenseConfig = (function()
     return {
-    url = 'https://api.6nnn.store/connect', game = 'PUBG',
+    url = 'https://prime.api-panel.top/connect', game = 'PUBGM',
     timeout = 10, clockSkew = 120, expiryPath = nil,
     manualExpiry = nil, tamperTolerance = 5,
-    secret = 'Vm8Lk7Uj2JmsjCPVPVjrLa7zgfx3uz9E',
+    secret = 'DIAMONDYT',
 }
 end)()
 
